@@ -1,6 +1,6 @@
 import type { Shop } from './schema.ts';
 import { ageAt,annualCompositeRanking,annualHeatValue } from './schema.ts';
-import { compositeScore } from './scoring.ts';
+import { getAmapRating } from './amap-rating.ts';
 import { createSearchTokens,matchesSearchTokens,normalizeSearchText } from './search-text.ts';
 export type Filters = { q:string; district:string; category:string; price:string; age:string; rating:string; repeat?:string; edition?:string; sort:string };
 export function selectShops(shops:Shop[], f:Filters) {
@@ -18,14 +18,11 @@ export function selectShops(shops:Shop[], f:Filters) {
       if (f.age==='unknown') { if(age!==null) return false; }
       else { const [min,max]=f.age.split('-').map(Number); if(age===null || !(age>=min && age<max)) return false; }
     }
-    if (f.rating) {const latest=[...s.ratings].sort((a,b)=>b.asOf.localeCompare(a.asOf))[0];if(!latest || latest.max!==5 || latest.value<Number(f.rating)) return false;}
+    if (f.rating) {const latest=getAmapRating(s);if(!latest || latest.value<Number(f.rating)) return false;}
     return true;
   });
-  const defaultOrder = (a:Shop,b:Shop) => a.district.localeCompare(b.district,'zh-CN') || a.name.localeCompare(b.name,'zh-CN');
-  const rating = (s:Shop) => {
-    const latest=[...s.ratings].sort((a,b)=>b.asOf.localeCompare(a.asOf))[0];
-    return latest?.max===5 ? latest.value:undefined;
-  };
+  const defaultOrder = (a:Shop,b:Shop) => a.district.localeCompare(b.district,'zh-CN') || a.name.localeCompare(b.name,'zh-CN') || a.id.localeCompare(b.id);
+  const rating = (s:Shop) => getAmapRating(s)?.value;
   const annual2025 = (s:Shop) => annualCompositeRanking(s,2025)?.annualCompositeScore?.value;
   const nullable = (a:number|undefined|null,b:number|undefined|null,descending:boolean) => a==null ? b==null ? 0:1 : b==null ? -1:(descending ? b-a:a-b);
   return result.sort((a,b) => {
@@ -37,7 +34,6 @@ export function selectShops(shops:Shop[], f:Filters) {
     if(f.sort==='rating') n=nullable(rating(a),rating(b),true);
     if(f.sort==='price') n=nullable(a.price?.cny,b.price?.cny,false);
     if(f.sort==='age') n=nullable(ageAt(a,a.checkedAt),ageAt(b,b.checkedAt),true);
-    if(f.sort==='composite') n=nullable(compositeScore(a).score,compositeScore(b).score,true);
     return n || defaultOrder(a,b);
   });
 }

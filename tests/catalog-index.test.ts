@@ -3,15 +3,18 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import ts from 'typescript';
 import {shops} from '../src/lib/catalogue.ts';
+import {buildAmapRatings} from '../src/lib/amap-rating.ts';
 import {createCatalogIndex} from '../src/lib/catalog-index.ts';
 import {searchCatalog} from '../src/lib/catalog-search.ts';
 import {selectShops,type Filters} from '../src/lib/filtering.ts';
+import {fixtureShop} from './fixtures.ts';
 const empty:Filters={q:'',district:'',category:'',price:'',age:'',rating:'',repeat:'',sort:'recommended'};
 test('精简搜索数据与原目录筛选排序一致，覆盖缺项、边界及组合',()=>{
   const index=createCatalogIndex(shops);
-  const cases:Partial<Filters>[]=[...['recommended','default','price'].map(sort=>({sort})),
+  const cases:Partial<Filters>[]=[...['recommended','rating','default','price'].map(sort=>({sort})),
     ...[...new Set(shops.map(s=>s.district))].map(district=>({district})),
     ...['0-30','30-60','60-100','100-99999'].map(price=>({price})),
+    ...['4.5','4.7','4.9'].map(rating=>({rating,sort:'rating'})),
     {repeat:'verified'},{q:shops.at(-1)!.name},{q:shops[0].address.text},{q:'不存在的店名-zzzz'},
     {district:'南山',price:'60-100',sort:'price'},{repeat:'verified',sort:'recommended'}];
   for(const c of cases) {const f={...empty,...c};assert.deepEqual(searchCatalog(index,f).map(s=>s.id),selectShops(shops,f).map(s=>s.id),JSON.stringify(c));}
@@ -20,8 +23,20 @@ test('精简搜索数据与原目录筛选排序一致，覆盖缺项、边界�
 
 test('客户端目录 DTO 只包含当前界面搜索、筛选、排序与渲染所需字段',()=>{
   const index=createCatalogIndex(shops);
-  const expected=['address','category','coordinates','district','eligible','id','name','order','price','repeat','search','slug'];
+  const expected=['address','category','coordinates','district','id','name','order','price','rating','repeat','search','slug'];
   for(const entry of index) assert.deepEqual(Object.keys(entry).sort(),expected,entry.id);
+});
+
+test('客户端评分排序直接使用高德原始value，缺失最后且不读取评论数',()=>{
+  const make=(id:string,name:string,value:number|null,count:number|null)=>{const item=fixtureShop();item.id=item.slug=id;item.name=name;item.ratings=value===null?[]:[{platform:'高德地图',value,max:null,count,asOf:'2026-10-02',sourceIds:['rating']}];return item;};
+  const items=[make('missing','缺失',null,null),make('tie-b','同分乙',4.8,9999),make('high','高分',4.9,0),make('tie-a','同分甲',4.8,null)];
+  const ratings=buildAmapRatings(items,'2026-10-02'),index=createCatalogIndex(items,ratings);
+  assert.deepEqual(index.map(entry=>entry.rating),[null,4.8,4.9,4.8]);
+  const expected=['high','tie-a','tie-b','missing'];
+  assert.deepEqual(searchCatalog(index,{...empty,sort:'rating'}).map(item=>item.id),expected);
+  assert.deepEqual(selectShops(items,{...empty,sort:'rating'}).map(item=>item.id),expected);
+  items[1].ratings[0].count=0;
+  assert.deepEqual(searchCatalog(createCatalogIndex(items,buildAmapRatings(items,'2026-10-02')),{...empty,sort:'rating'}).map(item=>item.id),expected);
 });
 
 test('搜索将空格分隔的关键词按 AND 匹配',()=>{
@@ -38,34 +53,34 @@ test('搜索将空格分隔的关键词按 AND 匹配',()=>{
     'amap-b0gkvr5h4l',
     'amap-b0h0bu0c0q',
   ];
-  assert.deepEqual(searchCatalog(index,{...empty,q:'南山 海鲜'}).map(s=>s.id),nanshanSeafood);
-  assert.deepEqual(selectShops(shops,{...empty,q:'南山 海鲜'}).map(s=>s.id),nanshanSeafood);
-  assert.deepEqual(searchCatalog(index,{...empty,q:'火锅 南山'}).map(s=>s.id),nanshanHotpot);
-  assert.deepEqual(selectShops(shops,{...empty,q:'火锅 南山'}).map(s=>s.id),nanshanHotpot);
+  assert.deepEqual(searchCatalog(index,{...empty,q:'南山 海鲜',sort:'default'}).map(s=>s.id),nanshanSeafood);
+  assert.deepEqual(selectShops(shops,{...empty,q:'南山 海鲜',sort:'default'}).map(s=>s.id),nanshanSeafood);
+  assert.deepEqual(searchCatalog(index,{...empty,q:'火锅 南山',sort:'default'}).map(s=>s.id),nanshanHotpot);
+  assert.deepEqual(selectShops(shops,{...empty,q:'火锅 南山',sort:'default'}).map(s=>s.id),nanshanHotpot);
 });
 
 test('搜索统一 NFKC、大小写和连续空白，但不臆测拆词',()=>{
   const index=createCatalogIndex(shops);
   const nanshanSeafood=['amap-b0ffj986qk','amap-b0g0gyhxrw','amap-b0gkvr5h4l','amap-b0h0bu0c0q'];
   for(const q of ['南山　　海鲜','  南山   海鲜  ']) {
-    assert.deepEqual(searchCatalog(index,{...empty,q}).map(s=>s.id),nanshanSeafood);
-    assert.deepEqual(selectShops(shops,{...empty,q}).map(s=>s.id),nanshanSeafood);
+    assert.deepEqual(searchCatalog(index,{...empty,q,sort:'default'}).map(s=>s.id),nanshanSeafood);
+    assert.deepEqual(selectShops(shops,{...empty,q,sort:'default'}).map(s=>s.id),nanshanSeafood);
   }
   for(const q of ['AVANT','ＡＶＡＮＴ']) {
-    assert.deepEqual(searchCatalog(index,{...empty,q}).map(s=>s.id),['amap-b0g2lzl1si']);
-    assert.deepEqual(selectShops(shops,{...empty,q}).map(s=>s.id),['amap-b0g2lzl1si']);
+    assert.deepEqual(searchCatalog(index,{...empty,q,sort:'default'}).map(s=>s.id),['amap-b0g2lzl1si']);
+    assert.deepEqual(selectShops(shops,{...empty,q,sort:'default'}).map(s=>s.id),['amap-b0g2lzl1si']);
   }
   for(const q of ['RAIL IN','rail in','ＲＡＩＬ ＩＮ']) {
-    assert.deepEqual(searchCatalog(index,{...empty,q}).map(s=>s.id),['amap-b0ja15pdav']);
-    assert.deepEqual(selectShops(shops,{...empty,q}).map(s=>s.id),['amap-b0ja15pdav']);
+    assert.deepEqual(searchCatalog(index,{...empty,q,sort:'default'}).map(s=>s.id),['amap-b0ja15pdav']);
+    assert.deepEqual(selectShops(shops,{...empty,q,sort:'default'}).map(s=>s.id),['amap-b0ja15pdav']);
   }
-  assert.deepEqual(searchCatalog(index,{...empty,q:'南山海鲜'}).map(s=>s.id),[]);
-  assert.deepEqual(selectShops(shops,{...empty,q:'南山海鲜'}).map(s=>s.id),[]);
+  assert.deepEqual(searchCatalog(index,{...empty,q:'南山海鲜',sort:'default'}).map(s=>s.id),[]);
+  assert.deepEqual(selectShops(shops,{...empty,q:'南山海鲜',sort:'default'}).map(s=>s.id),[]);
 });
 
 test('搜索文本显式包含地区和品类字段',()=>{
   const isolated={...shops[0],district:'南山' as const,category:'海鲜实验类'};
-  const query={...empty,q:'南山 海鲜实验类'};
+  const query={...empty,q:'南山 海鲜实验类',sort:'default'};
   assert.deepEqual(searchCatalog(createCatalogIndex([isolated]),query).map(s=>s.id),[isolated.id]);
   assert.deepEqual(selectShops([isolated],query).map(s=>s.id),[isolated.id]);
 });

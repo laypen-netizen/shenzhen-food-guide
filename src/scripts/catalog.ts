@@ -11,7 +11,6 @@ if(root) {
   const grid=root.querySelector<HTMLElement>('[data-shop-grid]')!;
   const empty=root.querySelector<HTMLElement>('[data-empty]')!;
   const favoriteEmpty=root.querySelector<HTMLElement>('[data-favorite-empty]');
-  const unrankedDivider=root.querySelector<HTMLElement>('[data-unranked-divider]');
   const activeFilters=root.querySelector<HTMLElement>('[data-active-filters]')!;
   const resetEmpty=root.querySelector<HTMLButtonElement>('[data-empty-reset]')!;
   const statusEmpty=root.querySelector<HTMLElement>('[data-empty-status]')!;
@@ -36,12 +35,6 @@ if(root) {
     const order=visible.map(s=>s.id).join(',');
     const changed=order!==lastOrder;
     if(changed) {for(const s of visible) {const card=cards.get(s.id);if(card) grid.append(card);}lastOrder=order;}
-    if(unrankedDivider) {
-      const first=visible.slice(0,limit).find(s=>!s.eligible);
-      const isRecommended=(form.elements.namedItem('sort') as HTMLSelectElement).value==='recommended';
-      unrankedDivider.hidden=!first || !isRecommended;
-      if(first && isRecommended) grid.insertBefore(unrankedDivider,cards.get(first.id)!);
-    }
     more.hidden=visible.length===0;
     more.querySelector('[data-page-count]')!.textContent=`已显示 ${Math.min(limit,visible.length)} / ${visible.length} 家`;
     moreButton.hidden=limit>=visible.length;
@@ -104,7 +97,7 @@ if(root) {
     visible=searchCatalog(favoritesOnly ? all.filter(s=>saved.has(s.id)):all,f);
     const listChanged=renderCards();
     const active=['category','repeat'].filter(k=>f[k as keyof Filters]).length;
-    const sortSummary:Record<string,string>={recommended:'双证据分层',default:'地区 · 店名',price:'人均从低到高'};
+    const sortSummary:Record<string,string>={recommended:'高德评分从高到低',default:'地区 · 店名',price:'人均从低到高'};
     root!.querySelector('[data-filter-summary]')!.textContent=`${active ? `${active} 项条件 · `:''}${sortSummary[f.sort] || ''}`;
     renderFilters(f);
     grid.hidden=visible.length===0;
@@ -131,8 +124,8 @@ if(root) {
       }
     }
     root!.querySelector('[data-sort-note]')!.textContent=f.sort==='recommended'
-      ? `当前结果：${visible.filter(s=>s.eligible).length} 家分层参评 · ${visible.filter(s=>!s.eligible).length} 家未参评；第 1 层最前，同层按地区和店名显示`
-      : '参评层级与区间保持不变；当前仅改变阅读顺序';
+      ? `当前结果：${visible.filter(s=>s.rating!==null).length} 家有高德评分；同分按地区和店名排列`
+      : '高德评分原值保持不变；当前仅改变阅读顺序';
     if(listChanged) mapController?.update(visible);
     if(writeUrl) {
       const url=new URL(location.href);

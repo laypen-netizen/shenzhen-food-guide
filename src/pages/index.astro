@@ -1,16 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Catalog from '../components/Catalog.astro';
-import {catalogue,shops,recommendationById} from '../lib/catalogue';
+import {catalogue,shops,ratingById} from '../lib/catalogue';
 import {pathFor} from '../lib/urls';
-const rankedCount=shops.filter(s=>recommendationById.get(s.id)?.eligible).length;
+const ratedCount=shops.filter(shop=>ratingById.get(shop.id)!==null).length;
 const coveredDistricts=new Set(shops.map(shop=>shop.district)).size;
 ---
 <Layout>
   <section class="hero guide-hero shell">
     <div class="hero-copy"><div class="eyebrow"><span class="tiny-dot"></span> 高德数据 · 本站综合整理</div><h1>深圳这一餐，<br /><span>按你的需要找。</span></h1><p>汇集高德榜单里的具体分店，按地区、预算和菜品选一餐。</p><a class="text-action" href="#find" data-focus-search>直接找店 ↓</a><a class="hero-secondary" href={pathFor('methodology/#selection')}>与高德榜单有什么不同 ↗</a></div>
-    <aside class="guide-overview" aria-label="资料概况"><p><strong>{shops.length}</strong> 家已收录 <span>覆盖 {coveredDistricts} 个地区</span></p><p>{rankedCount} 家进入本次双证据分层；其余门店仍可查找。<a href={pathFor('methodology/#score')}>层级与区间怎样读 ↗</a></p><small>资料整理于 {catalogue.updatedAt} · <a href={pathFor('status/')}>资料状态与纠错</a></small></aside>
+    <aside class="guide-overview" aria-label="资料概况"><p><strong>{shops.length}</strong> 家已收录 <span>覆盖 {coveredDistricts} 个地区</span></p><p>{ratedCount} 家有可核验高德评分；评分按原值展示。<a href={pathFor('methodology/#score')}>评分怎样读 ↗</a></p><small>资料整理于 {catalogue.updatedAt} · <a href={pathFor('status/')}>资料状态与纠错</a></small></aside>
   </section>
   <Catalog />
-  <section class="principles shell"><div class="principles-intro"><div class="eyebrow">HOW TO READ THE GUIDE</div><h2>高德给出原始资料，<br />本站统一整理。</h2><a href={pathFor('methodology/')}>读完整评分方法 ↗</a></div><div class="principle-items"><div><span>01</span><h3>先看层级</h3><p>第 1 层最先展示；同层门店不分先后，层内按地区和店名排列只为方便浏览。跨层也不表示每一对门店都能直接比较。</p></div><div><span>02</span><h3>区间保留不确定性</h3><p>分数与名次保留交叉不可比带来的上下界。区间越宽，可确定的先后越少；它不是统计置信区间。</p></div><div><span>03</span><h3>原始来源可回查</h3><p>原始资料来自高德，回访人数是平台展示值，不是真实客流或回头率。资料不足的门店暂不参评，但仍可查找。</p></div></div></section>
+  <section class="principles shell"><div class="principles-intro"><div class="eyebrow">HOW TO READ THE GUIDE</div><h2>高德给出原始资料，<br />本站统一整理。</h2><a href={pathFor('methodology/')}>读完整资料说明 ↗</a></div><div class="principle-items"><div><span>01</span><h3>直接看高德评分</h3><p>直接展示高德餐厅评分，保留原始数值、评价条数和采集日期，方便查看来源。</p></div><div><span>02</span><h3>评价数不参与排序</h3><p>默认按高德评分从高到低；同分按地区和店名排列。评价条数和采集日期同时展示，方便核查资料。</p></div><div><span>03</span><h3>原始来源可回查</h3><p>评分、评价数和回访人数来自高德页面；回访人数是平台展示值，不是真实客流或回头率。</p></div></div></section>
 </Layout>
