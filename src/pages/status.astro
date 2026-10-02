@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {catalogue,shops} from '../lib/catalogue';
+import {pathFor} from '../lib/urls';
+const rawRepo = import.meta.env.PUBLIC_REPO_URL || process.env.PUBLIC_REPO_URL || '';
+const repo = /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/?$/.test(rawRepo) ? rawRepo.replace(/\/$/,''):null;
+const issueUrl = repo ? `${repo}/issues/new?${new URLSearchParams({title:'门店资料纠错 / 新店建议',body:'门店名称：\n深圳地区：\n高德扫街榜分享链接：\n门店历史依据（如有）：\n需要修正的信息：\n依据日期：\n请不要填写私密账号、Cookie 或 API Key。'})}`:null;
+---
+<Layout title="资料状态与纠错">
+  <section class="page-intro shell"><div class="eyebrow">A SMALL GUIDE, BUILT WITH EVIDENCE</div><h1>资料的进度，<br /><span>如实告诉你。</span></h1><p>最近整理日期 {catalogue.updatedAt}。收录数量只计算通过门店、榜单与营业核验的记录。</p></section>
+  <div class="prose status-content shell"><div class="status-summary"><div><strong>{shops.length}</strong><span>正式收录</span></div><div><strong>{catalogue.pending.length}</strong><span>待核验</span></div><div><strong>{catalogue.sources.length}</strong><span>高德证据记录</span></div></div>
+    <p class="notice">{catalogue.note}</p>
+    {!shops.length && <section class="notice"><h2>{catalogue.pending.length ? '榜单已读取，门店资料待核验':'真实扫街榜资料待接入'}</h2><p>{catalogue.note}</p><p>高德 App 观察记录保留实际页面路径与字段含义。导航里程、热度、本地人推荐人数和“收录年限”都不能替代重复到店率。缺少回头客指标不阻塞收录，但不会据此声称门店经过回头客认证。没有通过基础资料核验的候选不进入正式推荐。</p></section>}
+    <section><h2>待核验记录</h2>{catalogue.pending.length ? <div class="pending-list">{catalogue.pending.map(p => <article><h3>{p.name} <small>{p.district || '行政区待核验'}</small></h3><p>观察日期：{p.observedAt || catalogue.updatedAt}</p>{p.facts?.length ? <ul>{p.facts.map(f => <li>{f.text}</li>)}</ul> : null}<p><strong>尚缺：</strong>{p.missing.join('；')}</p>{p.sourceIds.map(id => {const s=catalogue.sources.find(s=>s.id===id);return s && <div><p>{s.capture ? `App观察路径：${s.capture.view}`:s.title}</p><p><a href={s.url} target="_blank" rel="noopener noreferrer">{s.capture ? '在高德搜索这家店（搜索链接不证明上榜）':s.title} ↗</a></p></div>;})}</article>)}</div> : <p>尚无取得可核验高德来源的候选记录。没有证据的店名不会进入此队列。</p>}</section>
+    <section><h2>如何补充资料</h2><ol><li>高德 App 中选深圳，打开扫街榜或回头客相关榜单。</li><li>分享具体榜单和具体门店，保留榜名、范围、届次或观察日期。</li><li>核验具体分店的地址、品类与近期营业依据；店龄资料如有可靠依据再补充。</li><li>审核原始评分、价格、坐标与照片使用权，数据校验通过后构建更新。</li></ol></section>
+    <section><h2>纠错与推荐门店</h2>{issueUrl ? <><p>请附高德链接及需要修正的事实。点击后由你自行提交 GitHub Issue，内容审核后更新。</p><a class="button button-primary" href={issueUrl} target="_blank" rel="noopener noreferrer">在 GitHub 提交建议 ↗</a></> : <><p>当前尚未配置接收建议的 GitHub 仓库。请准备门店名称、高德分享链接和需要修正的事实；接收渠道开通后会在这里公布。</p><p class="help-text">此处没有在线提交表单，不会声称建议已提交。</p></>}</section>
+    <section><h2>高德资料从哪里来</h2><p>上榜依据来自高德 App 扫街榜观察记录，以及<a href="https://www.amap.com/ranking/shenzhen/food" target="_blank" rel="noopener noreferrer">高德深圳官方榜单网页 ↗</a>。网页保留的是2025年度榜单；2026年采集到的门店详情不能把旧榜单变成2026年度排名。</p><p>地址、营业时段、评分和评价总数字段来自具体门店的高德详情页及其页面数据。网页详情的评价总数字段与页面精选评价数量可能不同，来源说明保留具体口径。营业时段仅作近期营业线索，出发前请在高德确认。回头客人数仅采用实际读到的 App 记录。</p><p><a href="https://lbs.amap.com/api/webservice/guide/api-advanced/newpoisearch" target="_blank" rel="noopener noreferrer">高德 POI 2.0 官方文档 ↗</a>与网页自身使用的数据请求是不同通道；本次未取得公开、承诺稳定的扫街榜专用 API，也未确认榜单合作接口。</p></section>
+    <a class="text-action" href={pathFor()}>← 回到指南</a>
+  </div>
+</Layout>

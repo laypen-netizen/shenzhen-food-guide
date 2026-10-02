@@ -1,0 +1,27 @@
+{
+  "name": "shenzhen-food-guide",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "validate": "node scripts/validate-data.ts",
+    "test": "node --test tests/*.test.ts",
+    "check": "astro check",
+    "build": "npm run validate && astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "verify:static": "node scripts/verify-static.ts"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.3.5",
+    "leaflet": "1.9.4",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/leaflet": "^1.9.21",
+    "typescript": "^5.9.3"
+  }
+}

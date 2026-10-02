@@ -1,0 +1,5 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {pathFor} from '../lib/urls';
+---
+<Layout title="页面未找到"><section class="page-intro shell"><div class="eyebrow">404</div><h1>这条小巷，<br /><span>暂时没找到。</span></h1><p>链接可能已经更新。回到指南，重新找一间店。</p><a class="button button-primary" href={pathFor()}>回到首页</a></section></Layout>

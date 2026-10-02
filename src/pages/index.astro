@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Catalog from '../components/Catalog.astro';
+import {catalogue,shops} from '../lib/catalogue';
+import {districts} from '../lib/schema';
+import {pathFor} from '../lib/urls';
+---
+<Layout>
+  <section class="hero shell">
+    <div class="hero-copy"><div class="eyebrow"><span class="tiny-dot"></span> {shops.length===100 ? '深圳美食 TOP 100 · 高德上榜门店选集':'高德扫街榜 · 深圳美食指南'}</div><h1>一座城的好味道，<br />藏在<span>常去的小店</span>里。</h1><p>综合参考先看哪几家，再按区找上榜小店。<br />把来源、价格和资料缺口都摆在明处。</p><a class="button button-primary" href="#find">开始找店 <span aria-hidden="true">↓</span></a><a class="hero-secondary" href={pathFor('methodology/')}>我们怎样整理 ↗</a></div>
+    <div class="hero-art"><img src={pathFor('street.svg')} alt="街边小店主题插画，非真实门店照片" width="560" height="330" /><span class="art-caption">街角有烟火，常来有理由。<small>主题插画 · 非门店实拍</small></span></div>
+  </section>
+  <section class="stat-bar shell" aria-label="资料概况"><div><strong>{shops.length.toString().padStart(2,'0')}</strong><span>已核验收录<small>{shops.length ? '榜单与门店资料已核验':catalogue.pending.length ? `${catalogue.pending.length} 家上榜候选待核验`:'真实榜单待接入'}</small></span></div><div><strong>10</strong><span>深圳地区<small>地区只用于查找</small></span></div><div><strong>04</strong><span>综合评分维度<small>缺少依据，暂不评分</small></span></div><div class="stat-date"><span>最近整理日期<strong>{catalogue.updatedAt}</strong></span><a href={pathFor('status/')}>查看资料状态 ↗</a></div></section>
+  <section class="district-section shell"><div class="section-heading compact"><h2>按街区查看全部收录</h2><span>不设地区名额</span></div><div class="district-grid">{districts.map((d,i) => <a class="district-chip" href={`${pathFor()}?district=${encodeURIComponent(d)}#find`}><span class="district-number">{String(i+1).padStart(2,'0')}</span><strong>{d}</strong><span class="district-count">{shops.filter(s => s.district===d).length} 家 <span aria-hidden="true">↗</span></span></a>)}</div></section>
+  <Catalog />
+  <section class="principles shell"><div class="principles-intro"><div class="eyebrow">HOW WE KEEP IT HONEST</div><h2>好吃可以主观，<br />依据必须清楚。</h2><a href={pathFor('methodology/')}>读完整整理原则 ↗</a></div><div class="principle-items"><div><span>01</span><h3>只用高德来源</h3><p>扫街榜记录单独核验，普通 POI 结果不冒充上榜门店。</p></div><div><span>02</span><h3>多项资料相互印证</h3><p>原始评分、评价数量、180天回头客与原范围上榜记录一起参考，优选不是官方综合分。</p></div><div><span>03</span><h3>不按地区凑数</h3><p>地区只用于查找；缺字段不扣分，价格只作为出行预算参考。</p></div></div></section>
+</Layout>

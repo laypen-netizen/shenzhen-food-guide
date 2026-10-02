@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+.DS_Store
+research/*
+!research/api-notes.md
+!research/public-ranking-channel.md
+.verification/
+tests/generated-catalogue.json
