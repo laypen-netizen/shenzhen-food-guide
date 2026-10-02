@@ -1,13 +1,14 @@
 import type { Shop } from './schema.ts';
-import { ageAt,annualCompositeRanking } from './schema.ts';
+import { ageAt,annualCompositeRanking,annualHeatValue } from './schema.ts';
 import { compositeScore } from './scoring.ts';
-import { compareSelection } from './selection.ts';
-export type Filters = { q:string; district:string; category:string; price:string; age:string; rating:string; repeat?:string; sort:string };
+export type Filters = { q:string; district:string; category:string; price:string; age:string; rating:string; repeat?:string; edition?:string; sort:string };
 export function selectShops(shops:Shop[], f:Filters) {
   const query = f.q.trim().toLocaleLowerCase();
+  const order=new Map(shops.map((shop,index)=>[shop.id,index]));
   const result = shops.filter(s => {
     if (query && ![s.name,...s.aliases,s.address.text,s.summary.text,s.cuisine,...s.dishes.map(d=>d.text)].join(' ').toLocaleLowerCase().includes(query)) return false;
     if (f.district && s.district !== f.district || f.category && s.category !== f.category) return false;
+    if (f.edition && !s.rankings.some(r=>(r.edition==='2026' ? '2026':r.edition==='2025' ? '2025':'undated')===f.edition)) return false;
     if (f.repeat==='verified' && !s.repeatVisits) return false;
     if (f.price) { const [min,max]=f.price.split('-').map(Number); if (!s.price || !(s.price.cny>=min && s.price.cny<max)) return false; }
     if (f.age) {
@@ -27,9 +28,10 @@ export function selectShops(shops:Shop[], f:Filters) {
   const nullable = (a:number|undefined|null,b:number|undefined|null,descending:boolean) => a==null ? b==null ? 0:1 : b==null ? -1:(descending ? b-a:a-b);
   return result.sort((a,b) => {
     let n=0;
-    if(f.sort==='recommended') n=compareSelection(a,b);
+    if(f.sort==='recommended') n=order.get(a.id)!-order.get(b.id)!;
     if(f.sort==='annual-2025') n=nullable(annual2025(a),annual2025(b),true)
       || (annual2025(a)!==undefined && annual2025(b)!==undefined ? a.name.localeCompare(b.name,'zh-CN'):0);
+    if(f.sort==='heat-2026') n=nullable(annualHeatValue(a,2026),annualHeatValue(b,2026),true);
     if(f.sort==='rating') n=nullable(rating(a),rating(b),true);
     if(f.sort==='price') n=nullable(a.price?.cny,b.price?.cny,false);
     if(f.sort==='age') n=nullable(ageAt(a,a.checkedAt),ageAt(b,b.checkedAt),true);

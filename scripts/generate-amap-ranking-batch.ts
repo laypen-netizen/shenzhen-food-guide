@@ -17,6 +17,7 @@ type RankingEvidence = {
 type Candidate = {
   poiId: string;
   name: string;
+  names?: string[];
   officialPlaceUrl: string;
   existingShopId: string | null;
   inclusion?: string;
@@ -40,11 +41,11 @@ type RawPoi = {
   };
 };
 
-let poolPath = 'research/amap-ranking-2025-priority-pool-100.json';
+let poolPath = 'research/amap-ranking-2025-candidates.json';
 let rawDir = 'research/raw/amap-poi-2026';
 let cataloguePath = 'src/data/catalogue.json';
 let outputPath: string | null = null;
-let targetTotal = 100;
+let targetTotal: number | null = null;
 let asOf: string | undefined;
 for (let i = 2; i < process.argv.length; i++) {
   const arg = process.argv[i];
@@ -55,12 +56,12 @@ for (let i = 2; i < process.argv.length; i++) {
   else if (arg === '--target-total') targetTotal = Number(process.argv[++i] || fail('--target-total 缺少数量'));
   else if (arg === '--as-of') asOf = process.argv[++i] || fail('--as-of 缺少日期');
   else if (arg === '--help' || arg === '-h') {
-    console.log('用法：node scripts/generate-amap-ranking-batch.ts [--pool FILE] [--raw-dir DIR] [--catalogue FILE] [--target-total 100] [--as-of YYYY-MM-DD] [--output FILE]');
+    console.log('用法：node scripts/generate-amap-ranking-batch.ts [--pool FILE] [--raw-dir DIR] [--catalogue FILE] [--target-total N] [--as-of YYYY-MM-DD] [--output FILE]');
     console.log('默认只离线校验和预览；只有指定 --output 才写入批次文件，绝不修改生产 catalogue。');
     process.exit(0);
   } else fail(`未知参数：${arg}`);
 }
-if (!Number.isInteger(targetTotal) || targetTotal < 1) fail('--target-total 必须是正整数');
+if (targetTotal !== null && (!Number.isInteger(targetTotal) || targetTotal < 1)) fail('--target-total 必须是正整数');
 
 function fail(message: string): never { throw new Error(message); }
 function parseJson<T>(raw: string, path: string): T {
@@ -109,7 +110,7 @@ if (!Array.isArray(pool.candidates)) fail('候选池缺少 candidates 数组');
 const catalogue = validateCatalogue(parseJson(await readFile(absoluteCatalogue, 'utf8'), absoluteCatalogue), { asOf });
 const observationDate = asOf ?? pool.generatedAt;
 if (!/^\d{4}-\d{2}-\d{2}$/.test(observationDate)) fail('观察日期必须是 YYYY-MM-DD');
-const wanted = Math.max(0, targetTotal - catalogue.shops.length);
+const wanted = targetTotal === null ? Infinity : Math.max(0, targetTotal - catalogue.shops.length);
 const names = currentNameSet(catalogue);
 const existingIds = new Set(catalogue.shops.map(shop => shop.id));
 const existingSlugs = new Set(catalogue.shops.map(shop => shop.slug));
@@ -198,7 +199,7 @@ for (const candidate of orderedCandidates) {
     id: poiSourceId,
     title: `高德公开POI详情离线响应：${name}`,
     url: raw.sourceUrl || candidate.officialPlaceUrl,
-    kind: 'poi', publishedAt: null, accessedAt: capturedDate,
+    kind: 'poi', publishedAt: null, accessedAt: capturedDate, ratingChannel:'amap-pc-poi-rating',
     statement: `${apiFields}。响应离线保存在 ${rawItem.path.replace(`${resolve('.')}/`, '')}；building_status语义未确认，未据此判断营业状态；图片未取得转载许可。`,
   }));
 
@@ -211,12 +212,12 @@ for (const candidate of orderedCandidates) {
       title: `高德扫街榜公开网页：${item.group} · ${item.scope}`,
       url: item.sourceUrl,
       kind: 'ranking', publishedAt: null, accessedAt: pool.generatedAt,
-      statement: `高德官方公开榜单“${item.group}”，范围“${item.scope}”。${metricStatement}`,
+      statement: `高德官方公开榜单“${item.group}”，范围“${item.scope}”。${metricStatement}${item.group.includes('2025') ? '':' 页面未注明榜单届次；2026为访问年份，不作为榜单年份。'}`,
     }));
   }
 
   const rankingSourceIds = unique(evidence.map(item => item.sourceId));
-  const aliases = unique([candidate.name].filter(alias => normalizeName(alias) !== normalizeName(name)));
+  const aliases = unique([candidate.name,...(candidate.names ?? [])].filter(alias => normalizeName(alias) !== normalizeName(name)));
   const rankingSummary = evidence.map(item => `${item.group}（${item.scope}）第${item.position}项${item.metricLabel ? `，页面原始“${item.metricLabel}”` : ''}`).join('；');
   const hasAnnualCompositeScore = evidence.some(item => typeof item.annualCompositeScore === 'number');
   const hasHighConsumptionAudience = evidence.some(item => typeof item.highConsumptionAudience === 'number');
@@ -237,14 +238,14 @@ for (const candidate of orderedCandidates) {
     id: slug, slug, name, aliases, district, street: '',
     address: { text: addressWithDistrict(districtName, address), sourceIds: [poiSourceId] },
     category: classify, cuisine: classify,
-    summary: { text: `${addressWithDistrict(districtName, address)}的${classify}门店，收录于高德2025官方榜单。`, sourceIds },
+    summary: { text: `${addressWithDistrict(districtName, address)}的${classify}门店，收录于高德官方榜单。`, sourceIds },
     dishes: [],
     reasons: [
       { text: `${rankingSummary}。${metricCaveat}`, sourceIds: rankingSourceIds },
       { text: secondReason, sourceIds: recommendation || platformTags.length ? rankingSourceIds : [poiSourceId] },
     ],
     cautions: [
-      { text: `高德公开POI详情仍返回该门店和营业时段，含节假日例外时按原文保留，但未核验采集当刻是否正在营业；评分使用详情接口rating，评价数使用同一响应的review_total，不与App页面其他评论数字混用。${aliases.length ? `2025榜单以“${candidate.name}”收录同一POI；当前详情名称不同，旧名作为别名保留，这不证明经营主体或历史连续不变。` : ''}`, sourceIds },
+      { text: `高德公开POI详情仍返回该门店和营业时段，含节假日例外时按原文保留，但未核验采集当刻是否正在营业；评分使用详情接口rating，评价数使用同一响应的review_total，不与App页面其他评论数字混用。${aliases.length ? `高德榜单以“${candidate.name}”收录同一POI；当前详情名称不同，旧名作为别名保留，这不证明经营主体或历史连续不变。` : ''}`, sourceIds },
     ],
     scenes: [], history: null,
     operating: { status: 'reported-open', asOf: capturedDate, sourceIds: [poiSourceId], note: `高德公开POI详情仍返回具体门店及常规营业时间“${hours}”；未核验采集当刻是否处于营业时段，building_status语义未用于判断。` },
@@ -253,8 +254,8 @@ for (const candidate of orderedCandidates) {
     coordinates: { lon, lat, system: 'GCJ-02', sourceIds: [poiSourceId] },
     ratings: rating !== null && rating >= 0 ? [{ platform: '高德地图', value: rating, max: null, count: reviewTotal, asOf: capturedDate, sourceIds: [poiSourceId] }] : [],
     rankings: evidence.map(item => ({
-      name: `高德扫街榜 · ${item.group}`, edition: '2025', rank: item.position, scope: item.scope, asOf: pool.generatedAt, sourceIds: [item.sourceId],
-      annualCompositeScore: typeof item.annualCompositeScore==='number' ? {value:item.annualCompositeScore,year:2025,label:'全年综合分',rawDisplay:item.metricLabel?.replace(/^全年综合分/,'') || String(item.annualCompositeScore)}:null,
+      name: `高德扫街榜 · ${item.group}`, edition: item.group.includes('2025') ? '2025' : `页面未标注届次（${pool.generatedAt}访问）`, rank: item.position, scope: item.scope, asOf: pool.generatedAt, sourceIds: [item.sourceId],
+      annualCompositeScore: typeof item.annualCompositeScore==='number' ? {value:item.annualCompositeScore,year:item.group.includes('2025') ? 2025:null,label:'全年综合分',rawDisplay:item.metricLabel?.replace(/^全年综合分/,'') || String(item.annualCompositeScore)}:null,
     })),
     metrics: { repeat: null, stability: null, value: null }, repeatVisits: null, photos: [], checkedAt: capturedDate,
   });
@@ -278,12 +279,12 @@ for (const candidate of orderedCandidates) {
 
 const batch = {
   sources: [...generatedSources.values()], shops: generatedShops, pending: [], updatedAt: observationDate,
-  note: `深圳美食Top 100为本站高德上榜门店选集，非高德官方全市总排名。首批保留已有${catalogue.shops.length}家；新增先取2025官方全城榜候选，再从区榜候选按原全年综合分补充，同分按店名和POI稳定选择，不设地区配额。年度分、用户评分、回头客人数分别展示，缺指标不推算本站综合分。`,
+  note: `深圳美食指南为本站高德上榜门店选集，非高德官方全市总排名。首批保留已有${catalogue.shops.length}家；新增先取2025官方全城榜候选，再从区榜候选按原全年综合分补充，同分按店名和POI稳定选择，不设总数上限或地区配额，按具体分店去重。年度分、用户评分、回头客人数分别展示，缺指标不推算本站综合分。`,
 };
 validateCatalogue({ version: 1, policy: 'amap-only', ...batch }, { asOf: observationDate });
-console.log(`离线生成校验通过：当前正式 ${catalogue.shops.length} 家，目标 ${targetTotal} 家，需要 ${wanted} 家；本次可生成 ${generatedShops.length} 家、${generatedSources.size} 条来源。`);
+console.log(`离线生成校验通过：当前正式 ${catalogue.shops.length} 家，目标 ${targetTotal ?? '不限'} 家；本次可生成 ${generatedShops.length} 家、${generatedSources.size} 条来源。`);
 console.log(`跳过 ${skipped.length} 条：${skipped.slice(0, 12).join('；')}${skipped.length > 12 ? '；…' : ''}`);
-if (generatedShops.length < wanted) console.log(`仍缺 ${wanted - generatedShops.length} 家完整POI详情；未用失败、装修中、缺字段或重复门店补数。`);
+if (Number.isFinite(wanted) && generatedShops.length < wanted) console.log(`仍缺 ${wanted - generatedShops.length} 家完整POI详情；未用失败、装修中、缺字段或重复门店补数。`);
 if (!outputPath) console.log('DRY RUN：未写文件；指定 --output research/<name>.json 后生成可供 import-amap-batch.ts 预演的批次。');
 else {
   const output = resolve(outputPath);

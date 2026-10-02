@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { amapPoiId, normalizedStoreText } from './store-identity.ts';
 
 export const districts = ['福田','罗湖','南山','盐田','宝安','龙岗','龙华','坪山','光明','大鹏新区'] as const;
 const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(value => {
@@ -7,7 +8,7 @@ const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(value => {
 }, '日期不存在');
 const httpsUrl = z.url().refine(value => new URL(value).protocol === 'https:', '必须使用 HTTPS');
 export const isAmapUrl = (value: string) => {
-  try { const u = new URL(value); return u.protocol === 'https:' && (u.hostname === 'amap.com' || u.hostname.endsWith('.amap.com')); }
+  try { const u = new URL(value); return u.protocol === 'https:' && (u.hostname === 'amap.com' || u.hostname.endsWith('.amap.com') || u.hostname === 'a.a-map.link'); }
   catch { return false; }
 };
 const refs = z.array(z.string().min(1)).min(1);
@@ -17,6 +18,7 @@ export const sourceSchema = z.object({
   kind: z.enum(['ranking','poi','history','rating','repeat','value']),
   publishedAt: date.nullable(), accessedAt: date,
   statement: z.string().min(1),
+  ratingChannel: z.enum(['amap-app-displayed-rating','amap-pc-poi-rating']).optional(),
   capture: z.object({
     method: z.enum(['official-app','user-screenshot']),
     view: z.string().min(1),
@@ -29,7 +31,7 @@ const metric = z.object({
 }).strict();
 const annualCompositeScore = z.object({
   value: z.number().min(0).max(100),
-  year: z.number().int().min(2000).max(2100),
+  year: z.number().int().min(2000).max(2100).nullable(),
   label: z.literal('全年综合分'),
   rawDisplay: z.string().trim().min(1).optional(),
 }).strict();
@@ -58,10 +60,12 @@ export const shopSchema = z.object({
     edition: z.string().min(1), rank: z.number().int().positive().nullable(),
     scope: z.string().min(1), asOf: date, sourceIds: refs,
     annualCompositeScore: annualCompositeScore.nullable().optional(),
+    annualHeat: z.object({value:z.number().nonnegative(),year:z.number().int().min(2000).max(2100),label:z.literal('全年热度值'),rawDisplay:z.string().trim().min(1).optional()}).strict().optional(),
   }).strict().superRefine((ranking,ctx) => {
-    if(ranking.annualCompositeScore && !`${ranking.name} ${ranking.edition}`.includes(String(ranking.annualCompositeScore.year))) {
+    if(ranking.annualCompositeScore?.year != null && !`${ranking.name} ${ranking.edition}`.includes(String(ranking.annualCompositeScore.year))) {
       ctx.addIssue({code:'custom',path:['annualCompositeScore','year'],message:'年度综合分年份必须出现在榜单名称或届次中'});
     }
+    if(ranking.annualHeat && ranking.edition!==String(ranking.annualHeat.year)) ctx.addIssue({code:'custom',path:['annualHeat','year'],message:'全年热度值年份必须与明确榜单届次对应，观察日期不能代替届次'});
   })).min(1),
   metrics: z.object({ repeat: metric.nullable(), stability: metric.nullable(), value: metric.nullable() }).strict(),
   repeatVisits: z.object({
@@ -97,7 +101,7 @@ export function repeatVisitsDisplay(value: NonNullable<Shop['repeatVisits']>) {
   return `约${value.rawDisplay}`;
 }
 
-export function annualCompositeRanking(shop: Shop, year=2025) {
+export function annualCompositeRanking(shop: Shop, year:number|null=2025) {
   const candidates=[...shop.rankings]
     .filter(ranking=>ranking.annualCompositeScore?.year===year)
     .sort((a,b)=>b.asOf.localeCompare(a.asOf) || a.scope.localeCompare(b.scope,'zh-CN'));
@@ -106,6 +110,19 @@ export function annualCompositeRanking(shop: Shop, year=2025) {
   const latest=candidates.filter(ranking=>ranking.asOf===latestAsOf);
   if(new Set(latest.map(ranking=>ranking.annualCompositeScore!.value)).size!==1) return null;
   return latest[0] ?? null;
+}
+
+export function annualHeatValue(shop:Shop,year:number):number|null {
+  const list=shop.rankings.filter(r=>r.annualHeat?.year===year).sort((a,b)=>b.asOf.localeCompare(a.asOf));
+  const latest=list.filter(r=>r.asOf===list[0]?.asOf);
+  return latest.length && new Set(latest.map(r=>r.annualHeat!.value)).size===1 ? latest[0].annualHeat!.value:null;
+}
+
+// Never infer an edition from the access date or another linked ranking.
+export function latestAnnualCompositeRanking(shop: Shop) {
+  const years=[...new Set(shop.rankings.flatMap(r=>r.annualCompositeScore?.year != null ? [r.annualCompositeScore.year]:[]))].sort((a,b)=>b-a);
+  for(const year of years) {const ranking=annualCompositeRanking(shop,year);if(ranking) return ranking;}
+  return annualCompositeRanking(shop,null);
 }
 
 export function ageAt(shop: Shop, asOf: string) {
@@ -133,7 +150,19 @@ export function validateCatalogue(input: unknown, options: { asOf?: string; allo
   }
   checkRefs(data,'catalogue');
   if (data.updatedAt > asOf) errors.push('内容更新日期不能在未来');
+  const poiOwners=new Map<string,string>();
+  const addressOwners=new Map<string,string>();
   for (const s of data.shops) {
+    const identity=`${normalizedStoreText(s.name)}|${normalizedStoreText(s.address.text)}`;
+    const sameAddress=addressOwners.get(identity);
+    if(sameAddress) errors.push(`重复分店：${s.id} 与 ${sameAddress} 名称及地址相同`);
+    addressOwners.set(identity,s.id);
+    const poiIds=new Set(s.address.sourceIds.flatMap(id=>{const source=sourceMap.get(id);const poiId=source?.kind==='poi' ? amapPoiId(source.url):null;return poiId ? [poiId]:[];}));
+    for(const poiId of poiIds) {
+      const owner=poiOwners.get(poiId);
+      if(owner && owner!==s.id) errors.push(`重复高德 POI：${poiId} 同时属于 ${owner} 与 ${s.id}`);
+      poiOwners.set(poiId,s.id);
+    }
     if (s.testOnly && !options.allowTestData) errors.push(`${s.id} 测试样例不能发布`);
     if (s.history) {
       if (s.history.latestOpeningDate > s.checkedAt) errors.push(`${s.id} 开业日期不能晚于核验日`);

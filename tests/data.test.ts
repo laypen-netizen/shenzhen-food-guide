@@ -17,3 +17,24 @@ test('陈旧或关闭的营业记录移入待核验',()=>{const c=fixtureCatalog
 test('原始分数量表未知时仍可保存但不能生成稳定性',()=>{const c=fixtureCatalogue();c.shops[0].ratings.forEach(r=>r.max=null);assert.throws(()=>validateCatalogue(c,opts),/同量表/);c.shops[0].metrics.stability=null;assert.doesNotThrow(()=>validateCatalogue(c,opts));});
 test('稳定性不能凭单次分数填造，错误极差被拒绝',()=>{const c=fixtureCatalogue();c.shops[0].ratings=c.shops[0].ratings.slice(-1);assert.throws(()=>validateCatalogue(c,opts),/三个同量表快照/);const d=fixtureCatalogue();d.shops[0].metrics.stability!.value=99;assert.throws(()=>validateCatalogue(d,opts),/极差公式/);});
 test('榜单全年综合分保留年份和固定原始标签',()=>{const c=fixtureCatalogue();c.shops[0].rankings[0]={...c.shops[0].rankings[0],name:'高德扫街榜 · 2025测试榜',edition:'2025',annualCompositeScore:{value:4.64,year:2025,label:'全年综合分',rawDisplay:'4.64'}};assert.equal(validateCatalogue(c,opts).shops[0].rankings[0].annualCompositeScore?.value,4.64);c.shops[0].rankings[0].annualCompositeScore!.year=2024;assert.throws(()=>validateCatalogue(c,opts),/年份必须出现在榜单名称或届次/);});
+test('同一高德POI改名或换年度也不能重复收录',()=>{
+  const c=fixtureCatalogue();c.sources.find(s=>s.id==='poi')!.url='https://www.amap.com/place/B012345678';
+  assert.throws(()=>validateCatalogue(c,opts),/重复高德 POI/);
+});
+test('同名同址规范化后去重，不合并不同地址分店',()=>{
+  const c=fixtureCatalogue();c.shops[1].district=c.shops[0].district;c.shops[1].name=' 虚构测试门店A ';
+  assert.throws(()=>validateCatalogue(c,opts),/重复分店/);
+  c.shops[1].address.text='另一家分店地址';assert.doesNotThrow(()=>validateCatalogue(c,opts));
+});
+
+test('同名同址即使行政区误填不同也不能重复收录',()=>{
+  const c=fixtureCatalogue();
+  c.shops[1].name=c.shops[0].name;
+  c.shops[1].address.text=c.shops[0].address.text;
+  c.shops[1].district=c.shops[0].district==='南山' ? '福田':'南山';
+  assert.throws(()=>validateCatalogue(c,opts),/重复分店/);
+});
+test('未注明年度的全年综合分可保留，但不冒充2025榜',()=>{
+  const c=fixtureCatalogue();c.shops[0].rankings[0]={...c.shops[0].rankings[0],name:'高德扫街榜 · 烟火小店',edition:'页面未标注届次',annualCompositeScore:{value:4.7,year:null,label:'全年综合分'}};
+  assert.doesNotThrow(()=>validateCatalogue(c,opts));
+});

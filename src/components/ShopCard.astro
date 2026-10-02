@@ -1,31 +1,36 @@
 ---
 import type { Shop } from '../lib/schema';
-import { ageAt,annualCompositeRanking,repeatVisitsDisplay } from '../lib/schema';
-import { compositeScore } from '../lib/scoring';
+import { ageAt,repeatVisitsDisplay } from '../lib/schema';
 import { navigationUrl } from '../lib/geo';
 import { pathFor } from '../lib/urls';
-import { selectionFor } from '../lib/selection';
+import { catalogue,recommendationById } from '../lib/catalogue';
 interface Props { shop:Shop; }
 const {shop} = Astro.props;
-const score = compositeScore(shop);
 const rating = [...shop.ratings].sort((a,b) => b.asOf.localeCompare(a.asOf))[0];
 const age = ageAt(shop,shop.checkedAt);
-const selection = selectionFor(shop);
-const annualRanking = annualCompositeRanking(shop,2025);
-const annualScore = annualRanking?.annualCompositeScore;
+const recommendation = recommendationById.get(shop.id);
+const recommendationScore = recommendation ? (Number.isInteger(recommendation.score) ? String(recommendation.score):recommendation.score.toFixed(1)):null;
+const recommendationRank = recommendation ? `选集${recommendation.tied ? '并列':''}第${recommendation.rank}`:null;
+const poiSourceIds = new Set([
+  ...shop.address.sourceIds,
+  ...shop.operating.sourceIds,
+  ...(shop.hours?.sourceIds ?? []),
+  ...(shop.coordinates?.sourceIds ?? []),
+  ...shop.ratings.flatMap(item=>item.sourceIds),
+]);
+const amapShopPage = catalogue.sources.find(source=>source.kind==='poi' && poiSourceIds.has(source.id));
+const amapShopPageIsDirect = amapShopPage ? (()=>{const url=new URL(amapShopPage.url);return url.pathname.includes('/place/') || url.pathname.includes('/poi_detail') || url.searchParams.has('id');})():false;
+const amapPhotoLabel = amapShopPageIsDirect ? '在高德查看实拍':'去高德找店和照片';
 ---
 <article class="shop-card" data-shop-card data-shop-id={shop.id}>
-  <a class="card-image" href={pathFor(`shops/${shop.slug}/`)} tabindex="-1" aria-hidden="true">
-    {shop.photos[0] ? <img src={pathFor(shop.photos[0].path)} alt="" width="640" height="420" loading="lazy" /> : <div class="photo-placeholder"><span class="photo-glyph">食</span><span>暂无授权实拍</span></div>}
-    <span class="card-age">{age === null ? '高德扫街榜':'至少 ' + age + ' 年'}</span>
-  </a>
+  {shop.photos[0] ? <a class="card-image" href={pathFor(`shops/${shop.slug}/`)} tabindex="-1" aria-hidden="true"><img src={pathFor(shop.photos[0].path)} alt="" width="640" height="420" loading="lazy" /><span class="card-age">{age === null ? '高德扫街榜':'至少 ' + age + ' 年'}</span></a> : <div class="card-image is-placeholder"><div class="photo-placeholder"><span class="photo-glyph" aria-hidden="true">食</span><span>暂无授权实拍</span></div>{amapShopPage&&<a class="amap-photo-link" href={amapShopPage.url} target="_blank" rel="noopener noreferrer" aria-label={`${amapPhotoLabel}：${shop.name}`}>{amapPhotoLabel} <span aria-hidden="true">↗</span></a>}<span class="card-age">{age === null ? '高德扫街榜':'至少 ' + age + ' 年'}</span></div>}
   <div class="card-body">
     <div class="eyebrow">{shop.district} · {shop.category}</div>
     <h3><a href={pathFor(`shops/${shop.slug}/`)}>{shop.name}</a></h3>
-    {selection && <div class="editorial-pick"><strong>综合参考优选</strong><p>{selection.reason}</p></div>}
     <p class="card-summary">{shop.summary.text}</p>
-    <div class="card-facts">{annualScore&&<span class="annual-score">高德{annualScore.year}原榜“{annualScore.label}” {annualScore.rawDisplay??annualScore.value} · 非用户评分</span>}<span>{shop.repeatVisits ? `近${shop.repeatVisits.windowDays}天 ${repeatVisitsDisplay(shop.repeatVisits)} 回头客 · 高德页面`:'未取得高德回头客人数'}</span><span>{shop.price ? `参考人均 ¥${shop.price.cny} · ${shop.price.asOf}`:'人均待核验'}</span><span>{rating ? `高德 ${rating.value}${rating.max ? `/${rating.max}`:'（量表待核验）'}${rating.count !== null ? ` · ${rating.count.toLocaleString('zh-CN')} 条评价`:''} · ${rating.asOf}`:'暂无可核验评分'}</span></div>
-    <p class="score-line">{score.complete ? `综合 ${score.score}/100` : score.enough ? `综合参考 ${score.lower}–${score.upper}/100`:'综合暂不评分'}<small>资料覆盖 {score.coverage}%</small></p>
+    <div class="recommendation-card-score"><div><span>本站综合参考</span><strong>{recommendationScore??'—'}<small>/100</small></strong></div><div><strong>{recommendationRank??'等待计算'}</strong><small>资料覆盖 {recommendation?.coverage??0}%</small></div></div>
+    <p class="score-disclaimer">{recommendation?.missing.length ? `${recommendation.missing.length}项用中性值${recommendation.coverage<70 ? ' · 资料较少':''}`:'三项资料齐全'} · 非高德官方排名</p>
+    <div class="card-facts"><span>{shop.repeatVisits ? `近${shop.repeatVisits.windowDays}天 ${repeatVisitsDisplay(shop.repeatVisits)} 回头客 · 高德页面`:'未取得高德回头客人数'}</span><span>{shop.price ? `参考人均 ¥${shop.price.cny} · ${shop.price.asOf}`:'人均待核验'}</span><span>{rating ? `高德 ${rating.value}${rating.max ? `/${rating.max}`:'（量表待核验）'}${rating.count !== null ? ` · ${rating.count.toLocaleString('zh-CN')} 条评价`:''} · ${rating.asOf}`:'暂无可核验评分'}</span></div>
     <p class="source-line">营业线索截至 {shop.operating.asOf} · <a href={pathFor(`shops/${shop.slug}/#sources`)}>查看依据</a></p>
     <div class="card-actions"><button type="button" class="favorite-button" data-favorite={shop.id} aria-pressed="false" disabled aria-label={`收藏${shop.name}`}><span aria-hidden="true">♡</span> 收藏</button><a class="text-action" href={navigationUrl(shop)} target="_blank" rel="noopener noreferrer">{shop.coordinates ? '高德导航':'高德查地址'} <span aria-hidden="true">↗</span></a></div>
   </div>

@@ -29,7 +29,7 @@ export function straightDistance(lon1:number,lat1:number,lon2:number,lat2:number
   const h = Math.sin((lat2-lat1)*rad/2)**2 + Math.cos(lat1*rad)*Math.cos(lat2*rad)*Math.sin((lon2-lon1)*rad/2)**2;
   return 6371 * 2 * Math.atan2(Math.sqrt(h),Math.sqrt(1-h));
 }
-export function navigationUrl(shop: Shop) {
+export function navigationUrl(shop: Pick<Shop,'name'> & {coordinates:{lon:number;lat:number}|null;address:{text:string}}) {
   if (shop.coordinates) {
     const {lon,lat} = shop.coordinates;
     const params = new URLSearchParams({ to:`${lon},${lat},${shop.name}`, mode:'walk', coordinate:'gaode', src:'shenzhen-food-guide',callnative:'1' });
