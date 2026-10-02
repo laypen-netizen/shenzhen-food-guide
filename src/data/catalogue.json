@@ -2,7 +2,7 @@
   "version": 1,
   "updatedAt": "2026-10-02",
   "policy": "amap-only",
-  "note": "本站将已核验的高德上榜分店合并为统一选集，不设总数上限或地区配额。综合参考分由本站按公开三维规则计算，缺项标明中性值与资料覆盖；具体来源与观察时期可在详情核查。候选补齐地址与营业依据后再收录，店面实拍提供高德查看入口。",
+  "note": "本站将已核验的高德上榜分店合并为统一选集，不设总数上限或地区配额。同口径回访人数与原始评分形成双证据参评组，评价数量不加分；缺失或不可比资料的门店保留收录，不生成分数或名次。具体来源与观察时期可在详情核查。候选补齐地址与营业依据后再收录，店面实拍提供高德查看入口。",
   "sources": [
     {
       "id": "app-xiangtiantian-gushu",
@@ -411,7 +411,8 @@
         "localEvidence": [
           "research/evidence/repeat-western-01.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "repeat-shihao-xilongwan",
@@ -427,7 +428,8 @@
         "localEvidence": [
           "research/evidence/repeat-western-01.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "repeat-yuanzhe-zhangwu",
@@ -443,7 +445,8 @@
         "localEvidence": [
           "research/evidence/repeat-fish-01.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "repeat-tailecun-wuhe",
@@ -459,7 +462,8 @@
         "localEvidence": [
           "research/evidence/repeat-fish-01.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "repeat-rongji-gongming",
@@ -475,7 +479,8 @@
         "localEvidence": [
           "research/evidence/repeat-congee-01.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "repeat-jiatai-baishizhou",
@@ -491,7 +496,8 @@
         "localEvidence": [
           "research/evidence/repeat-nanshan-congee.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-jindaoyuan-baishizhou",
@@ -542,7 +548,8 @@
         "localEvidence": [
           "research/evidence/repeat-nanshan-congee.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-laosanyang-nanshan",
@@ -592,7 +599,8 @@
         "localEvidence": [
           "research/evidence/parallel-nanshan-jiangxi.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-ouji-baoli",
@@ -642,7 +650,8 @@
         "localEvidence": [
           "research/evidence/parallel-nanshan-jiangxi.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-youlijia-nanshan",
@@ -692,7 +701,8 @@
         "localEvidence": [
           "research/evidence/parallel-nanshan-korean.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-bunker1-hongrui",
@@ -742,7 +752,8 @@
         "localEvidence": [
           "research/evidence/parallel-nanshan-korean.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-beicun-yifangtiandi",
@@ -792,7 +803,8 @@
         "localEvidence": [
           "research/evidence/parallel-longhua-korean.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-yangu-hongshan",
@@ -876,7 +888,8 @@
         "localEvidence": [
           "research/evidence/parallel-longhua-dapaidang.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-huishao-longhua",
@@ -926,7 +939,8 @@
         "localEvidence": [
           "research/evidence/parallel-longhua-dapaidang.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-linji-shaguozhou",
@@ -1094,7 +1108,8 @@
         "localEvidence": [
           "research/evidence/top100-repeat-list-01.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-demi-yantian",
@@ -1144,7 +1159,8 @@
         "localEvidence": [
           "research/evidence/top100-repeat-list-01.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-benluobo-pengruinda",
@@ -1194,7 +1210,8 @@
         "localEvidence": [
           "research/evidence/top100-repeat-list-02.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "app-xingdian-fenghuangcheng-repeat-all",
@@ -1226,7 +1243,8 @@
         "localEvidence": [
           "research/evidence/top100-repeat-list-02.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "poi-amap-b0k02l3bwr-2026-10-02",
@@ -1482,7 +1500,8 @@
           "research/evidence/top100-auto-20261002T104944Z-36436-p01-list.png",
           "research/evidence/top100-niuxiang-detail.png"
         ]
-      }
+      },
+      "repeatChannel": "amap-app-repeat-visitors"
     },
     {
       "id": "poi-amap-b0j03aruhv-2026-10-02",
@@ -3157,7 +3176,7 @@
         "sourceIds": [
           "repeat-commune-sungang"
         ],
-        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -3280,7 +3299,7 @@
         "sourceIds": [
           "repeat-shihao-xilongwan"
         ],
-        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -3391,7 +3410,7 @@
         "sourceIds": [
           "repeat-yuanzhe-zhangwu"
         ],
-        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -3514,7 +3533,7 @@
         "sourceIds": [
           "repeat-tailecun-wuhe"
         ],
-        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -3637,7 +3656,7 @@
         "sourceIds": [
           "repeat-rongji-gongming"
         ],
-        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -3760,7 +3779,7 @@
         "sourceIds": [
           "repeat-jiatai-baishizhou"
         ],
-        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -3883,7 +3902,7 @@
         "sourceIds": [
           "repeat-jindaoyuan-baishizhou"
         ],
-        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -4024,7 +4043,7 @@
         "sourceIds": [
           "repeat-laosanyang-nanshan"
         ],
-        "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -4166,7 +4185,7 @@
         "sourceIds": [
           "repeat-ouji-baoli"
         ],
-        "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -4308,7 +4327,7 @@
         "sourceIds": [
           "repeat-youlijia-nanshan"
         ],
-        "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -4451,7 +4470,7 @@
         "sourceIds": [
           "repeat-bunker1-hongrui"
         ],
-        "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -4574,7 +4593,7 @@
         "sourceIds": [
           "repeat-beicun-yifangtiandi"
         ],
-        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -4825,7 +4844,7 @@
         "sourceIds": [
           "repeat-chaoxiangyuan-longhua"
         ],
-        "definition": "高德页面标注“近180天2.4万回头客”；2.4万是平台近似展示，不等于精确24000人，也不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天2.4万回头客”；2.4万是平台近似展示，不等于精确24000人，也不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -4954,7 +4973,7 @@
         "sourceIds": [
           "repeat-huishao-longhua"
         ],
-        "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -5290,7 +5309,7 @@
         "sourceIds": [
           "repeat-xingdian-fenghuangcheng"
         ],
-        "definition": "高德页面标注“近180天6.1万回头客”；6.1万是平台近似展示，不等于精确61000人，也不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天6.1万回头客”；6.1万是平台近似展示，不等于精确61000人，也不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -5604,7 +5623,7 @@
         "sourceIds": [
           "repeat-chuanxiaobai-qianjie"
         ],
-        "definition": "高德页面标注“近180天10万回头客”；10万是平台近似展示，不等于精确100000人，也不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天10万回头客”；10万是平台近似展示，不等于精确100000人，也不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -5751,7 +5770,7 @@
         "sourceIds": [
           "repeat-demi-yantian"
         ],
-        "definition": "高德页面标注“近180天7.5万回头客”；7.5万是平台近似展示，不等于精确75000人，也不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天7.5万回头客”；7.5万是平台近似展示，不等于精确75000人，也不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -5901,7 +5920,7 @@
         "sourceIds": [
           "repeat-benluobo-pengruinda"
         ],
-        "definition": "高德页面标注“近180天6.1万回头客”；6.1万是平台近似展示，不等于精确61000人，也不等于回头率，人数不直接用于综合分。"
+        "definition": "高德页面标注“近180天6.1万回头客”；6.1万是平台近似展示，不等于精确61000人，也不等于回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"
@@ -7874,7 +7893,7 @@
         "sourceIds": [
           "repeat-niuxiang-180days"
         ],
-        "definition": "高德原文“近180天4.9万回头客”，是近似人数，不是回头率，不直接换算为综合分。"
+        "definition": "高德原文“近180天4.9万回头客”，是近似人数，不是回头率。"
       },
       "photos": [],
       "checkedAt": "2026-10-02"

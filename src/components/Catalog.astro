@@ -1,32 +1,35 @@
 ---
-import { catalogue,shops } from '../lib/catalogue';
+import { catalogue,shops,recommendationById } from '../lib/catalogue';
 import { districts } from '../lib/schema';
 import { pathFor,safeJson } from '../lib/urls';
 import ShopCard from './ShopCard.astro';
 import { createCatalogIndex } from '../lib/catalog-index';
 interface Props { favorites?:boolean; }
 const {favorites=false} = Astro.props;
+const rankedCount=shops.filter(s=>recommendationById.get(s.id)?.eligible).length;
+const firstUnranked=shops.find(s=>!recommendationById.get(s.id)?.eligible)?.id;
 ---
 <section class="catalog-section shell" id="find" data-catalog data-favorites-only={favorites ? 'true':'false'}>
-  <div class="section-heading"><div><div class="eyebrow">{favorites ? 'YOUR LITTLE FOOD LIST':'A GOOD MEAL, CLOSE TO YOU'}</div><h2>{favorites ? '收藏的门店':'本站综合推荐榜'}</h2></div><span class="result-count" role="status" aria-live="polite" data-result-count>{shops.length} 家已收录</span></div>
+  <div class="section-heading"><div><div class="eyebrow">{favorites ? 'YOUR LITTLE FOOD LIST':'A GOOD MEAL, CLOSE TO YOU'}</div><h2>{favorites ? '收藏的门店':'深圳美食选集'}</h2></div><span class="result-count" role="status" aria-live="polite" data-result-count>{shops.length} 家已收录</span></div>
+  <p class="catalog-scope">{shops.length} 家收录 · {rankedCount} 家同口径参评 · {shops.length-rankedCount} 家等待补证。<a href={pathFor('methodology/#score')}>双证据参考分怎么算 ↗</a></p>
   <form class="filter-form" role="search" aria-label="门店搜索与筛选">
     <label class="search-field"><span aria-hidden="true">⌕</span><span class="sr-only">搜索门店</span><input name="q" type="search" placeholder="搜店名、招牌菜、街道…" autocomplete="off" /></label>
-    <details class="advanced-filters"><summary class="filter-summary">筛选与排序 <span data-filter-summary>全深圳 · 综合参考分</span></summary>
+    <details class="advanced-filters"><summary class="filter-summary">筛选与排序 <span data-filter-summary>全深圳 · 双证据参考</span></summary>
     <div class="filter-grid">
       <label>地区<select name="district"><option value="">全深圳</option>{districts.map(d => <option value={d}>{d}</option>)}</select></label>
       <label>品类<select name="category"><option value="">全部品类</option>{[...new Set(shops.map(s => s.category))].sort().map(c => <option value={c}>{c}</option>)}</select></label>
-      <label>参考人均<select name="price"><option value="">不限价格</option><option value="0-30">¥30以内</option><option value="30-60">¥30–60</option><option value="60-100">¥60–100</option><option value="100-99999">¥100以上</option></select></label>
+      <label>参考人均<select name="price"><option value="">不限价格</option><option value="0-30">低于¥30</option><option value="30-60">¥30至不足60</option><option value="60-100">¥60至不足100</option><option value="100-99999">¥100及以上</option></select></label>
       <label>回头客依据<select name="repeat"><option value="">不限</option><option value="verified">有高德回头客人数</option></select></label>
-      <label>排序<select name="sort"><option value="recommended">本站综合参考分</option><option value="default">地区 · 店名</option><option value="price">参考人均从低到高</option></select></label>
+      <label>排序<select name="sort"><option value="recommended">双证据参考 · 未参评另列</option><option value="default">地区 · 店名</option><option value="price">参考人均从低到高</option></select></label>
     </div>
-    <div class="filter-bottom"><p>综合参考分由本站计算；同分并列，筛选后仍保留选集名次。</p><button type="reset" class="text-button">清除筛选</button><button type="submit" class="js-submit">应用筛选</button></div>
+    <div class="filter-bottom"><p>分数只在同口径参评组内比较；未参评不是低分，筛选不重算名次。</p><button type="reset" class="text-button">清除筛选</button><button type="submit" class="js-submit">应用筛选</button></div>
     </details>
   </form>
   <noscript><p class="notice">搜索、筛选、地图与收藏需要 JavaScript。你仍可阅读下方门店介绍与详情页。</p></noscript>
-  <div class="view-toolbar" data-js-control hidden><div class="segmented" role="group" aria-label="浏览方式"><button class="active" type="button" data-view="list" aria-pressed="true">列表</button><button type="button" data-view="map" aria-pressed="false">地图</button></div><p data-sort-note>口碑45% · 榜单35% · 回访证据20%；原始数据来自高德，排名由本站计算</p></div>
+  <div class="view-toolbar" data-js-control hidden><div class="segmented" role="group" aria-label="浏览方式"><button class="active" type="button" data-view="list" aria-pressed="true">列表</button><button type="button" data-view="map" aria-pressed="false">地图</button></div><p data-sort-note>回访与口碑共同支持；原始数据来自高德，参考分由本站计算</p></div>
   <div class="map-section" data-map-section hidden><div class="map-canvas" data-map role="region" aria-label="已核验门店地图"></div><p class="map-status" data-map-status aria-live="polite">仅显示有可靠高德坐标的门店；地址搜索始终可用。</p></div>
   <div class="shop-grid" data-shop-grid hidden={favorites}>
-    {shops.map(shop => <ShopCard shop={shop} />)}
+    {shops.map(shop => <Fragment>{shop.id===firstUnranked&&<div class="catalog-unranked" data-unranked-divider><h3>更多已收录门店 · 暂未参评</h3><p>以下门店等待补齐同口径资料，显示顺序不代表高低。仍可搜索、收藏和导航。</p></div>}<ShopCard shop={shop} /></Fragment>)}
   </div>
   <div class="load-more" data-load-more-region hidden><p data-page-count aria-live="polite"></p><button type="button" class="button button-outline" data-load-more>再看 12 家</button></div>
   <div class="empty-state" data-empty hidden={shops.length > 0 || favorites}>
@@ -36,6 +39,6 @@ const {favorites=false} = Astro.props;
     <a class="button button-outline" href={pathFor('status/')}>查看资料状态 <span aria-hidden="true">↗</span></a>
   </div>
   {favorites && <div class="empty-state" data-favorite-empty><span class="empty-icon" aria-hidden="true">把想去的小店留在这里</span><h3>还没有收藏</h3><p>在门店卡片上点“收藏”，下次打开就能找到。收藏只保存在当前浏览器。</p><a class="button button-outline" href={pathFor('#find')}>去找店</a></div>}
-  <script type="application/json" id="catalogue-data" set:html={safeJson({shops:createCatalogIndex(shops),pendingCount:catalogue.pending.length,updatedAt:catalogue.updatedAt,base:pathFor()})} />
+  <script type="application/json" id="catalogue-data" set:html={safeJson({shops:createCatalogIndex(shops,recommendationById),pendingCount:catalogue.pending.length,updatedAt:catalogue.updatedAt,base:pathFor()})} />
 </section>
 <script>import '../scripts/catalog.ts';</script>

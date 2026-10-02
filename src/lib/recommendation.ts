@@ -1,106 +1,111 @@
-import type { Catalogue,Shop } from './schema.ts';
+import { createHash } from 'node:crypto';
+import { repeatVisitsDisplay, type Catalogue, type Shop } from './schema.ts';
 
-type Source=Catalogue['sources'][number];
-export const recommendationVersion='reference-v1';
-export const recommendationDimensions=[
-  {id:'reputation',label:'口碑相对表现',weight:45},
-  {id:'ranking',label:'榜单相对表现',weight:35},
-  {id:'returnEvidence',label:'回访证据覆盖',weight:20},
-] as const;
-type DimensionId=typeof recommendationDimensions[number]['id'];
-export type RecommendationDimension={id:DimensionId;label:string;weight:number;value:number;observed:boolean;explanation:string;sampleSize:number|null;sourceIds:string[]};
-export type Recommendation={score:number;coverage:number;rank:number;tied:boolean;dimensions:RecommendationDimension[];missing:string[];sourceIds:string[];version:string};
-type Observation={shopId:string;key:string;value:number;asOf:string;year:number|null;label:string;sourceIds:string[];count?:number|null};
+type Source = Catalogue['sources'][number];
+export const recommendationVersion = 'joint-evidence-v2';
+export const minimumComparisonSize = 10;
+export type RecommendationDimension = {
+  id:'repeat'|'reputation'; label:string; value:number|null; display:string;
+  observed:boolean; explanation:string; sourceIds:string[];
+};
+export type Recommendation = {
+  score:number|null; rank:number|null; tied:boolean; eligible:boolean;
+  sampleSize:number; leadCount:number; tieCount:number; incomparableCount:number; dominatedCount:number;
+  behaviorCeiling:number|null; reason:string; dimensions:RecommendationDimension[];
+  missing:string[]; sourceIds:string[]; version:string; groupKey:string|null;
+};
+type Observation = {
+  shopId:string; rating:number; repeat:number; key:string; date:string;
+};
+const near = (a:number,b:number) => Math.abs(a-b)<1e-9;
+const unique = (ids:string[]) => [...new Set(ids)];
+const current = (date:string,asOf:string) => {
+  const days=(Date.parse(asOf)-Date.parse(date))/86400000;
+  return days>=0 && days<=180;
+};
 
-// A midpoint rank describes this observed sample, not a percentage of satisfied diners.
-export function midpointPercentile(value:number,sample:readonly number[]):number {
-  if(!sample.length) return 50;
-  return 100*(sample.filter(v=>v<value).length+sample.filter(v=>v===value).length/2)/sample.length;
-}
-function latestUnambiguous(records:Observation[]):Observation|null {
-  const latestDate=records.map(r=>r.asOf).sort().at(-1);
-  const latest=records.filter(r=>r.asOf===latestDate);
-  if(!latest.length || new Set(latest.map(r=>`${r.value}|${r.count??''}`)).size!==1) return null;
-  return {...latest[0],sourceIds:[...new Set(latest.flatMap(r=>r.sourceIds))]};
-}
-function makeCohorts(observations:Observation[]) {
-  const grouped=new Map<string,Map<string,Observation[]>>();
-  for(const record of observations){
-    if(!grouped.has(record.key)) grouped.set(record.key,new Map());
-    const group=grouped.get(record.key)!;
-    group.set(record.shopId,[...(group.get(record.shopId)??[]),record]);
-  }
-  return new Map([...grouped].map(([key,group])=>[key,[...group.values()].flatMap(records=>{const r=latestUnambiguous(records);return r?[r]:[];})]));
-}
-function baseline(id:DimensionId,explanation:string):RecommendationDimension {
-  return {...recommendationDimensions.find(d=>d.id===id)!,value:50,observed:false,explanation,sampleSize:null,sourceIds:[]};
-}
-function sourceChannel(ids:readonly string[],sources:Map<string,Source>):string|null {
-  const channels=new Set(ids.flatMap(id=>{
-    const source=sources.get(id);
-    if(!source || source.kind!=='poi')return [];
-    if(source.ratingChannel)return [source.ratingChannel];
-    if(source.capture)return ['amap-app-displayed-rating'];
-    // An arbitrary POI description cannot establish the rating field's channel.
+// A channel is evidence metadata, never inferred from a title or free-form text.
+function channel(ids:string[],sources:Map<string,Source>,kind:'rating'|'repeat'):string|null {
+  const records=ids.map(id=>sources.get(id));
+  if(records.some(source=>!source))return null;
+  const channels=records.flatMap(source=>{
+    if(kind==='rating' && source && ['poi','rating'].includes(source.kind) && source.ratingChannel)return [source.ratingChannel];
+    if(kind==='repeat' && source?.kind==='repeat' && source.repeatChannel)return [source.repeatChannel];
     return [];
-  }));
-  return channels.size===1 ? [...channels][0]:null;
+  });
+  return new Set(channels).size===1 ? channels[0]:null;
 }
+
 export function buildRecommendations(shops:readonly Shop[],sources:readonly Source[],asOf:string):Map<string,Recommendation> {
-  const sourceMap=new Map(sources.map(s=>[s.id,s]));
-  const ratings:Observation[]=[],rankingValues:Observation[]=[];
-  for(const shop of shops){
-    const current=shop.ratings.filter(r=>r.asOf<=asOf);
-    const latestDate=current.map(r=>r.asOf).sort().at(-1);
-    for(const r of current.filter(r=>r.asOf===latestDate)){
-      const channel=sourceChannel(r.sourceIds,sourceMap);
-      if(channel)ratings.push({shopId:shop.id,key:JSON.stringify([channel,r.max,r.asOf]),value:r.value,count:r.count,asOf:r.asOf,year:null,label:channel,sourceIds:r.sourceIds});
-    }
-    for(const r of shop.rankings.filter(r=>r.asOf<=asOf)){
-      const metric=r.annualHeat??r.annualCompositeScore;
-      if(!metric)continue;
-      rankingValues.push({shopId:shop.id,key:JSON.stringify([r.name,r.edition,r.scope,metric.label,r.asOf]),value:metric.value,asOf:r.asOf,year:metric.year,label:`${r.name} · ${r.scope} · ${metric.label}`,sourceIds:r.sourceIds});
-    }
-  }
-  const ratingCohorts=makeCohorts(ratings),rankingCohorts=makeCohorts(rankingValues);
+  const sourceMap=new Map(sources.map(source=>[source.id,source]));
   const results=new Map<string,Recommendation>();
+  const groups=new Map<string,Observation[]>();
+  // Hash the actual input snapshot. Changes on the same date must be traceable.
+  const snapshot=createHash('sha256').update(JSON.stringify({asOf,shops:[...shops].sort((a,b)=>a.id.localeCompare(b.id)).map(s=>({id:s.id,ratings:s.ratings,repeat:s.repeatVisits})),sources:[...sources].sort((a,b)=>a.id.localeCompare(b.id)).map(s=>({id:s.id,kind:s.kind,ratingChannel:s.ratingChannel,repeatChannel:s.repeatChannel}))})).digest('hex').slice(0,12);
   for(const shop of shops){
-    let reputation=baseline('reputation','缺少同口径评分、评价数或不少于10家的可比样本，暂按中性值50计入。');
-    const ratingGroups=[...ratingCohorts.values()].filter(g=>g.some(r=>r.shopId===shop.id));
-    // Multiple same-date channels are not silently pooled or cherry-picked.
-    if(ratingGroups.length===1){
-      const group=ratingGroups[0],r=group.find(r=>r.shopId===shop.id)!;
-      if(group.length>=10 && r.count!=null && r.count>=0){
-        const percentile=midpointPercentile(r.value,group.map(r=>r.value));
-        const reliability=r.count/(r.count+100);
-        const value=50+(percentile-50)*reliability;
-        reputation={...reputation,value,observed:true,sampleSize:group.length,sourceIds:r.sourceIds,explanation:`同一高德采集通道、同一量表标记及观察日的${group.length}家本站样本中，原始评分${r.value}的并列中位秩为${percentile.toFixed(1)}；以评价数${r.count}/(${r.count}+100)向中性50收缩，得到${value.toFixed(1)}。这是样本相对位置，不假定满分5，也不是满意率。`};
+    if(results.has(shop.id))throw new Error(`重复参评门店：${shop.id}`);
+    const dated=shop.ratings.filter(r=>r.asOf<=asOf);
+    const latestDate=dated.map(r=>r.asOf).sort().at(-1);
+    const latest=dated.filter(r=>r.asOf===latestDate);
+    const keys=latest.map(r=>JSON.stringify([r.value,r.max,r.count,channel(r.sourceIds,sourceMap,'rating')]));
+    const rawRating=latest.length && new Set(keys).size===1 ? latest[0]:null;
+    const ratingChannel=rawRating ? channel(unique(latest.flatMap(r=>r.sourceIds)),sourceMap,'rating'):null;
+    const rating=rawRating && ratingChannel && current(rawRating.asOf,asOf) && rawRating.count!==null && rawRating.count>0 ? rawRating:null;
+    const rawRepeat=shop.repeatVisits;
+    const repeatChannel=rawRepeat ? channel(rawRepeat.sourceIds,sourceMap,'repeat'):null;
+    const repeat=rawRepeat && repeatChannel && current(rawRepeat.asOf,asOf) ? rawRepeat:null;
+    const dimensions:RecommendationDimension[]=[
+      {id:'repeat',label:'回访人数',value:repeat?.count??null,display:repeat ? `近${repeat.windowDays}天 ${repeatVisitsDisplay(repeat)}人`:'待补同口径资料',observed:!!repeat,sourceIds:repeat?.sourceIds??[],explanation:repeat ? '使用高德同一观察日、同一统计窗口的展示值比较顺序。近似人数保留原文；它不是回头率，平台去重与行为识别细则未披露。':'尚未取得有效、近期且渠道明确的回头客人数。未披露不等于没有回头客。'},
+      {id:'reputation',label:'平台原始口碑',value:rating?.value??null,display:rating ? `${rating.value}${rating.max ? `/${rating.max}`:'（量表待核验）'}`:'待补同口径资料',observed:!!rating,sourceIds:rating ? unique(latest.flatMap(r=>r.sourceIds)):[],explanation:rating ? `高德展示评分${rating.value}，${rating.count}条评价。只比较同一采集通道、量表标记和日期的原始值，不换算好评率。评价数量不加分；它不能证明评价真实。`:'缺少有效评价数、明确采集渠道或近期唯一评分；同日冲突值不挑高分，也不回退旧记录。'},
+    ];
+    const missing=dimensions.filter(d=>!d.observed).map(d=>d.label);
+    let reason=missing.length ? `待补${missing.join('与')}依据`:'同口径可比样本不足';
+    let key:string|null=null;
+    if(rating && repeat){
+      if(rating.asOf!==repeat.asOf) reason='评分与回访观察日期不同';
+      else {
+        key=JSON.stringify([ratingChannel,rating.max,rating.asOf,repeatChannel,repeat.windowDays,repeat.asOf]);
+        groups.set(key,[...(groups.get(key)??[]),{shopId:shop.id,rating:rating.value,repeat:repeat.count,key,date:rating.asOf}]);
       }
     }
-    let ranking=baseline('ranking','尚无不少于10家、同榜名/届次/范围/字段/观察日的可比组，暂按中性值50计入；上榜事实仍保留。');
-    const choices=[...rankingCohorts.values()].filter(g=>g.length>=10 && g.some(r=>r.shopId===shop.id)).map(group=>({group,record:group.find(r=>r.shopId===shop.id)!}));
-    choices.sort((a,b)=>(b.record.year??0)-(a.record.year??0) || b.record.asOf.localeCompare(a.record.asOf) || b.group.length-a.group.length || a.record.key.localeCompare(b.record.key));
-    if(choices[0]){
-      const {group,record}=choices[0];const value=midpointPercentile(record.value,group.map(r=>r.value));
-      ranking={...ranking,value,observed:true,sampleSize:group.length,sourceIds:record.sourceIds,explanation:`同榜名、届次、范围、原始字段与观察日的${group.length}家本站样本中，并列中位秩为${value.toFixed(1)}。不同原始指标分别计算相对位置，再选最近明确届次、样本较大的有效组；不把原始热度与综合分直接相加。${group.length<30?'当前为小样本，新增资料可能明显改变位置。':''}`};
-    }
-    let returnEvidence=baseline('returnEvidence','未取得可用的回头客人数披露，暂按中性值50计入；不表示没有回头客，也不表示回访表现较差。');
-    if(shop.repeatVisits && shop.repeatVisits.asOf<=asOf && shop.repeatVisits.count>0){
-      returnEvidence={...returnEvidence,value:100,observed:true,sourceIds:shop.repeatVisits.sourceIds,explanation:'已有高德明确披露的重复到店人数，证据覆盖记100。只奖励这项资料可核查，不按人数多少加分，不等于回头率或质量100分。'};
-    }
-    const dimensions=[reputation,ranking,returnEvidence];
-    const score=Math.round(dimensions.reduce((sum,d)=>sum+d.value*d.weight/100,0)*10)/10;
-    const coverage=dimensions.filter(d=>d.observed).reduce((sum,d)=>sum+d.weight,0);
-    results.set(shop.id,{score,coverage,rank:0,tied:false,dimensions,missing:dimensions.filter(d=>!d.observed).map(d=>d.label),sourceIds:[...new Set(dimensions.flatMap(d=>d.sourceIds))],version:`${recommendationVersion}:${asOf}:${shops.length}`});
+    results.set(shop.id,{score:null,rank:null,tied:false,eligible:false,sampleSize:0,leadCount:0,tieCount:0,incomparableCount:0,dominatedCount:0,behaviorCeiling:null,reason,dimensions,missing,sourceIds:unique(dimensions.flatMap(d=>d.sourceIds)),version:`${recommendationVersion}:${asOf}:${snapshot}`,groupKey:key});
   }
-  const ordered=[...shops].sort((a,b)=>compareRecommendations(a,b,results));
+  // Different channels or time windows are not calibrated to a common scale.
+  // Use one declared cohort, never merge their percentiles into a total ranking.
+  const candidates=[...groups.entries()].filter(([,g])=>g.length>=minimumComparisonSize)
+    .sort(([ak,a],[bk,b])=>b.length-a.length || b[0].date.localeCompare(a[0].date) || ak.localeCompare(bk));
+  const selected=candidates[0];
+  for(const [key,group] of groups){
+    for(const record of group){
+      const result=results.get(record.shopId)!;
+      result.sampleSize=group.length;
+      if(!selected || selected[0]!==key){
+        result.reason=group.length<minimumComparisonSize ? `同口径仅${group.length}家，暂未参评`:'与本次参评组口径不同，暂未参评';
+        continue;
+      }
+      let lead=0,equal=0,crossed=0,dominated=0,ceiling=0;
+      for(const peer of group){
+        if(peer.shopId===record.shopId)continue;
+        const ratingOrder=near(record.rating,peer.rating) ? 0:Math.sign(record.rating-peer.rating);
+        const repeatOrder=Math.sign(record.repeat-peer.repeat);
+        if(repeatOrder>=0)ceiling++;
+        if(ratingOrder===0 && repeatOrder===0)equal++;
+        else if(ratingOrder>=0 && repeatOrder>=0)lead++;
+        else if(ratingOrder<=0 && repeatOrder<=0)dominated++;
+        else crossed++;
+      }
+      Object.assign(result,{eligible:true,score:Math.round(100*(lead+equal*0.5)/(group.length-1)),leadCount:lead,tieCount:equal,incomparableCount:crossed,dominatedCount:dominated,behaviorCeiling:Math.round(100*ceiling/(group.length-1)),reason:`在${group.length}家同口径门店中比较；不是全深圳排名`});
+    }
+  }
+  const ranked=[...shops].filter(s=>results.get(s.id)!.eligible).sort((a,b)=>compareRecommendations(a,b,results));
   const scoreCounts=new Map<number,number>();
-  for(const item of results.values())scoreCounts.set(item.score,(scoreCounts.get(item.score)??0)+1);
+  for(const s of ranked){const score=results.get(s.id)!.score!;scoreCounts.set(score,(scoreCounts.get(score)??0)+1);}
   let rank=0,previous:number|null=null;
-  ordered.forEach((shop,index)=>{const result=results.get(shop.id)!;if(result.score!==previous)rank=index+1;result.rank=rank;result.tied=scoreCounts.get(result.score)!>1;previous=result.score;});
+  ranked.forEach((shop,index)=>{const r=results.get(shop.id)!;if(r.score!==previous)rank=index+1;r.rank=rank;r.tied=scoreCounts.get(r.score!)!>1;previous=r.score;});
   return results;
 }
 export function compareRecommendations(a:Shop,b:Shop,results:Map<string,Recommendation>):number {
   const x=results.get(a.id)!,y=results.get(b.id)!;
-  return y.score-x.score || y.coverage-x.coverage || a.name.localeCompare(b.name,'zh-CN') || a.id.localeCompare(b.id);
+  return Number(y.eligible)-Number(x.eligible) || (x.eligible && y.eligible ? y.score!-x.score!:0)
+    || a.district.localeCompare(b.district,'zh-CN') || a.name.localeCompare(b.name,'zh-CN') || a.id.localeCompare(b.id);
 }

@@ -11,6 +11,7 @@ if(root) {
   const grid=root.querySelector<HTMLElement>('[data-shop-grid]')!;
   const empty=root.querySelector<HTMLElement>('[data-empty]')!;
   const favoriteEmpty=root.querySelector<HTMLElement>('[data-favorite-empty]');
+  const unrankedDivider=root.querySelector<HTMLElement>('[data-unranked-divider]');
   const cards=new Map([...grid.querySelectorAll<HTMLElement>('[data-shop-card]')].map(el=>[el.dataset.shopId,el]));
   const keys=['q','district','category','price','repeat','sort'] as const;
   let visible:CatalogEntry[]=[],mapController:Awaited<ReturnType<typeof import('./map').createMap>>|null=null;
@@ -26,6 +27,12 @@ if(root) {
     const order=visible.map(s=>s.id).join(',');
     const changed=order!==lastOrder;
     if(changed) {for(const s of visible) {const card=cards.get(s.id);if(card) grid.append(card);}lastOrder=order;}
+    if(unrankedDivider) {
+      const first=visible.slice(0,limit).find(s=>!s.eligible);
+      const isRecommended=(form.elements.namedItem('sort') as HTMLSelectElement).value==='recommended';
+      unrankedDivider.hidden=!first || !isRecommended;
+      if(first && isRecommended) grid.insertBefore(unrankedDivider,cards.get(first.id)!);
+    }
     more.hidden=visible.length===0;
     more.querySelector('[data-page-count]')!.textContent=`已显示 ${Math.min(limit,visible.length)} / ${visible.length} 家`;
     moreButton.hidden=limit>=visible.length;
@@ -73,8 +80,8 @@ if(root) {
       }
     }
     root!.querySelector('[data-sort-note]')!.textContent=f.sort==='recommended'
-      ? '口碑45% · 榜单35% · 回访证据20%；缺项用中性值，资料覆盖见各店'
-      : '选集名次保持不变；当前仅改变阅读顺序';
+      ? `当前结果：${visible.filter(s=>s.eligible).length} 家参评 · ${visible.filter(s=>!s.eligible).length} 家未参评；未参评门店另列，不代表低分`
+      : '参评组名次保持不变；当前仅改变阅读顺序';
     if(listChanged) mapController?.update(visible);
     if(writeUrl) {
       const url=new URL(location.href);

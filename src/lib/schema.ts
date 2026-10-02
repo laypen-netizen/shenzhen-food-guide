@@ -19,6 +19,7 @@ export const sourceSchema = z.object({
   publishedAt: date.nullable(), accessedAt: date,
   statement: z.string().min(1),
   ratingChannel: z.enum(['amap-app-displayed-rating','amap-pc-poi-rating']).optional(),
+  repeatChannel: z.literal('amap-app-repeat-visitors').optional(),
   capture: z.object({
     method: z.enum(['official-app','user-screenshot']),
     view: z.string().min(1),

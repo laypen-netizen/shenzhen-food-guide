@@ -3,7 +3,7 @@ export type CatalogEntry = {
   id:string; slug:string; name:string; district:string; category:string; search:string;
   address:{text:string}; coordinates:{lon:number;lat:number}|null;
   price:number|null; age:number|null; rating:number|null; repeat:boolean; composite:number|null;
-  order:number; annual:Record<string,number|null>; editions:string[]; heat2026:number|null;
+  eligible:boolean; order:number; annual:Record<string,number|null>; editions:string[]; heat2026:number|null;
 };
 const nullable=(a:number|null|undefined,b:number|null|undefined,descending=true)=>a==null ? b==null ? 0:1:b==null ? -1:descending ? b-a:a-b;
 export function searchCatalog(shops:CatalogEntry[],f:Filters) {
