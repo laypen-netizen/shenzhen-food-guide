@@ -2,22 +2,25 @@ import { createHash } from 'node:crypto';
 import { repeatVisitsDisplay, type Catalogue, type Shop } from './schema.ts';
 
 type Source = Catalogue['sources'][number];
-export const recommendationVersion = 'joint-evidence-v3';
+export const recommendationVersion = 'partial-order-v4';
+// A presentation policy carried over from v3, not a statistical significance test.
 export const minimumComparisonSize = 10;
 export type RecommendationDimension = {
   id:'repeat'|'reputation'; label:string; value:number|null; display:string;
   observed:boolean; explanation:string; sourceIds:string[];
 };
 export type Recommendation = {
-  score:number|null; rank:number|null; tied:boolean; eligible:boolean;
+  scoreRange:{lower:number;upper:number}|null;
+  scoreBasis:{lowerNumerator:number;upperNumerator:number;denominator:number}|null;
+  rankRange:{best:number;worst:number}|null;
+  tier:number|null; eligible:boolean;
   sampleSize:number; leadCount:number; tieCount:number; incomparableCount:number; dominatedCount:number;
-  behaviorCeiling:number|null; reason:string; dimensions:RecommendationDimension[];
+  reason:string; dimensions:RecommendationDimension[];
   missing:string[]; sourceIds:string[]; version:string; groupKey:string|null;
 };
 type Observation = {
   shopId:string; rating:number; repeat:number; key:string; date:string;
 };
-const near = (a:number,b:number) => Math.abs(a-b)<1e-9;
 const unique = (ids:string[]) => [...new Set(ids)];
 const current = (date:string,asOf:string) => {
   const days=(Date.parse(asOf)-Date.parse(date))/86400000;
@@ -69,7 +72,7 @@ export function buildRecommendations(shops:readonly Shop[],sources:readonly Sour
         groups.set(key,[...(groups.get(key)??[]),{shopId:shop.id,rating:rating.value,repeat:repeat.count,key,date:rating.asOf}]);
       }
     }
-    results.set(shop.id,{score:null,rank:null,tied:false,eligible:false,sampleSize:0,leadCount:0,tieCount:0,incomparableCount:0,dominatedCount:0,behaviorCeiling:null,reason,dimensions,missing,sourceIds:unique(dimensions.flatMap(d=>d.sourceIds)),version:`${recommendationVersion}:${asOf}:${snapshot}`,groupKey:key});
+    results.set(shop.id,{scoreRange:null,scoreBasis:null,rankRange:null,tier:null,eligible:false,sampleSize:0,leadCount:0,tieCount:0,incomparableCount:0,dominatedCount:0,reason,dimensions,missing,sourceIds:unique(dimensions.flatMap(d=>d.sourceIds)),version:`${recommendationVersion}:${asOf}:${snapshot}`,groupKey:key});
   }
   // Different channels or time windows are not calibrated to a common scale.
   // Use one declared cohort, never merge their percentiles into a total ranking.
@@ -84,29 +87,58 @@ export function buildRecommendations(shops:readonly Shop[],sources:readonly Sour
         result.reason=group.length<minimumComparisonSize ? `同口径仅${group.length}家，暂未参评`:'与本次参评组口径不同，暂未参评';
         continue;
       }
-      let lead=0,equal=0,crossed=0,dominated=0,ceiling=0;
+      let lead=0,equal=0,crossed=0,dominated=0;
       for(const peer of group){
         if(peer.shopId===record.shopId)continue;
-        const ratingOrder=near(record.rating,peer.rating) ? 0:Math.sign(record.rating-peer.rating);
+        // Compare the recorded numeric display values exactly. An epsilon-based
+        // equality is not transitive and can invalidate a partial order.
+        const ratingOrder=Math.sign(record.rating-peer.rating);
         const repeatOrder=Math.sign(record.repeat-peer.repeat);
-        if(repeatOrder>=0)ceiling++;
         if(ratingOrder===0 && repeatOrder===0)equal++;
         else if(ratingOrder>=0 && repeatOrder>=0)lead++;
         else if(ratingOrder<=0 && repeatOrder<=0)dominated++;
         else crossed++;
       }
-      Object.assign(result,{eligible:true,score:Math.round(100*(lead+equal*0.5)/(group.length-1)),leadCount:lead,tieCount:equal,incomparableCount:crossed,dominatedCount:dominated,behaviorCeiling:Math.round(100*ceiling/(group.length-1)),reason:`在${group.length}家同口径门店中比较；不是全深圳排名`});
+      // Bounds over all total orders that preserve strict Pareto dominance,
+      // keeping identical observations in a tied block with average rank.
+      // Crossed peers may precede or follow this shop; never assign a midpoint.
+      const scoreBasis={lowerNumerator:2*lead+equal,upperNumerator:2*(lead+crossed)+equal,denominator:2*(group.length-1)};
+      Object.assign(result,{eligible:true,scoreBasis,
+        scoreRange:{lower:100*scoreBasis.lowerNumerator/scoreBasis.denominator,upper:100*scoreBasis.upperNumerator/scoreBasis.denominator},
+        rankRange:{best:dominated+1,worst:group.length-lead-equal},
+        leadCount:lead,tieCount:equal,incomparableCount:crossed,dominatedCount:dominated,
+        reason:`在${group.length}家同口径门店中比较；保留交叉关系造成的位置范围，不代表全深圳排名`});
     }
   }
-  const ranked=[...shops].filter(s=>results.get(s.id)!.eligible).sort((a,b)=>compareRecommendations(a,b,results));
-  const scoreCounts=new Map<number,number>();
-  for(const s of ranked){const score=results.get(s.id)!.score!;scoreCounts.set(score,(scoreCounts.get(score)??0)+1);}
-  let rank=0,previous:number|null=null;
-  ranked.forEach((shop,index)=>{const r=results.get(shop.id)!;if(r.score!==previous)rank=index+1;r.rank=rank;r.tied=scoreCounts.get(r.score!)!>1;previous=r.score;});
+  if(selected){
+    const dominates=(a:Observation,b:Observation)=>a.rating>=b.rating && a.repeat>=b.repeat && (a.rating>b.rating || a.repeat>b.repeat);
+    let remaining=[...selected[1]],tier=1;
+    while(remaining.length){
+      const front=remaining.filter(record=>!remaining.some(peer=>dominates(peer,record)));
+      if(!front.length)throw new Error('双证据关系无法形成部分序');
+      const ids=new Set(front.map(record=>record.shopId));
+      for(const id of ids)results.get(id)!.tier=tier;
+      remaining=remaining.filter(record=>!ids.has(record.shopId));
+      tier++;
+    }
+  }
   return results;
 }
 export function compareRecommendations(a:Shop,b:Shop,results:Map<string,Recommendation>):number {
   const x=results.get(a.id)!,y=results.get(b.id)!;
-  return Number(y.eligible)-Number(x.eligible) || (x.eligible && y.eligible ? y.score!-x.score!:0)
+  return Number(y.eligible)-Number(x.eligible) || (x.eligible && y.eligible ? x.tier!-y.tier!:0)
     || a.district.localeCompare(b.district,'zh-CN') || a.name.localeCompare(b.name,'zh-CN') || a.id.localeCompare(b.id);
+}
+
+export function formatScoreRange(result:Recommendation|undefined):string {
+  if(!result?.scoreBasis)return '暂未参评';
+  const {lowerNumerator:lower,upperNumerator:upper,denominator}=result.scoreBasis;
+  // Round outward using rational inputs. Display rounding never affects order.
+  const lo=Math.floor(100*lower/denominator),hi=Math.ceil(100*upper/denominator);
+  return lo===hi ? String(lo):`${lo}–${hi}`;
+}
+export function formatRankRange(result:Recommendation|undefined):string {
+  if(!result?.rankRange)return '暂未参评';
+  const {best,worst}=result.rankRange;
+  return `第${best===worst ? best:`${best}–${worst}`}名 / ${result.sampleSize}家`;
 }

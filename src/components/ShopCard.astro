@@ -4,12 +4,13 @@ import { repeatVisitsDisplay } from '../lib/schema';
 import { navigationUrl } from '../lib/geo';
 import { pathFor } from '../lib/urls';
 import { catalogue,recommendationById } from '../lib/catalogue';
+import { formatScoreRange } from '../lib/recommendation';
 interface Props { shop:Shop; }
 const {shop} = Astro.props;
 const rating = [...shop.ratings].sort((a,b) => b.asOf.localeCompare(a.asOf))[0];
 const recommendation = recommendationById.get(shop.id);
-const recommendationScore = recommendation?.score != null ? String(recommendation.score):null;
-const recommendationRank = recommendation?.eligible && recommendation.rank != null ? `参评组${recommendation.tied ? '并列':''}第${recommendation.rank}/${recommendation.sampleSize}`:null;
+const recommendationScoreRange = recommendation?.eligible ? formatScoreRange(recommendation):null;
+const recommendationTier = recommendation?.eligible && recommendation.tier != null ? `第${recommendation.tier}层`:null;
 const recommendationReason = recommendation?.reason ? `${recommendation.reason.split(/[。；]/)[0]}。`:'缺少同组可比较的评分与回访双证据。';
 const knownDishes = shop.dishes.slice(0,2).map(dish=>dish.text).join(' · ');
 const poiSourceIds = new Set([
@@ -33,8 +34,9 @@ const amapPhotoLabel = amapShopPageIsDirect ? '在高德查看实拍':'去高德
       <span>{shop.address.text}</span>
     </div>
     {knownDishes&&<p class="card-dishes"><strong>可以留意</strong>{knownDishes}</p>}
-    <div class:list={['dual-card',{unrated:!recommendation?.eligible}]}>{recommendation?.eligible ? <><div class="dual-rank"><span>本站双证据参考</span><strong>{recommendationRank}</strong></div><div class="dual-score"><span>参考分</span><strong>{recommendationScore}<small>/100</small></strong></div></>:<div class="dual-unrated"><span>本站双证据参考</span><strong>暂未参评</strong><small>{recommendationReason}</small></div>}</div>
-    <p class="score-disclaimer">{recommendation?.eligible ? `双项领先 ${recommendation.leadCount} 家 · 持平 ${recommendation.tieCount} 家${recommendation.score===0 ? ' · 0分是本次比较结果，不等于差评。':''} · 非高德官方排名`:'暂未参评不等于低分，也不生成名次。'}</p>
+    <div class:list={['dual-card',{unrated:!recommendation?.eligible}]}>{recommendation?.eligible ? <><div class="dual-tier"><span>本站双证据分层</span><strong>{recommendationTier} · 层内不分先后</strong></div><div class="dual-score-range"><span>参考分区间</span><strong>{recommendationScoreRange}</strong></div></>:<div class="dual-unrated"><span>本站双证据参考</span><strong>暂未参评</strong><small>{recommendationReason}</small></div>}</div>
+    {recommendation?.eligible&&<p class="card-signal-line">高德展示：评分 {rating ? `${rating.value}${rating.max ? `/${rating.max}`:''}`:'待核验'} · {shop.repeatVisits ? `近${shop.repeatVisits.windowDays}天回访 ${repeatVisitsDisplay(shop.repeatVisits)}人`:'回访待核验'} · 同组 {recommendation.sampleSize} 家 · 资料 {rating?.asOf??shop.repeatVisits?.asOf??shop.checkedAt}</p>}
+    <p class="score-disclaimer">{recommendation?.eligible ? <><a href={pathFor('methodology/#score')}>区间越宽，可确定的先后越少 ↗</a><span> · 非高德官方排名</span></>:<>暂未参评不等于低分，也不生成层级或区间。</>}</p>
     <details class="card-evidence">
       <summary>查看原始数据与依据</summary>
       <div class="card-facts"><span>{shop.price ? `参考人均 ¥${shop.price.cny} · ${shop.price.asOf}`:'人均待核验'}</span><span>{shop.repeatVisits ? `近${shop.repeatVisits.windowDays}天 ${repeatVisitsDisplay(shop.repeatVisits)} 回头客 · 高德页面`:'未取得高德回头客人数'}</span><span>{rating ? `高德 ${rating.value}${rating.max ? `/${rating.max}`:'（量表待核验）'}${rating.count !== null ? ` · ${rating.count.toLocaleString('zh-CN')} 条评价`:''} · ${rating.asOf}`:'暂无可核验评分'}</span></div>

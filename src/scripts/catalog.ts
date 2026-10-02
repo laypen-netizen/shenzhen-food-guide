@@ -104,7 +104,7 @@ if(root) {
     visible=searchCatalog(favoritesOnly ? all.filter(s=>saved.has(s.id)):all,f);
     const listChanged=renderCards();
     const active=['category','repeat'].filter(k=>f[k as keyof Filters]).length;
-    const sortSummary:Record<string,string>={recommended:'双证据参考',default:'地区 · 店名',price:'人均从低到高'};
+    const sortSummary:Record<string,string>={recommended:'双证据分层',default:'地区 · 店名',price:'人均从低到高'};
     root!.querySelector('[data-filter-summary]')!.textContent=`${active ? `${active} 项条件 · `:''}${sortSummary[f.sort] || ''}`;
     renderFilters(f);
     grid.hidden=visible.length===0;
@@ -131,8 +131,8 @@ if(root) {
       }
     }
     root!.querySelector('[data-sort-note]')!.textContent=f.sort==='recommended'
-      ? `当前结果：${visible.filter(s=>s.eligible).length} 家参评 · ${visible.filter(s=>!s.eligible).length} 家未参评；未参评门店另列，不代表低分`
-      : '参评组名次保持不变；当前仅改变阅读顺序';
+      ? `当前结果：${visible.filter(s=>s.eligible).length} 家分层参评 · ${visible.filter(s=>!s.eligible).length} 家未参评；第 1 层最前，同层按地区和店名显示`
+      : '参评层级与区间保持不变；当前仅改变阅读顺序';
     if(listChanged) mapController?.update(visible);
     if(writeUrl) {
       const url=new URL(location.href);

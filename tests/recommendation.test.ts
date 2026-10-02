@@ -75,6 +75,21 @@ function resultFor(results: Map<string, Recommendation>, item: Shop) {
   return results.get(item.id)!;
 }
 
+test('交叉不再与被领先混作零分：同为旧0分的门店展示不同区间和层级', () => {
+  const raw=JSON.parse(readFileSync(new URL('../src/data/catalogue.json',import.meta.url),'utf8'));
+  const data=validateCatalogue(raw,{asOf:'2026-10-02'});
+  const results=buildRecommendations(data.shops,data.sources,data.updatedAt);
+  const crossed=results.get('yuanzhe-zhangwu')!;
+  const dominated=results.get('beicun-yifangtiandi')!;
+  assert.deepEqual(crossed.scoreRange,{lower:0,upper:75});
+  assert.deepEqual(crossed.rankRange,{best:4,worst:13});
+  assert.equal(crossed.tier,3);
+  assert.deepEqual(dominated.rankRange,{best:12,worst:13});
+  assert.equal(dominated.tier,8);
+  assert.equal(dominated.scoreRange?.lower,0);
+  assert.ok(dominated.scoreRange!.upper<9);
+});
+
 test('不足10家不评分；达到阈值才参评，缺资料保持null而不补中性分', () => {
   assert.equal(minimumComparisonSize, 10);
   const nine = Array.from({ length: 9 }, (_, index) => shop(index));
@@ -82,7 +97,7 @@ test('不足10家不评分；达到阈值才参评，缺资料保持null而不�
   const below = buildRecommendations(nine, sources, '2026-10-02');
   assert.ok(nine.every(item => {
     const result = resultFor(below, item);
-    return !result.eligible && result.score === null && result.rank === null && result.sampleSize === 9;
+    return !result.eligible && result.scoreRange === null && result.rankRange === null && result.sampleSize === 9;
   }));
 
   const tenth = shop(9);
@@ -93,12 +108,12 @@ test('不足10家不评分；达到阈值才参评，缺资料保持null而不�
   assert.deepEqual(
     {
       eligible: resultFor(enough, missing).eligible,
-      score: resultFor(enough, missing).score,
-      rank: resultFor(enough, missing).rank,
+      scoreRange: resultFor(enough, missing).scoreRange,
+      rankRange: resultFor(enough, missing).rankRange,
       sampleSize: resultFor(enough, missing).sampleSize,
       missing: resultFor(enough, missing).missing,
     },
-    { eligible: false, score: null, rank: null, sampleSize: 0, missing: ['回访人数', '高德展示评分'] },
+    { eligible: false, scoreRange: null, rankRange: null, sampleSize: 0, missing: ['回访人数', '高德展示评分'] },
   );
 });
 
@@ -149,7 +164,7 @@ test('未标通道、日期不一致、过期资料和非正评价数均不能�
   assert.ok(valid.every(item => resultFor(results, item).eligible));
   assert.ok(invalid.every(item => {
     const result = resultFor(results, item);
-    return !result.eligible && result.score === null && result.rank === null;
+    return !result.eligible && result.scoreRange === null && result.rankRange === null;
   }));
 });
 
@@ -203,10 +218,10 @@ test('Pareto只计算双项同时领先；完全相同计半，交叉关系不�
       ties: result.tieCount,
       incomparable: result.incomparableCount,
       dominated: result.dominatedCount,
-      score: result.score,
-      behaviorCeiling: result.behaviorCeiling,
+      scoreRange: result.scoreRange,
+      rankRange: result.rankRange, tier: result.tier,
     },
-    { sampleSize: 10, lead: 3, ties: 2, incomparable: 2, dominated: 2, score: 44, behaviorCeiling: 67 },
+    { sampleSize: 10, lead: 3, ties: 2, incomparable: 2, dominated: 2, scoreRange: {lower:400/9,upper:600/9}, rankRange:{best:3,worst:5}, tier:2 },
   );
   assert.equal(result.leadCount + result.tieCount + result.incomparableCount + result.dominatedCount, 9);
 });
@@ -222,29 +237,26 @@ test('评价数量只验证记录有效性，任意正数增加不改变score、
   for(const item of items) {
     const a = resultFor(before, item), b = resultFor(after, item);
     assert.deepEqual(
-      [b.score, b.rank, b.leadCount, b.tieCount, b.incomparableCount, b.dominatedCount, b.behaviorCeiling],
-      [a.score, a.rank, a.leadCount, a.tieCount, a.incomparableCount, a.dominatedCount, a.behaviorCeiling],
+      [b.scoreRange, b.rankRange, b.leadCount, b.tieCount, b.incomparableCount, b.dominatedCount, b.tier],
+      [a.scoreRange, a.rankRange, a.leadCount, a.tieCount, a.incomparableCount, a.dominatedCount, a.tier],
     );
   }
 });
 
-test('只提高评分不能突破由回访顺序决定的behaviorCeiling', () => {
-  const items = Array.from({ length: 10 }, (_, index) => shop(index));
-  items.forEach((item, index) => addEvidence(item, {
-    repeat: index + 1, rating: index === 4 ? 4.5 : 4.8,
-  }));
-  const before = buildRecommendations(items, sources, '2026-10-02');
-  const target = items[4];
-  const ceiling = resultFor(before, target).behaviorCeiling;
-  target.ratings[0].value = 5;
-  const after = buildRecommendations(items, sources, '2026-10-02');
-  assert.equal(ceiling, 44);
-  assert.equal(resultFor(after, target).behaviorCeiling, ceiling);
-  assert.equal(resultFor(after, target).score, ceiling);
-  assert.ok(resultFor(after, target).score! <= resultFor(after, target).behaviorCeiling!);
+test('只提高评分不能让回访较少的店双项领先回访更多的对手', () => {
+  const items=Array.from({length:10},(_,i)=>shop(i));
+  items.forEach((item,i)=>addEvidence(item,{repeat:i+1,rating:4.8}));
+  const target=items[4];
+  target.ratings[0].value=5;
+  const result=resultFor(buildRecommendations(items,sources,'2026-10-02'),target);
+  assert.equal(result.leadCount,4);
+  assert.equal(result.incomparableCount,5);
+  assert.equal(result.scoreRange?.upper,100);
+  assert.deepEqual(result.rankRange,{best:1,worst:6});
+  assert.equal(result.tier,1);
 });
 
-test('整数同分固定并列；未参评门店排在后面并按地区店名稳定排序', () => {
+test('双同值共享区间与层级；未参评门店排在后面并按地区店名稳定排序', () => {
   const tiedA = shop(0, '并列甲');
   const tiedB = shop(1, '并列乙');
   addEvidence(tiedA, { repeat: 100, rating: 4.5 });
@@ -255,10 +267,10 @@ test('整数同分固定并列；未参评门店排在后面并按地区店名�
   const unrankedB = shop(21, '未参评甲');
   const items = [unrankedA, tiedB, ...higher, unrankedB, tiedA];
   const results = buildRecommendations(items, sources, '2026-10-02');
-  assert.equal(resultFor(results, tiedA).score, resultFor(results, tiedB).score);
-  assert.equal(resultFor(results, tiedA).rank, resultFor(results, tiedB).rank);
-  assert.equal(resultFor(results, tiedA).tied, true);
-  assert.equal(resultFor(results, tiedB).tied, true);
+  assert.deepEqual(resultFor(results, tiedA).scoreRange, resultFor(results, tiedB).scoreRange);
+  assert.deepEqual(resultFor(results, tiedA).rankRange, resultFor(results, tiedB).rankRange);
+  assert.equal(resultFor(results, tiedA).tier, 9);
+  assert.equal(resultFor(results, tiedB).tier, 9);
   const ordered = [...items].sort((a, b) => compareRecommendations(a, b, results));
   assert.ok(ordered.slice(0, 10).every(item => resultFor(results, item).eligible));
   assert.deepEqual(
@@ -278,8 +290,8 @@ test('近似回访保留来源与原文，但不以6.1万制造精确相等或�
   for(const item of items.slice(0,2)) {
     const r=resultFor(results,item);
     assert.equal(r.eligible,false);
-    assert.equal(r.score,null);
-    assert.equal(r.rank,null);
+    assert.equal(r.scoreRange,null);
+    assert.equal(r.rankRange,null);
     assert.equal(r.dimensions.find(d=>d.id==='repeat')!.display,'近180天 约6.1万人');
     assert.ok(r.sourceIds.includes(repeatApp.id));
     assert.match(r.reason,/近似/);
@@ -287,7 +299,7 @@ test('近似回访保留来源与原文，但不以6.1万制造精确相等或�
   const baseline=buildRecommendations(items.slice(2),sources,'2026-10-02');
   for(const item of items.slice(2)) {
     const a=resultFor(results,item),b=resultFor(baseline,item);
-    assert.deepEqual([a.score,a.rank,a.sampleSize],[b.score,b.rank,10]);
+    assert.deepEqual([a.scoreRange,a.rankRange,a.sampleSize],[b.scoreRange,b.rankRange,10]);
   }
 });
 
@@ -295,7 +307,7 @@ test('近似人数不补足最小样本；改变近似解析值不能影响其�
   const items=Array.from({length:10},(_,index)=>shop(index));
   items.forEach((item,index)=>addEvidence(item,{repeat:1000+index,...(index===0?{approximate:true,rawDisplay:'约1千'}:{})}));
   const results=buildRecommendations(items,sources,'2026-10-02');
-  assert.ok([...results.values()].every(r=>r.score===null&&r.rank===null));
+  assert.ok([...results.values()].every(r=>r.scoreRange===null&&r.rankRange===null));
   items[0].repeatVisits!.count=999999;
   const changed=buildRecommendations(items,sources,'2026-10-02');
   assert.ok([...changed.values()].every(r=>!r.eligible));
@@ -309,8 +321,8 @@ test('当前正式数据只有同口径App联合组13家非近似展示参评，
   const unranked = catalogue.shops.filter(item => !resultFor(results, item).eligible);
   assert.equal(eligible.length, 13);
   assert.ok(eligible.every(item=>item.repeatVisits?.approximate===false));
-  assert.ok(eligible.every(item => resultFor(results, item).score !== null && resultFor(results, item).rank !== null));
-  assert.ok(unranked.every(item => resultFor(results, item).score === null && resultFor(results, item).rank === null));
+  assert.ok(eligible.every(item => resultFor(results, item).scoreRange !== null && resultFor(results, item).rankRange !== null));
+  assert.ok(unranked.every(item => resultFor(results, item).scoreRange === null && resultFor(results, item).rankRange === null));
   const pcRepeat = catalogue.shops.find(item => item.id === 'amap-b0ffk22w52')!;
   assert.equal(resultFor(results, pcRepeat).eligible, false);
   assert.equal(resultFor(results, pcRepeat).sampleSize, 0);
