@@ -44,7 +44,9 @@ document.addEventListener('click',event=>{
   }
 });
 window.addEventListener('storage',event=>{
-  if(event.key !== FAVORITES_KEY) return;
+  if(event.key !== FAVORITES_KEY && event.key !== null) return;
+  try { if(event.storageArea !== localStorage) return; }
+  catch { return; }
   try { ids=event.newValue ? parseFavorites(JSON.parse(event.newValue),knownIds).ids:[];refresh(); }
   catch { notify('另一个窗口的收藏数据格式异常，当前收藏未替换。'); }
 });
@@ -63,7 +65,10 @@ upload?.addEventListener('change',async()=>{
     save([...new Set([...ids,...result.ids])]);
     const text=`新增 ${count} 家，忽略 ${result.duplicates} 个重复项、${result.removed} 个未收录或已移除门店。${storageAvailable ? '已保存到当前浏览器。':'存储不可用，请导出备份。'}`;
     const status=document.querySelector('[data-import-result]');if(status) status.textContent=text;notify(text);
-  } catch(e) { notify(e instanceof Error ? e.message:'导入失败，原有收藏未修改'); }
+  } catch(e) {
+    const text=e instanceof Error ? e.message:'导入失败，原有收藏未修改';
+    const status=document.querySelector('[data-import-result]');if(status) status.textContent=text;notify(text);
+  }
   finally { upload.value=''; }
 });
 document.querySelectorAll<HTMLButtonElement|HTMLInputElement>('[data-export-favorites],[data-import-favorites]').forEach(el=>{el.disabled=false;});

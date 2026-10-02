@@ -12,6 +12,10 @@ if(root) {
   const empty=root.querySelector<HTMLElement>('[data-empty]')!;
   const favoriteEmpty=root.querySelector<HTMLElement>('[data-favorite-empty]');
   const unrankedDivider=root.querySelector<HTMLElement>('[data-unranked-divider]');
+  const activeFilters=root.querySelector<HTMLElement>('[data-active-filters]')!;
+  const resetEmpty=root.querySelector<HTMLButtonElement>('[data-empty-reset]')!;
+  const statusEmpty=root.querySelector<HTMLElement>('[data-empty-status]')!;
+  const searchInput=form.elements.namedItem('q') as HTMLInputElement;
   const cards=new Map([...grid.querySelectorAll<HTMLElement>('[data-shop-card]')].map(el=>[el.dataset.shopId,el]));
   const keys=['q','district','category','price','repeat','sort'] as const;
   let visible:CatalogEntry[]=[],mapController:Awaited<ReturnType<typeof import('./map').createMap>>|null=null;
@@ -54,6 +58,39 @@ if(root) {
       if(field instanceof HTMLSelectElement && field.selectedIndex<0) field.selectedIndex=0;
     }
   }
+  function renderFilters(f:Filters) {
+    const labels:Record<string,string>={q:'搜索',district:'地区',category:'品类',price:'人均',repeat:'回访依据',sort:'排序'};
+    const selected=keys.filter(key=>!!f[key] && !(key==='sort' && f[key]==='recommended'));
+    activeFilters.replaceChildren();
+    activeFilters.hidden=selected.length===0;
+    for(const key of selected) {
+      const field=form.elements.namedItem(key) as HTMLInputElement|HTMLSelectElement;
+      const value=field instanceof HTMLSelectElement ? field.selectedOptions[0]?.textContent??f[key]:f[key];
+      const button=document.createElement('button');
+      button.type='button';button.className='filter-chip';button.dataset.removeFilter=key;
+      button.setAttribute('aria-label',`移除${labels[key]}条件：${value}`);
+      const text=document.createElement('span');text.textContent=`${labels[key]}：${value}`;
+      const close=document.createElement('span');close.textContent='×';close.setAttribute('aria-hidden','true');
+      button.append(text,close);activeFilters.append(button);
+    }
+    if(selected.length>1) {
+      const clear=document.createElement('button');clear.type='button';clear.className='text-button';
+      clear.textContent='清除全部条件';clear.dataset.clearFilters='';activeFilters.append(clear);
+    }
+  }
+  activeFilters.addEventListener('click',event=>{
+    const button=(event.target as Element).closest<HTMLButtonElement>('button');
+    if(!button)return;
+    if(button.hasAttribute('data-clear-filters')){form.reset();searchInput.focus();return;}
+    const key=button.dataset.removeFilter as typeof keys[number];
+    if(!keys.includes(key))return;
+    const index=[...activeFilters.querySelectorAll('button')].indexOf(button);
+    (form.elements.namedItem(key) as HTMLInputElement|HTMLSelectElement).value=key==='sort' ? 'recommended':'';
+    update();
+    const remaining=activeFilters.querySelectorAll<HTMLButtonElement>('button');
+    (remaining[Math.min(index,remaining.length-1)]??searchInput).focus();
+  });
+  resetEmpty.addEventListener('click',()=>{form.reset();searchInput.focus();});
   function update(writeUrl=true,resetPage=true) {
     const focusedCard=document.activeElement?.closest<HTMLElement>('[data-shop-card]');
     const focusedIndex=focusedCard ? visible.findIndex(shop=>shop.id===focusedCard.dataset.shopId):-1;
@@ -63,13 +100,16 @@ if(root) {
     const listChanged=renderCards();
     const active=keys.filter(k=>k!=='q' && k!=='sort' && f[k]).length;
     root!.querySelector('[data-filter-summary]')!.textContent=`${active ? `${active} 项筛选`:'全深圳'} · ${(form.elements.namedItem('sort') as HTMLSelectElement).selectedOptions[0]?.textContent || ''}`;
+    renderFilters(f);
     grid.hidden=visible.length===0;
     root!.querySelector('[data-result-count]')!.textContent=`${visible.length} 家${favoritesOnly ? '收藏':'已收录'}`;
     if(favoriteEmpty) favoriteEmpty.hidden=!favoritesOnly || saved.size>0;
     empty.hidden=visible.length>0 || (favoritesOnly && saved.size===0);
     const noData=all.length===0;
+    resetEmpty.hidden=noData;
+    statusEmpty.hidden=!noData;
     empty.querySelector('[data-empty-title]')!.textContent=noData ? payload.pendingCount ? '门店资料核验中':'榜单资料接入中':'没有符合条件的门店';
-    empty.querySelector('[data-empty-description]')!.textContent=noData ? payload.pendingCount ? `已读取 ${payload.pendingCount} 家真实高德候选，正在核验门店资料。可先查看候选的原始记录。`:'正式收录需要高德扫街榜依据、可核验门店信息与近期营业线索。当前没有满足核验条件的正式记录。':'可以清除或减少筛选条件。未知价格、评分不会被归入确定的分组。';
+    empty.querySelector('[data-empty-description]')!.textContent=noData ? payload.pendingCount ? `已读取 ${payload.pendingCount} 家真实高德候选，正在核验门店资料。可先查看候选的原始记录。`:'正式收录需要高德扫街榜依据、可核验门店信息与近期营业线索。当前没有满足核验条件的正式记录。':'试试减少关键词或移除上方条件，也可以一键清除后重新找店。';
     if(favoritesOnly && focusedCard?.hidden) {
       const fallback=visible[Math.min(Math.max(focusedIndex,0),visible.length-1)];
       const target=fallback ? cards.get(fallback.id)?.querySelector<HTMLAnchorElement>('h3 a'):null;
@@ -122,5 +162,5 @@ if(root) {
     }
     mapController?.resize();
   }));
-  restore();update(false);
+  restore();update();
 }

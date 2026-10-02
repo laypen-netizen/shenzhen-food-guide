@@ -1,4 +1,5 @@
 import type { Filters } from './filtering.ts';
+import { createSearchTokens,matchesSearchTokens } from './search-text.ts';
 export type CatalogEntry = {
   id:string; slug:string; name:string; district:string; category:string; search:string;
   address:{text:string}; coordinates:{lon:number;lat:number}|null;
@@ -7,9 +8,9 @@ export type CatalogEntry = {
 };
 const nullable=(a:number|null|undefined,b:number|null|undefined,descending=true)=>a==null ? b==null ? 0:1:b==null ? -1:descending ? b-a:a-b;
 export function searchCatalog(shops:CatalogEntry[],f:Filters) {
-  const query=f.q.trim().toLocaleLowerCase();
+  const tokens=createSearchTokens(f.q);
   return shops.filter(s=>{
-    if(query && !s.search.includes(query)) return false;
+    if(!matchesSearchTokens(s.search,tokens)) return false;
     if((f.district && s.district!==f.district)||(f.category && s.category!==f.category)) return false;
     if(f.edition && !s.editions.includes(f.edition)) return false;
     if(f.repeat==='verified' && !s.repeat) return false;

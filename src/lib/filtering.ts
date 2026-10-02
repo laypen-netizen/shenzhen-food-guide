@@ -1,12 +1,14 @@
 import type { Shop } from './schema.ts';
 import { ageAt,annualCompositeRanking,annualHeatValue } from './schema.ts';
 import { compositeScore } from './scoring.ts';
+import { createSearchTokens,matchesSearchTokens,normalizeSearchText } from './search-text.ts';
 export type Filters = { q:string; district:string; category:string; price:string; age:string; rating:string; repeat?:string; edition?:string; sort:string };
 export function selectShops(shops:Shop[], f:Filters) {
-  const query = f.q.trim().toLocaleLowerCase();
+  const tokens=createSearchTokens(f.q);
   const order=new Map(shops.map((shop,index)=>[shop.id,index]));
   const result = shops.filter(s => {
-    if (query && ![s.name,...s.aliases,s.address.text,s.summary.text,s.cuisine,...s.dishes.map(d=>d.text)].join(' ').toLocaleLowerCase().includes(query)) return false;
+    const searchText=normalizeSearchText([s.name,...s.aliases,s.district,s.category,s.address.text,s.summary.text,s.cuisine,...s.dishes.map(d=>d.text)].join(' '));
+    if (!matchesSearchTokens(searchText,tokens)) return false;
     if (f.district && s.district !== f.district || f.category && s.category !== f.category) return false;
     if (f.edition && !s.rankings.some(r=>(r.edition==='2026' ? '2026':r.edition==='2025' ? '2025':'undated')===f.edition)) return false;
     if (f.repeat==='verified' && !s.repeatVisits) return false;
