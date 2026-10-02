@@ -11,6 +11,9 @@ export function notify(text:string) {
   toast.textContent=text;toast.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{toast.hidden=true;},5500);
 }
 export function getFavoriteIds() { return [...ids]; }
+function refreshStorageWarning() {
+  document.querySelectorAll<HTMLElement>('[data-storage-warning]').forEach(el=>{el.hidden=storageAvailable;});
+}
 function refresh() {
   document.querySelectorAll<HTMLElement>('[data-favorite-count]').forEach(el=>{el.textContent=String(ids.length);});
   document.querySelectorAll<HTMLButtonElement>('[data-favorite]').forEach(button=>{
@@ -21,6 +24,7 @@ function refresh() {
     const icon=document.createElement('span');icon.setAttribute('aria-hidden','true');icon.textContent=saved ? '♥':'♡';
     button.replaceChildren(icon,document.createTextNode(saved ? ' 已收藏':' 收藏'));
   });
+  refreshStorageWarning();
   window.dispatchEvent(new CustomEvent('favorites-change'));
 }
 function save(next:string[]) {
@@ -45,16 +49,16 @@ document.addEventListener('click',event=>{
 });
 window.addEventListener('storage',event=>{
   if(event.key !== FAVORITES_KEY && event.key !== null) return;
-  try { if(event.storageArea !== localStorage) return; }
-  catch { return; }
+  try { if(event.storageArea !== localStorage) return;storageAvailable=true;refreshStorageWarning(); }
+  catch { storageAvailable=false;refreshStorageWarning();return; }
   try { ids=event.newValue ? parseFavorites(JSON.parse(event.newValue),knownIds).ids:[];refresh(); }
   catch { notify('另一个窗口的收藏数据格式异常，当前收藏未替换。'); }
 });
-document.querySelector<HTMLButtonElement>('[data-export-favorites]')?.addEventListener('click',()=>{
+document.querySelectorAll<HTMLButtonElement>('[data-export-favorites]').forEach(button=>button.addEventListener('click',()=>{
   const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),ids},null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='shenzhen-food-favorites.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   notify('收藏备份已生成，请保管下载的 JSON 文件。');
-});
+}));
 const upload=document.querySelector<HTMLInputElement>('[data-import-favorites]');
 upload?.addEventListener('change',async()=>{
   const file=upload.files?.[0];if(!file) return;

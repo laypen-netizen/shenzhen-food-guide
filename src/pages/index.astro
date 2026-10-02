@@ -2,17 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import Catalog from '../components/Catalog.astro';
 import {catalogue,shops,recommendationById} from '../lib/catalogue';
-import {districts} from '../lib/schema';
 import {pathFor} from '../lib/urls';
 const rankedCount=shops.filter(s=>recommendationById.get(s.id)?.eligible).length;
+const coveredDistricts=new Set(shops.map(shop=>shop.district)).size;
 ---
 <Layout>
-  <section class="hero shell">
-    <div class="hero-copy"><div class="eyebrow"><span class="tiny-dot"></span> 高德数据 · 本站综合整理</div><h1>今天吃什么，<br />看<span>回访与口碑</span>一起选。</h1><p>按地区、预算和菜品找到想去的店。<br />回访与口碑共同支持，评价数量不换分。</p><a class="button button-primary" href="#find">开始找店 <span aria-hidden="true">↓</span></a><a class="hero-secondary" href={pathFor('methodology/')}>评分怎样算 ↗</a></div>
-    <div class="hero-art"><img src={pathFor('street.svg')} alt="街边小店主题插画，非真实门店照片" width="560" height="330" /><span class="art-caption">街角有烟火，常来有理由。<small>主题插画 · 非门店实拍</small></span></div>
+  <section class="hero guide-hero shell">
+    <div class="hero-copy"><div class="eyebrow"><span class="tiny-dot"></span> 高德数据 · 本站综合整理</div><h1>深圳这一餐，<br /><span>按你的需要找。</span></h1><p>汇集高德榜单里的具体分店，按地区、预算和菜品选一餐。</p><a class="text-action" href="#find" data-focus-search>直接找店 ↓</a><a class="hero-secondary" href={pathFor('methodology/#selection')}>与高德榜单有什么不同 ↗</a></div>
+    <aside class="guide-overview" aria-label="资料概况"><p><strong>{shops.length}</strong> 家已收录 <span>覆盖 {coveredDistricts} 个地区</span></p><p>{rankedCount} 家进入本次参评组；其余门店仍可查找。<a href={pathFor('methodology/#score')}>参考分怎样读 ↗</a></p><small>资料整理于 {catalogue.updatedAt} · <a href={pathFor('status/')}>资料状态与纠错</a></small></aside>
   </section>
-  <section class="stat-bar shell" aria-label="资料概况"><div><strong>{shops.length.toString().padStart(2,'0')}</strong><span>美食门店<small>全部可搜索、收藏和导航</small></span></div><div><strong>{rankedCount}</strong><span>同口径参评<small>其余门店保留收录，等待补证</small></span></div><div><strong>10</strong><span>深圳地区<small>地区只用于查找</small></span></div><div class="stat-date"><span>最近整理日期<strong>{catalogue.updatedAt}</strong></span><a href={pathFor('status/')}>查看资料状态 ↗</a></div></section>
-  <section class="district-section shell"><div class="section-heading compact"><h2>按街区查看全部收录</h2><span>不设地区名额</span></div><div class="district-grid">{districts.map((d,i) => <a class="district-chip" href={`${pathFor()}?district=${encodeURIComponent(d)}#find`}><span class="district-number">{String(i+1).padStart(2,'0')}</span><strong>{d}</strong><span class="district-count">{shops.filter(s => s.district===d).length} 家 <span aria-hidden="true">↗</span></span></a>)}</div></section>
   <Catalog />
-  <section class="principles shell"><div class="principles-intro"><div class="eyebrow">HOW TO READ THE GUIDE</div><h2>高德给出原始资料，<br />本站统一整理。</h2><a href={pathFor('methodology/')}>读完整评分方法 ↗</a></div><div class="principle-items"><div><span>01</span><h3>两项一起看</h3><p>回访人数和口碑均不低于另一家、至少一项更高，才记为领先。评论数量不加分。</p></div><div><span>02</span><h3>证据不足，暂不参评</h3><p>全部门店都可查找；只有同口径资料齐全的门店参评，未参评不表示不受欢迎。</p></div><div><span>03</span><h3>原始来源可回查</h3><p>原始资料来自高德，本站公开比较方法与缺口。现有数据无法识别刷评，也不是全深圳客流排名。</p></div></div></section>
+  <section class="principles shell"><div class="principles-intro"><div class="eyebrow">HOW TO READ THE GUIDE</div><h2>高德给出原始资料，<br />本站统一整理。</h2><a href={pathFor('methodology/')}>读完整评分方法 ↗</a></div><div class="principle-items"><div><span>01</span><h3>两项一起看</h3><p>高德展示评分与非近似回访人数均不低于另一家、至少一项更高，才记为领先。评论数量不加分。</p></div><div><span>02</span><h3>证据不足，暂不参评</h3><p>全部门店都可查找；只有符合本站同组与精确比较规则的门店参评，未参评不表示不受欢迎。</p></div><div><span>03</span><h3>原始来源可回查</h3><p>原始资料来自高德，本站公开比较方法与缺口。现有数据无法识别刷评，也不是全深圳客流排名。</p></div></div></section>
 </Layout>

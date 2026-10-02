@@ -98,7 +98,7 @@ test('不足10家不评分；达到阈值才参评，缺资料保持null而不�
       sampleSize: resultFor(enough, missing).sampleSize,
       missing: resultFor(enough, missing).missing,
     },
-    { eligible: false, score: null, rank: null, sampleSize: 0, missing: ['回访人数', '平台原始口碑'] },
+    { eligible: false, score: null, rank: null, sampleSize: 0, missing: ['回访人数', '高德展示评分'] },
   );
 });
 
@@ -267,31 +267,52 @@ test('整数同分固定并列；未参评门店排在后面并按地区店名�
   );
 });
 
-test('近似回访原文保留并列，不把6.1万展示成精确人数', () => {
-  const items = Array.from({ length: 10 }, (_, index) => shop(index));
+test('近似回访保留来源与原文，但不以6.1万制造精确相等或名次', () => {
+  const items = Array.from({ length: 12 }, (_, index) => shop(index));
   items.forEach((item, index) => addEvidence(item, {
     repeat: index < 2 ? 61_000 : 70_000 + index,
     rating: index < 2 ? 4.8 : 4.7 + index / 100,
     ...(index < 2 ? { approximate: true, rawDisplay: '6.1万' } : {}),
   }));
   const results = buildRecommendations(items, sources, '2026-10-02');
-  const first = resultFor(results, items[0]), second = resultFor(results, items[1]);
-  assert.equal(first.dimensions.find(dimension => dimension.id === 'repeat')!.display, '近180天 约6.1万人');
-  assert.equal(first.score, second.score);
-  assert.equal(first.rank, second.rank);
-  assert.equal(first.tied, true);
+  for(const item of items.slice(0,2)) {
+    const r=resultFor(results,item);
+    assert.equal(r.eligible,false);
+    assert.equal(r.score,null);
+    assert.equal(r.rank,null);
+    assert.equal(r.dimensions.find(d=>d.id==='repeat')!.display,'近180天 约6.1万人');
+    assert.ok(r.sourceIds.includes(repeatApp.id));
+    assert.match(r.reason,/近似/);
+  }
+  const baseline=buildRecommendations(items.slice(2),sources,'2026-10-02');
+  for(const item of items.slice(2)) {
+    const a=resultFor(results,item),b=resultFor(baseline,item);
+    assert.deepEqual([a.score,a.rank,a.sampleSize],[b.score,b.rank,10]);
+  }
 });
 
-test('当前正式数据只有同口径App联合组18家参评，其余门店不生成分数或名次', () => {
+test('近似人数不补足最小样本；改变近似解析值不能影响其他门店分数',()=>{
+  const items=Array.from({length:10},(_,index)=>shop(index));
+  items.forEach((item,index)=>addEvidence(item,{repeat:1000+index,...(index===0?{approximate:true,rawDisplay:'约1千'}:{})}));
+  const results=buildRecommendations(items,sources,'2026-10-02');
+  assert.ok([...results.values()].every(r=>r.score===null&&r.rank===null));
+  items[0].repeatVisits!.count=999999;
+  const changed=buildRecommendations(items,sources,'2026-10-02');
+  assert.ok([...changed.values()].every(r=>!r.eligible));
+});
+
+test('当前正式数据只有同口径App联合组13家非近似展示参评，其余门店不生成分数或名次', () => {
   const raw = JSON.parse(readFileSync(new URL('../src/data/catalogue.json', import.meta.url), 'utf8'));
   const catalogue = validateCatalogue(raw, { asOf: '2026-10-02' });
   const results = buildRecommendations(catalogue.shops, catalogue.sources, catalogue.updatedAt);
   const eligible = catalogue.shops.filter(item => resultFor(results, item).eligible);
   const unranked = catalogue.shops.filter(item => !resultFor(results, item).eligible);
-  assert.equal(eligible.length, 18);
+  assert.equal(eligible.length, 13);
+  assert.ok(eligible.every(item=>item.repeatVisits?.approximate===false));
   assert.ok(eligible.every(item => resultFor(results, item).score !== null && resultFor(results, item).rank !== null));
   assert.ok(unranked.every(item => resultFor(results, item).score === null && resultFor(results, item).rank === null));
   const pcRepeat = catalogue.shops.find(item => item.id === 'amap-b0ffk22w52')!;
   assert.equal(resultFor(results, pcRepeat).eligible, false);
-  assert.equal(resultFor(results, pcRepeat).sampleSize, 1);
+  assert.equal(resultFor(results, pcRepeat).sampleSize, 0);
+  assert.match(resultFor(results, pcRepeat).reason,/近似/);
 });

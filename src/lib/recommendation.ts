@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { repeatVisitsDisplay, type Catalogue, type Shop } from './schema.ts';
 
 type Source = Catalogue['sources'][number];
-export const recommendationVersion = 'joint-evidence-v2';
+export const recommendationVersion = 'joint-evidence-v3';
 export const minimumComparisonSize = 10;
 export type RecommendationDimension = {
   id:'repeat'|'reputation'; label:string; value:number|null; display:string;
@@ -55,14 +55,15 @@ export function buildRecommendations(shops:readonly Shop[],sources:readonly Sour
     const repeatChannel=rawRepeat ? channel(rawRepeat.sourceIds,sourceMap,'repeat'):null;
     const repeat=rawRepeat && repeatChannel && current(rawRepeat.asOf,asOf) ? rawRepeat:null;
     const dimensions:RecommendationDimension[]=[
-      {id:'repeat',label:'回访人数',value:repeat?.count??null,display:repeat ? `近${repeat.windowDays}天 ${repeatVisitsDisplay(repeat)}人`:'待补同口径资料',observed:!!repeat,sourceIds:repeat?.sourceIds??[],explanation:repeat ? '使用高德同一观察日、同一统计窗口的展示值比较顺序。近似人数保留原文；它不是回头率，平台去重与行为识别细则未披露。':'尚未取得有效、近期且渠道明确的回头客人数。未披露不等于没有回头客。'},
-      {id:'reputation',label:'平台原始口碑',value:rating?.value??null,display:rating ? `${rating.value}${rating.max ? `/${rating.max}`:'（量表待核验）'}`:'待补同口径资料',observed:!!rating,sourceIds:rating ? unique(latest.flatMap(r=>r.sourceIds)):[],explanation:rating ? `高德展示评分${rating.value}，${rating.count}条评价。只比较同一采集通道、量表标记和日期的原始值，不换算好评率。评价数量不加分；它不能证明评价真实。`:'缺少有效评价数、明确采集渠道或近期唯一评分；同日冲突值不挑高分，也不回退旧记录。'},
+      {id:'repeat',label:'回访人数',value:repeat?.count??null,display:repeat ? `近${repeat.windowDays}天 ${repeatVisitsDisplay(repeat)}人`:'待补同口径资料',observed:!!repeat,sourceIds:repeat?.sourceIds??[],explanation:repeat ? repeat.approximate ? '高德只提供近似人数，原文保留供参考；未取得精确展示或取整区间，暂不参与计分，也不据此判断与其他门店人数相等。':'使用高德同一观察日、同一统计窗口的非近似展示值比较顺序；它不是真实客流或回头率，平台去重与行为识别细则未披露。':'尚未取得有效、近期且渠道明确的回头客人数。未披露不等于没有回头客。'},
+      {id:'reputation',label:'高德展示评分',value:rating?.value??null,display:rating ? `${rating.value}${rating.max ? `/${rating.max}`:'（量表待核验）'}`:'待补同口径资料',observed:!!rating,sourceIds:rating ? unique(latest.flatMap(r=>r.sourceIds)):[],explanation:rating ? `高德展示评分${rating.value}，${rating.count}条评价。只比较同一采集通道、量表标记和日期的原始值，不换算好评率。评价数量不加分；它不能证明评价真实。`:'缺少有效评价数、明确采集渠道或近期唯一评分；同日冲突值不挑高分，也不回退旧记录。'},
     ];
     const missing=dimensions.filter(d=>!d.observed).map(d=>d.label);
     let reason=missing.length ? `待补${missing.join('与')}依据`:'同口径可比样本不足';
     let key:string|null=null;
     if(rating && repeat){
-      if(rating.asOf!==repeat.asOf) reason='评分与回访观察日期不同';
+      if(repeat.approximate) reason='回访人数为近似展示，暂不参与精确比较';
+      else if(rating.asOf!==repeat.asOf) reason='评分与回访观察日期不同';
       else {
         key=JSON.stringify([ratingChannel,rating.max,rating.asOf,repeatChannel,repeat.windowDays,repeat.asOf]);
         groups.set(key,[...(groups.get(key)??[]),{shopId:shop.id,rating:rating.value,repeat:repeat.count,key,date:rating.asOf}]);

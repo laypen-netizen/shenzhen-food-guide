@@ -25,6 +25,11 @@ if(root) {
   let lastOrder='';
   const more=root.querySelector<HTMLElement>('[data-load-more-region]')!;
   const moreButton=root.querySelector<HTMLButtonElement>('[data-load-more]')!;
+  document.querySelectorAll<HTMLAnchorElement>('[data-focus-search]').forEach(link=>link.addEventListener('click',event=>{
+    event.preventDefault();
+    const url=new URL(location.href);url.hash='find';history.replaceState(null,'',url);
+    root!.scrollIntoView({block:'start'});searchInput.focus({preventScroll:true});
+  }));
   function renderCards() {
     const shown=new Set(visible.slice(0,limit).map(s=>s.id));
     for(const [id,card] of cards) card.hidden=!shown.has(id || '');
@@ -98,12 +103,18 @@ if(root) {
     if(resetPage) limit=pageSize;
     visible=searchCatalog(favoritesOnly ? all.filter(s=>saved.has(s.id)):all,f);
     const listChanged=renderCards();
-    const active=keys.filter(k=>k!=='q' && k!=='sort' && f[k]).length;
-    root!.querySelector('[data-filter-summary]')!.textContent=`${active ? `${active} 项筛选`:'全深圳'} · ${(form.elements.namedItem('sort') as HTMLSelectElement).selectedOptions[0]?.textContent || ''}`;
+    const active=['category','repeat'].filter(k=>f[k as keyof Filters]).length;
+    const sortSummary:Record<string,string>={recommended:'双证据参考',default:'地区 · 店名',price:'人均从低到高'};
+    root!.querySelector('[data-filter-summary]')!.textContent=`${active ? `${active} 项条件 · `:''}${sortSummary[f.sort] || ''}`;
     renderFilters(f);
     grid.hidden=visible.length===0;
     root!.querySelector('[data-result-count]')!.textContent=`${visible.length} 家${favoritesOnly ? '收藏':'已收录'}`;
     if(favoriteEmpty) favoriteEmpty.hidden=!favoritesOnly || saved.size>0;
+    const noFavorites=favoritesOnly && saved.size===0;
+    form.hidden=noFavorites;
+    root!.querySelector<HTMLElement>('[data-catalog-scope]')!.hidden=noFavorites;
+    root!.querySelector<HTMLElement>('.view-toolbar')!.hidden=noFavorites;
+    if(noFavorites)root!.querySelector<HTMLElement>('[data-map-section]')!.hidden=true;
     empty.hidden=visible.length>0 || (favoritesOnly && saved.size===0);
     const noData=all.length===0;
     resetEmpty.hidden=noData;

@@ -1,8 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {annualHeatValue,isAmapUrl,validateCatalogue} from '../src/lib/schema.ts';
-import {createCatalogIndex} from '../src/lib/catalog-index.ts';
-import {searchCatalog} from '../src/lib/catalog-search.ts';
 import {selectShops,type Filters} from '../src/lib/filtering.ts';
 import {fixtureCatalogue,fixtureShop} from './fixtures.ts';
 
@@ -41,7 +39,7 @@ test('全年热度取最新观察，同日冲突不隐式选择任一值',()=>{
   assert.equal(annualHeatValue(shop,2026),null);
 });
 
-test('edition 精确区分2026与页面观察，多年度同分店在DTO中仍只有一条',()=>{
+test('服务端历史筛选仍精确区分2026与页面观察',()=>{
   const explicit=fixtureShop();
   explicit.rankings.push({
     name:'高德扫街榜 · 2026状元榜·必吃美食',edition:'2026',rank:null,
@@ -56,14 +54,7 @@ test('edition 精确区分2026与页面观察，多年度同分店在DTO中仍�
     scope:'模拟观察页面',asOf:'2026-10-02',sourceIds:['ranking'],
   }];
   const shops=[explicit,observed];
-  const index=createCatalogIndex(shops);
-  for(const edition of ['2026','2025','undated']) {
-    const current={...filters,edition};
-    assert.deepEqual(searchCatalog(index,current).map(s=>s.id),selectShops(shops,current).map(s=>s.id));
-  }
   assert.deepEqual(selectShops(shops,{...filters,edition:'2026'}).map(s=>s.id),[explicit.id]);
+  assert.deepEqual(selectShops(shops,{...filters,edition:'2025'}).map(s=>s.id),[explicit.id]);
   assert.deepEqual(selectShops(shops,{...filters,edition:'undated'}).map(s=>s.id),[observed.id]);
-  assert.equal(index.filter(entry=>entry.id===explicit.id).length,1);
-  assert.ok(index.find(entry=>entry.id===explicit.id)?.editions.includes('2025'));
-  assert.ok(index.find(entry=>entry.id===explicit.id)?.editions.includes('2026'));
 });

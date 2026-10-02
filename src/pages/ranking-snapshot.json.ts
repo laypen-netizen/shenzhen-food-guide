@@ -8,7 +8,7 @@ export const GET:APIRoute=()=>new Response(JSON.stringify({
   snapshot:[...recommendationById.values()][0]?.version??null,
   observedAt:catalogue.updatedAt,
   interpretation:'同口径组内双项共同领先的比例。不是满意率、真实客流、全深圳排名或反刷认证。',
-  rule:{formula:'round(100 * (leadCount + 0.5 * tieCount) / (sampleSize - 1))',minimumComparisonSize,weights:null,reviewCountAddsPoints:false,missingValue:null},
+  rule:{formula:'round(100 * (leadCount + 0.5 * tieCount) / (sampleSize - 1))',minimumComparisonSize,weights:null,reviewCountAddsPoints:false,approximateRepeatEligible:false,missingValue:null},
   included:shops.length,
   eligible:shops.filter(s=>recommendationById.get(s.id)?.eligible).length,
   shops:shops.map(shop=>{

@@ -3,6 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Catalog from '../components/Catalog.astro';
 ---
 <Layout title="我的收藏">
-  <section class="page-intro shell"><div class="eyebrow">SAVED FOR YOUR NEXT MEAL</div><h1>下一顿，<span>有着落。</span></h1><p>留住想去的小店。收藏保存在当前浏览器，清理浏览器数据可能丢失；导出可以备份。</p><div class="backup-actions"><button class="button button-outline" type="button" data-export-favorites disabled>导出收藏 JSON</button><label class="button button-outline file-label">导入收藏 JSON<input type="file" accept="application/json,.json" data-import-favorites disabled /></label></div><p class="help-text" data-import-result aria-live="polite">导入会合并收藏；重复项和已移除门店会单独提示。本站不提供账号或跨设备同步。</p></section>
+  <section class="page-intro shell"><div class="eyebrow">SAVED FOR YOUR NEXT MEAL</div><h1>下一顿，<span>有着落。</span></h1><p>留住想去的小店。收藏保存在当前浏览器，清理浏览器数据可能丢失；导出可以备份。</p><details class="favorites-tools"><summary>导入或导出收藏备份</summary><div class="backup-actions"><button class="button button-outline" type="button" data-export-favorites disabled>导出收藏 JSON</button><label class="button button-outline file-label">导入收藏 JSON<input type="file" accept="application/json,.json" data-import-favorites disabled /></label></div><p class="help-text" data-import-result aria-live="polite">导入会合并收藏；重复项和已移除门店会单独提示。本站不提供账号或跨设备同步。</p></details></section>
   <Catalog favorites />
 </Layout>
