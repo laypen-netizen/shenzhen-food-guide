@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-02",
+  "updatedAt": "2026-10-03",
   "policy": "amap-only",
-  "note": "本站将已核验的高德上榜分店合并为统一目录，不设总数上限或地区配额。直接展示高德餐厅评分、评价数和采集日期，默认按原始评分值降序浏览；同分按地区和店名排列。回访人数和上榜年份作为补充资料，不影响评分。2025、2026上榜标签只采用明确的榜单届次。具体来源可在详情核查；候选补齐地址与营业依据后再收录，店面实拍提供高德查看入口。",
+  "note": "本站将已核验的高德上榜分店合并为统一目录，不设总数上限或地区配额。直接展示高德餐厅评分、评价数和采集日期，默认按原始评分值降序浏览；同分按地区和店名排列。回访人数和上榜年份作为补充资料，不影响评分。2025、2026上榜标签只采用明确的榜单届次。具体来源可在详情核查；候选补齐地址与营业依据后再收录，店面实拍保存在本站并保留原始来源和图片采集日期。",
   "sources": [
     {
       "id": "app-xiangtiantian-gushu",
@@ -1181,8 +1181,8 @@
     },
     {
       "id": "poi-benluobo-pengruinda",
-      "title": "高德App门店详情：笨萝卜浏阳菜馆（龙华鹏润达店）",
-      "url": "https://uri.amap.com/search?keyword=%E7%AC%A8%E8%90%9D%E5%8D%9C%E6%B5%8F%E9%98%B3%E8%8F%9C%E9%A6%86%EF%BC%88%E9%BE%99%E5%8D%8E%E9%B9%8F%E6%B6%A6%E8%BE%BE%E5%BA%97%EF%BC%89&city=%E6%B7%B1%E5%9C%B3&view=list&src=shenzhen-food-guide&callnative=1",
+      "title": "高德App门店详情：笨罗卜浏阳菜馆（龙华鹏润达店）",
+      "url": "https://uri.amap.com/search?keyword=%E7%AC%A8%E7%BD%97%E5%8D%9C%E6%B5%8F%E9%98%B3%E8%8F%9C%E9%A6%86%EF%BC%88%E9%BE%99%E5%8D%8E%E9%B9%8F%E6%B6%A6%E8%BE%BE%E5%BA%97%EF%BC%89&city=%E6%B7%B1%E5%9C%B3&view=list&src=shenzhen-food-guide&callnative=1",
       "kind": "poi",
       "publishedAt": null,
       "accessedAt": "2026-10-02",
@@ -2708,6 +2708,173 @@
       "publishedAt": null,
       "accessedAt": "2026-10-02",
       "statement": "网页精确店名搜索唯一命中该分店，地址西丽龙井综合楼17-18，参考人均106元；尚未取得详情页营业资料及准确POI ID。离线记录research/2026-new-poi-search-partial.json。搜索结果不作为上榜依据。"
+    },
+    {
+      "id": "app-2026-must-eat-9-2026-10-03",
+      "title": "高德App 2026状元榜·必吃美食：今夜大排档（福田店）",
+      "url": "https://a.a-map.link/1udsyJI1efMk",
+      "kind": "ranking",
+      "publishedAt": null,
+      "accessedAt": "2026-10-03",
+      "statement": "2026-10-03经用户提供的新官方分享入口在高德App复核：今夜大排档（福田店）为当前页面第9项，全年热度值96.8。页面城市为深圳市，筛选为“附近”，范围及半径未公布；不视为全市总排名。“全年热度值”不是用户评分、全年综合分或回头率。",
+      "capture": {
+        "method": "official-app",
+        "view": "高德扫街榜 → 2026状元榜 → 必吃美食 → 深圳市（附近筛选）",
+        "localEvidence": [
+          "research/evidence/amap-2026-zhuangyuan-2026-10-03-08-09.png"
+        ]
+      }
+    },
+    {
+      "id": "poi-app-jinyedapaidang-futian-2026-10-03",
+      "title": "高德App具体门店资料：今夜大排档（福田店）",
+      "url": "https://www.amap.com/search?query=%E4%BB%8A%E5%A4%9C%E5%A4%A7%E6%8E%92%E6%A1%A3%EF%BC%88%E7%A6%8F%E7%94%B0%E5%BA%97%EF%BC%89&city=440300",
+      "kind": "poi",
+      "publishedAt": null,
+      "accessedAt": "2026-10-03",
+      "statement": "高德App具体分店详情显示：今夜大排档（福田店），大排档；原始评分4.8（页面未披露满分量表），120评价，参考人均237元；地址为福田区金田路2030号卓悦INTOWN购物中心东区L1层L1-C（南1门附近）；营业时段11:30-14:00,17:30-02:00，采集时页面显示休息中；商家招牌菜显示酱爆百合鹅肠、炭烧大响螺、金不换爆炒角螺。营业时段仅作近期线索，出发前请在高德确认。尚未取得准确POI ID，不自行推测。",
+      "ratingChannel": "amap-app-displayed-rating",
+      "capture": {
+        "method": "official-app",
+        "view": "高德App → 今夜大排档（福田店） → 门店详情",
+        "localEvidence": [
+          "research/evidence/amap-2026-jinye-futian-detail.png"
+        ]
+      }
+    },
+    {
+      "id": "app-repeat-ranking-jinyedapaidang-futian-2026-10-03",
+      "title": "高德App门店详情：今夜大排档（福田店）回头客大排档榜",
+      "url": "https://www.amap.com/search?query=%E4%BB%8A%E5%A4%9C%E5%A4%A7%E6%8E%92%E6%A1%A3%EF%BC%88%E7%A6%8F%E7%94%B0%E5%BA%97%EF%BC%89&city=440300",
+      "kind": "ranking",
+      "publishedAt": null,
+      "accessedAt": "2026-10-03",
+      "statement": "高德App具体门店详情显示“回头客大排档榜·第2名”。页面未披露该榜单的范围、统计窗口、回头客人数或明确年度届次，因此只记录榜名与名次，不扩展为深圳全市排名，也不据此推算回头率。",
+      "capture": {
+        "method": "official-app",
+        "view": "高德App → 今夜大排档（福田店） → 门店详情",
+        "localEvidence": [
+          "research/evidence/amap-2026-jinye-futian-detail.png"
+        ]
+      }
+    },
+    {
+      "id": "poi-dagefan-futian-cocopark-2026-10-03",
+      "title": "高德具体门店资料：大鸽饭（福田COCO Park店）",
+      "url": "https://www.amap.com/place/B0JK4APCY3",
+      "kind": "poi",
+      "publishedAt": null,
+      "accessedAt": "2026-10-03",
+      "statement": "高德公开门店页索引核对到具体POI B0JK4APCY3，标题对应大鸽饭（福田COCO Park店）；高德精确店名搜索地址为福华三路268号福田星河COCO Park商场三楼L3-021号商铺，品类为中餐厅，参考人均113元。未取得近期营业状态、营业时间、坐标或详情页评价总数，均不推测。"
+    },
+    {
+      "id": "rating-app-dagefan-futian-cocopark-2026-10-02",
+      "title": "高德App榜单评分：大鸽饭（福田COCO Park店）",
+      "url": "https://a.a-map.link/famfHI1n584",
+      "kind": "rating",
+      "publishedAt": null,
+      "accessedAt": "2026-10-02",
+      "statement": "高德App 2026状元榜·必吃美食页面显示大鸽饭（福田COCO Park店）原始评分4.8（满分量表未披露）、参考人均113元、粤菜；页面标签包括“现炸乳鸽爆汁”“黑松露鸽饭香”“亲子聚餐友好”，推荐文案提到招牌红烧乳鸽与外皮酥脆。页面另显示“498人在说”，该字段不是明确的详情页评价总数，本站不写入评分count。",
+      "ratingChannel": "amap-app-displayed-rating",
+      "capture": {
+        "method": "official-app",
+        "view": "高德扫街榜 → 2026状元榜 → 必吃美食 → 深圳市（附近筛选）",
+        "localEvidence": [
+          "research/evidence/capture-0710-after.png"
+        ]
+      }
+    },
+    {
+      "id": "poi-xinglongyin-futian-2026-10-03",
+      "title": "高德具体门店资料：星龙吟日料放题（深圳福田店）",
+      "url": "https://www.amap.com/place/B0JRGH1BZE",
+      "kind": "poi",
+      "publishedAt": null,
+      "accessedAt": "2026-10-03",
+      "statement": "高德公开门店页索引核对到具体POI B0JRGH1BZE，标题对应星龙吟日料放题（深圳福田店）；高德精确店名搜索地址为福田街道岗社区福华三路88号财富大厦4层4A，品类为日本料理，参考人均282元。未取得近期营业状态、营业时间、坐标或详情页评价总数，均不推测。"
+    },
+    {
+      "id": "rating-app-xinglongyin-futian-2026-10-02",
+      "title": "高德App榜单评分：星龙吟日料放题（深圳福田店）",
+      "url": "https://a.a-map.link/famfHI1n584",
+      "kind": "rating",
+      "publishedAt": null,
+      "accessedAt": "2026-10-02",
+      "statement": "高德App 2026状元榜·必吃美食页面显示星龙吟日料放题（深圳福田店）原始评分4.8（满分量表未披露）、参考人均282元、日式自助；页面标签包括“鳌虾鲜甜弹牙”“海胆如奶油”“和服打卡出片”。页面另显示“307人在说”，该字段不是明确的详情页评价总数，本站不写入评分count。",
+      "ratingChannel": "amap-app-displayed-rating",
+      "capture": {
+        "method": "official-app",
+        "view": "高德扫街榜 → 2026状元榜 → 必吃美食 → 深圳市（附近筛选）",
+        "localEvidence": [
+          "research/evidence/capture-0712-after.png"
+        ]
+      }
+    },
+    {
+      "id": "poi-chaoyue-xili-2026-10-03",
+      "title": "高德具体门店资料：潮悦牛肉火锅城（西丽店）",
+      "url": "https://www.amap.com/place/B0G3Z9SV04",
+      "kind": "poi",
+      "publishedAt": null,
+      "accessedAt": "2026-10-03",
+      "statement": "高德公开门店页索引核对到具体POI B0G3Z9SV04，标题对应潮悦牛肉火锅城（西丽店）；高德精确店名搜索地址为西丽龙井综合楼17-18，品类为火锅，参考人均106元。未取得近期营业状态、营业时间、坐标或详情页评价总数，均不推测。"
+    },
+    {
+      "id": "rating-app-chaoyue-xili-2026-10-02",
+      "title": "高德App榜单评分：潮悦牛肉火锅城（西丽店）",
+      "url": "https://a.a-map.link/famfHI1n584",
+      "kind": "rating",
+      "publishedAt": null,
+      "accessedAt": "2026-10-02",
+      "statement": "高德App 2026状元榜·必吃美食页面显示潮悦牛肉火锅城（西丽店）原始评分4.8（满分量表未披露）、参考人均106元、牛肉火锅；页面标签包括“现切牛肉”“镬气牛河”“城市特色美食”，推荐文案提到吊龙涮8秒。页面另显示“259人在说”，该字段不是明确的详情页评价总数，本站不写入评分count。",
+      "ratingChannel": "amap-app-displayed-rating",
+      "capture": {
+        "method": "official-app",
+        "view": "高德扫街榜 → 2026状元榜 → 必吃美食 → 深圳市（附近筛选）",
+        "localEvidence": [
+          "research/evidence/capture-0713-after.png"
+        ]
+      }
+    },
+    {
+      "id": "poi-web-dagefan-futian-cocopark-2026-10-03",
+      "title": "高德公开网页具体门店资料：大鸽饭（福田COCO Park店）",
+      "url": "https://www.amap.com/ssr/search/poi_detail?id=B0JK4APCY3",
+      "kind": "poi",
+      "publishedAt": null,
+      "accessedAt": "2026-10-03",
+      "ratingChannel": "amap-pc-poi-rating",
+      "statement": "通过普通公开门店详情页读取，具体POI B0JK4APCY3；地址深圳市福田区福华三路268号福田星河COCOPark商场三楼L3-021号商铺；分类粤菜；网页原始评分4.8（页面未披露满分量表）、56评价、参考人均113元；营业时间11:00-21:30。页面采集时显示“营业中”。保留公开网页口径，营业资料为采集快照，出发前请再次确认；未读取私有接口或推测坐标。"
+    },
+    {
+      "id": "poi-web-xinglongyin-futian-2026-10-03",
+      "title": "高德公开网页具体门店资料：星龙吟日料放题（深圳福田店）",
+      "url": "https://www.amap.com/ssr/search/poi_detail?id=B0JRGH1BZE",
+      "kind": "poi",
+      "publishedAt": null,
+      "accessedAt": "2026-10-03",
+      "ratingChannel": "amap-pc-poi-rating",
+      "statement": "通过普通公开门店详情页读取，具体POI B0JRGH1BZE；地址深圳市福田区福田街道岗厦社区福华三路88号财富大厦4层4A；分类自助餐；网页原始评分4.8（页面未披露满分量表）、87评价、参考人均282元；营业时间11:30-14:30、17:30-22:00。页面采集时显示“营业中”。保留公开网页口径，营业资料为采集快照，出发前请再次确认；未读取私有接口或推测坐标。"
+    },
+    {
+      "id": "poi-web-chaoyue-xili-2026-10-03",
+      "title": "高德公开网页具体门店资料：潮悦牛肉火锅城（西丽店）",
+      "url": "https://www.amap.com/ssr/search/poi_detail?id=B0G3Z9SV04",
+      "kind": "poi",
+      "publishedAt": null,
+      "accessedAt": "2026-10-03",
+      "ratingChannel": "amap-pc-poi-rating",
+      "statement": "通过普通公开门店详情页读取，具体POI B0G3Z9SV04；地址深圳市南山区西丽龙井综合楼17-18；分类牛肉火锅；网页原始评分4.8（页面未披露满分量表）、50评价、参考人均106元；营业时间周一至周日 11:00-02:00。页面列出常规营业时间；另列2026-02-15至2026-02-23全天关闭的历史春节例外，不能据此判定当前停业。保留公开网页口径，营业资料为采集快照，出发前请再次确认；未读取私有接口或推测坐标。"
+    },
+    {
+      "id": "poi-web-jinyedapaidang-futian-2026-10-03",
+      "title": "高德公开网页具体门店资料：今夜大排档（福田店）",
+      "url": "https://www.amap.com/ssr/search/poi_detail?id=B0J2Z6ZS1V",
+      "kind": "poi",
+      "publishedAt": null,
+      "accessedAt": "2026-10-03",
+      "ratingChannel": "amap-pc-poi-rating",
+      "statement": "通过普通公开门店详情页读取，具体POI B0J2Z6ZS1V；地址深圳市福田区金田路2030号卓悦INTOWN购物中心东区L1层L1-C（南1门附近）；分类大排档；网页原始评分4.8（页面未披露满分量表）、13评价、参考人均237元；营业时间11:30-14:00、17:30-02:00。页面采集时显示“营业中”。同日App显示120评价、公开网页显示13评价，两个口径分别留档，不合并成一个确定评价数。保留公开网页口径，营业资料为采集快照，出发前请再次确认；未读取私有接口或推测坐标。"
     }
   ],
   "shops": [
@@ -2837,7 +3004,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/bainianguolin-baoan.webp",
+          "width": 823,
+          "height": 508,
+          "thumbnail": {
+            "path": "/photos/bainianguolin-baoan-640.webp",
+            "width": 640,
+            "height": 395
+          },
+          "alt": "百年果林椰子鸡（宝安总店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38MHIV",
+          "imageUrl": "https://store.is.autonavi.com/showpic/b7160811462d9a550000002415776772?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -2954,7 +3143,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/fanlou-huaqiangbei.webp",
+          "width": 500,
+          "height": 374,
+          "thumbnail": {
+            "path": "/photos/fanlou-huaqiangbei.webp",
+            "width": 500,
+            "height": 374
+          },
+          "alt": "蘩楼（华强北总店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFJP9KWC",
+          "imageUrl": "https://store.is.autonavi.com/showpic/90b4b434ad81a9a565c1e928d85ea6e8",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -3067,7 +3278,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/xinqidian-sungang.webp",
+          "width": 500,
+          "height": 401,
+          "thumbnail": {
+            "path": "/photos/xinqidian-sungang.webp",
+            "width": 500,
+            "height": 401
+          },
+          "alt": "新起点脆肉鲩火锅（笋岗东路华通大厦店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0FFK61ROW&source=search_result&name=%E6%96%B0%E8%B5%B7%E7%82%B9%E8%84%86%E8%82%89%E9%B2%A9%E7%81%AB%E9%94%85%28%E7%AC%8B%E5%B2%97%E4%B8%9C%E8%B7%AF%E5%8D%8E%E9%80%9A%E5%A4%A7%E5%8E%A6%E5%BA%97%29",
+          "imageUrl": "https://store.is.autonavi.com/showpic/92b147ce391e90785287f7dd189af247",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德具体POI地址为笋岗东路2127号华通大厦三楼，与目录一致；相册分类为门头；画面显示新起点脆肉鲩火锅招牌及所在建筑入口。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -3178,7 +3411,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/commune-sungang.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/commune-sungang-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "COMMUNE幻师（笋岗店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0G1D9IPFW&source=search_result&name=COMMUNE%E5%B9%BB%E5%B8%88%28%E7%AC%8B%E5%B2%97%E5%BA%97%29",
+          "imageUrl": "https://aos-comment.amap.com/B0G1D9IPFW/comment/0feedback_sendimag_1732966638320_46086027.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德具体POI地址为笋岗街道宝安北路1007号笋岗七号仓一层，与目录一致；相册分类为门头；画面清晰显示COMMUNE标志、入口和外摆。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -3301,7 +3556,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/shihao-xilongwan.webp",
+          "width": 529,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/shihao-xilongwan-640.webp",
+            "width": 254,
+            "height": 480
+          },
+          "alt": "拾号牛扒（熙龙湾店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B02F38TFVC&source=search_result&name=%E6%8B%BE%E5%8F%B7%E7%89%9B%E6%89%92%28%E7%86%99%E9%BE%99%E6%B9%BE%E5%BA%97%29",
+          "imageUrl": "https://aos-comment.amap.com/B02F38TFVC/comment/900F9202_FB4C_4C2C_B1C7_1074A15F922A_L0_001_1058_200_1769448720075_45823731.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德具体POI地址为新安街道甲岸路熙龙湾花园2期L3-102，与目录一致；相册分类为门头；画面完整显示拾号牛扒中英文招牌及入口。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -3412,7 +3689,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/yuanzhe-zhangwu.webp",
+          "width": 1000,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/yuanzhe-zhangwu-640.webp",
+            "width": 480,
+            "height": 480
+          },
+          "alt": "愿者上钩（张屋南路店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0FFKFOAQV&source=search_result&name=%E6%84%BF%E8%80%85%E4%B8%8A%E9%92%A9%28%E5%BC%A0%E5%B1%8B%E5%8D%97%E8%B7%AF%E5%BA%97%29",
+          "imageUrl": "https://aos-comment.amap.com/B0FFKFOAQV/comment/content_media_external_file_100017296_1770677795271_96057923.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德具体POI地址为光明区塘家村张屋旧村1巷1号，与目录一致；相册分类为门头；夜景画面清晰显示愿者上钩招牌和入口。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -3535,7 +3834,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/tailecun-wuhe.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/tailecun-wuhe-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "重庆泰乐村烤全鱼川菜火锅扎啤广场的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B02F38IT8V&source=search_result&name=%E9%87%8D%E5%BA%86%E7%B4%A0%E4%B9%90%E6%9D%91%E7%83%A4%E5%85%A8%E9%B1%BC%E5%B7%9D%E8%8F%9C%E7%81%AB%E9%94%85%E6%89%8E%E5%95%A4%E5%B9%BF%E5%9C%BA",
+          "imageUrl": "https://store.is.autonavi.com/showpic/e90a247ebe4386980000003075454921?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德具体POI地址为五和大道南90-3号，与目录一致；高德名称字段显示为“重庆素乐村…”，门头画面显示对应长招牌和沿街入口；相册分类为门头。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -3658,7 +3979,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/rongji-gongming.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/rongji-gongming-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "荣记海鲜砂锅粥（公明新围店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0FFFPJK88&source=search_result&name=%E8%8D%A3%E8%AE%B0%E6%B5%B7%E9%B2%9C%E7%A0%82%E9%94%85%E7%B2%A5%28%E5%85%AC%E6%98%8E%E6%96%B0%E5%9B%B4%E5%BA%97%29",
+          "imageUrl": "https://aos-comment.amap.com/B0FFFPJK88/headerImg/3850e1fb75bba92a7740d53932164829_2048_2048_80.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德具体POI地址为光明区公明新围新村七排6号101，与目录一致；相册分类为门头；画面清晰显示荣记潮州海鲜砂锅粥招牌和完整沿街门面。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -3781,7 +4124,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/jiatai-baishizhou.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/jiatai-baishizhou-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "佳泰砂锅粥（白石洲店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B02F309ZIV&source=search_result&name=%E4%BD%B3%E6%B3%B0%E7%A0%82%E9%94%85%E7%B2%A5%28%E7%99%BD%E7%9F%B3%E6%B4%B2%E5%BA%97%29",
+          "imageUrl": "https://store.is.autonavi.com/showpic/b5ccb88b8f8270540000002450466022?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德具体POI地址为沙河街道白石洲西二坊108号1层，与目录一致；相册分类为门头；画面清晰显示佳泰砂锅粥招牌和临街入口。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -3904,7 +4269,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/jindaoyuan-baishizhou.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/jindaoyuan-baishizhou-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "金稻园砂锅粥（白石洲店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0H0VZYXAM&source=search_result&name=%E9%87%91%E7%A8%BB%E5%9B%AD%E7%A0%82%E9%94%85%E7%B2%A5%28%E7%99%BD%E7%9F%B3%E6%B4%B2%E5%BA%97%29",
+          "imageUrl": "https://store.is.autonavi.com/showpic/3e163df36c40544d0000003093232771?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德具体POI地址为石洲中路160-6号，与目录一致；相册分类为门头；画面清晰显示金稻园中英文招牌和入口。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -4045,7 +4432,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/laosanyang-nanshan.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/laosanyang-nanshan-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "老三样·南昌江西菜（深圳首店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0L0F9849P&source=search_result&name=%E8%80%81%E4%B8%89%E6%A0%B7%C2%B7%E5%8D%97%E6%98%8C%E6%B1%9F%E8%A5%BF%E8%8F%9C%28%E6%B7%B1%E5%9C%B3%E9%A6%96%E5%BA%97%29",
+          "imageUrl": "https://store.is.autonavi.com/showpic/2bbfd35f91a416830000002371106681?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德具体POI地址为桃园路与常兴路交叉口东60米，与目录一致；相册分类为门头；画面完整显示老三样、鲜辣南昌味招牌及沿街入口。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -4187,7 +4596,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/ouji-baoli.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/ouji-baoli-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "欧记大排档·江西景德菜（南山保利广场店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0LU1SF0WH",
+          "imageUrl": "https://store.is.autonavi.com/showpic/fbe8e41070a87ec10000006100482195?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": "2026-09-09",
+          "reviewNote": "高德公开门店相册第100张照片；画面完整拍到商场内的门店入口，发光招牌清晰显示“欧记大排档”，与高德详情页的南山保利广场店名称和地址一致。原图 EXIF 与画面水印均显示拍摄于 2026-09-09；作者和转载许可状态未公开。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -4329,7 +4760,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/youlijia-nanshan.webp",
+          "width": 640,
+          "height": 845,
+          "thumbnail": {
+            "path": "/photos/youlijia-nanshan-640.webp",
+            "width": 364,
+            "height": 480
+          },
+          "alt": "韩国炸酱面友利家超市的实景门头与招牌",
+          "sourceLabel": "百家号文章配图",
+          "sourceUrl": "https://baijiahao.baidu.com/s?id=1608019140242142146&wfr=spider&for=pc",
+          "imageUrl": "https://t12.baidu.com/it/app=25&f=JPEG&fm=173&fmt=auto&u=1434468785%2C876491567?w=640&h=845&s=2D404582C22797EF5CF8251E03001002",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "文章正文列出南山区南光路65-15号鸿瑞花园三期，和目录门店地址一致；四格实景拼图左下角可见友利家超市、韩国炸酱面中韩文招牌与门口大象，符合具体分店门头识别。图片为拼图，门头不是独立满幅照片；作者、许可与商用授权状态均未公开。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -4472,7 +4925,30 @@
         ],
         "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/bunker1-hongrui.webp",
+          "width": 270,
+          "height": 84,
+          "thumbnail": {
+            "path": "/photos/bunker1-hongrui.webp",
+            "width": 270,
+            "height": 84
+          },
+          "alt": "宾客园BUNKER1（鸿瑞花园店）的实景门头与招牌",
+          "sourceLabel": "高德 App 榜单截图裁图",
+          "sourceUrl": "https://a.a-map.link/joOqTL039HU",
+          "imageUrl": null,
+          "captureRef": "research/evidence/parallel-nanshan-korean.png",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "从高德 App“深圳市·南山区·韩国料理”回头客榜截图第2名卡片右侧照片裁取，仅保留宾客园 BUNKER1 沿街招牌与入口区域；裁图为270×84原始像素，未放大，不包含榜单文字或App控件。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -4595,7 +5071,29 @@
         ],
         "definition": "高德页面标注“近180天回头客”；平台未在当前页面披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/beicun-yifangtiandi.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/beicun-yifangtiandi-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "北村韩食·鲜烤活鳗（壹方天地A区店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0KG0XDM9E",
+          "imageUrl": "https://store.is.autonavi.com/showpic/1d9084142343a4e30000002760686450?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德公开门店相册第70张照片；画面完整拍到门店入口，中文“北村韩食·鲜烤活鳗”及英文招牌清晰可见，与高德详情页的壹方天地A区店名称和地址一致。作者、拍摄日期及转载许可状态未公开。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -4709,7 +5207,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/yangu-hongshan.webp",
+          "width": 720,
+          "height": 960,
+          "thumbnail": {
+            "path": "/photos/yangu-hongshan-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "延谷韩式料理（红山6979店）的实景门头与招牌",
+          "sourceLabel": "哔哩哔哩探店视频首帧",
+          "sourceUrl": "https://www.bilibili.com/video/BV1ru4y1173b/",
+          "imageUrl": "https://i0.hdslb.com/bfs/storyff/n230806a212pkgz5a13ebv2nmgd36qk0_firsti.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "公开视频标题为“美食探店打卡丨红山6979韩式料理”，简介明确写“延谷创意韩国料理”；首帧为红山6979沿街实景，画面右侧清晰可见“延谷 yan gu”中英文门头，与目录中的红山6979店相符。作者、拍摄日期及转载许可状态未公开。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -4846,7 +5366,30 @@
         ],
         "definition": "高德页面标注“近180天2.4万回头客”；2.4万是平台近似展示，不等于精确24000人，也不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/chaoxiangyuan-longhua.webp",
+          "width": 270,
+          "height": 94,
+          "thumbnail": {
+            "path": "/photos/chaoxiangyuan-longhua.webp",
+            "width": 270,
+            "height": 94
+          },
+          "alt": "潮香园超级大排档（龙华总店）的实景门头与招牌",
+          "sourceLabel": "高德 App 榜单截图裁图",
+          "sourceUrl": "https://a.a-map.link/joOqTL039HU",
+          "imageUrl": null,
+          "captureRef": "research/evidence/parallel-longhua-dapaidang.png",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "从高德 App“深圳市·龙华区·大排档”回头客榜截图第1名卡片右侧照片裁取，仅保留潮香园超级大排档招牌与沿街入口；裁图为270×94原始像素，未放大，不包含榜单文字或App控件。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -4975,7 +5518,30 @@
         ],
         "definition": "高德页面标注“近180天回头客”；当前页面未披露完整去重和行为识别口径，不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/huishao-longhua.webp",
+          "width": 260,
+          "height": 112,
+          "thumbnail": {
+            "path": "/photos/huishao-longhua.webp",
+            "width": 260,
+            "height": 112
+          },
+          "alt": "辉少·鱼籽鱼泡小龙虾大排档（深圳龙华19年创始地标店）的实景门头与招牌",
+          "sourceLabel": "高德 App 榜单截图裁图",
+          "sourceUrl": "https://a.a-map.link/joOqTL039HU",
+          "imageUrl": null,
+          "captureRef": "research/evidence/parallel-longhua-dapaidang.png",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "从高德 App“深圳市·龙华区·大排档”回头客榜截图第2名卡片右侧照片裁取，仅保留辉少沿街门面、顶部招牌与外摆区；裁图为260×112原始像素，未放大，不包含榜单文字或App控件，招牌文字受原截图清晰度限制。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -5126,7 +5692,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/xinfashao-fenghuang.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/xinfashao-fenghuang-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "香港新发烧腊茶餐厅（凤凰路店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F37V5T8",
+          "imageUrl": "https://aos-comment.amap.com/B02F37V5T8/comment/313a70de23e07d11e06ee631aa39403f_2048_2048_80.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -5311,7 +5899,29 @@
         ],
         "definition": "高德页面标注“近180天6.1万回头客”；6.1万是平台近似展示，不等于精确61000人，也不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/xingdian-fenghuangcheng.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/xingdian-fenghuangcheng-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "星店餐厅（凤凰城店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFJBSGBH",
+          "imageUrl": "https://aos-comment.amap.com/B0FFJBSGBH/comment/21b3a6032d0df1a451c59024de817e04_2048_2048_80.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -5470,7 +6080,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/chuanpangzi-gongyuanlu.webp",
+          "width": 1179,
+          "height": 461,
+          "thumbnail": {
+            "path": "/photos/chuanpangzi-gongyuanlu-640.webp",
+            "width": 640,
+            "height": 250
+          },
+          "alt": "川胖子美蛙鱼头（公园路店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFKPF4ON",
+          "imageUrl": "https://store.is.autonavi.com/showpic/55b79bb1c932d1840000002268202503?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -5625,7 +6257,29 @@
         ],
         "definition": "高德页面标注“近180天10万回头客”；10万是平台近似展示，不等于精确100000人，也不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/chuanxiaobai-qianjie.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/chuanxiaobai-qianjie-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "串小白烧烤（龙华茜街店）的实景门头与招牌",
+          "sourceLabel": "高德地图网页门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?query_type=TQUERY&query=%E4%B8%B2%E5%B0%8F%E7%99%BD%E7%83%A7%E7%83%A4%EF%BC%88%E9%BE%99%E5%8D%8E%E8%8C%9C%E8%A1%97%E5%BA%97%EF%BC%89&city=440300&geoobj=114.003549%7C22.464535%7C114.278208%7C22.638923&zoom=12&id=B0LKFYT6PC&source=search_result",
+          "imageUrl": "https://aos-comment.amap.com/B0LKFYT6PC/comment/abff4d65-fdc1-43b1-81eb-3368ff9ba687.png",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德公开网页中该具体门店名称为‘串小白烧烤(龙华茜街店)’，地址为怡富壹方·茜街（茜坑地铁站F口步行130米）。相册环境分类实拍可见完整‘串小白烧烤’门头、户外桌椅与同址商场铺面，和目录分店及地址一致。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -5772,7 +6426,29 @@
         ],
         "definition": "高德页面标注“近180天7.5万回头客”；7.5万是平台近似展示，不等于精确75000人，也不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/demi-yantian.webp",
+          "width": 1200,
+          "height": 545,
+          "thumbnail": {
+            "path": "/photos/demi-yantian-640.webp",
+            "width": 640,
+            "height": 290
+          },
+          "alt": "德米肠粉的实景门头与招牌",
+          "sourceLabel": "高德地图网页门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?query_type=TQUERY&query=%E5%BE%B7%E7%B1%B3%E8%82%A0%E7%B2%89&city=440300&geoobj=114.003549%7C22.464535%7C114.278208%7C22.638923&zoom=12&id=B0L23C5L7T&source=search_result",
+          "imageUrl": "https://aos-comment.amap.com/B0L23C5L7T/comment/C6509843_660A_4B6D_8D9E_97E56946C3DF_L0_001_1439_65_1772329269288_34579305.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德公开网页中该具体门店名称为‘德米肠粉’，地址为盐田区盐田街道盐田社区北山道33号、35号、37号。环境相册实拍可见完整沿街转角门头、德米肠粉中英文招牌及24小时标识，图片属于相同POI B0L23C5L7T。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -5922,7 +6598,29 @@
         ],
         "definition": "高德页面标注“近180天6.1万回头客”；6.1万是平台近似展示，不等于精确61000人，也不等于回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/benluobo-pengruinda.webp",
+          "width": 738,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/benluobo-pengruinda-640.webp",
+            "width": 354,
+            "height": 480
+          },
+          "alt": "笨罗卜浏阳菜馆（龙华鹏润达店）的实景门头与招牌",
+          "sourceLabel": "高德地图网页门店相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?query_type=TQUERY&query=%E7%AC%A8%E7%BD%97%E5%8D%9C%E6%B5%8F%E9%98%B3%E8%8F%9C%E9%A6%86%EF%BC%88%E9%BE%99%E5%8D%8E%E9%B9%8F%E6%B6%A6%E8%BE%BE%E5%BA%97%EF%BC%89&city=440300&geoobj=114.020275%7C22.624699%7C114.026343%7C22.628550&zoom=17.5&id=B0K1HZUFP4&source=search_result",
+          "imageUrl": "https://aos-comment.amap.com/B0K1HZUFP4/comment/content_media_external_file_100029025_1772276003406_26375135.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德公开网页中该具体门店名称为‘笨罗卜浏阳菜馆(龙华鹏润达店)’，地址为民治街道大岭社区中梅路润达圆庭北街铺122。环境相册实拍可见完整木框外门头、品牌圆标、‘笨罗卜’红色招牌及出入口，图片属于相同POI B0K1HZUFP4。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -6061,7 +6759,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0k02l3bwr.webp",
+          "width": 1080,
+          "height": 810,
+          "thumbnail": {
+            "path": "/photos/amap-b0k02l3bwr-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "欧记大排档 江西景德菜(深圳首店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0K02L3BWR",
+          "imageUrl": "https://store.is.autonavi.com/showpic/044eb1f747aab0e10000002375910495?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -6202,7 +6922,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0k1krdrfb.webp",
+          "width": 1019,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0k1krdrfb-640.webp",
+            "width": 489,
+            "height": 480
+          },
+          "alt": "天宝兄弟(前海壹方城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0K1KRDRFB",
+          "imageUrl": "https://aos-comment.amap.com/B0K1KRDRFB/comment/content_media_external_file_100003861_1770290442999_13820127.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -6327,7 +7069,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ku1uq02a.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0ku1uq02a-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "BUTTERFUL&CREAMOROUS黄油与面包(深圳首店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0KU1UQ02A",
+          "imageUrl": "https://store.is.autonavi.com/showpic/b678a119ed5429100000003299670240?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -6471,7 +7235,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38tdo2.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38tdo2-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "潮荣海鲜大饭店(宝安总店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38TDO2",
+          "imageUrl": "https://store.is.autonavi.com/showpic/e1242a0c5b5364180000003362458412?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -6610,7 +7396,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0iag57gdp.webp",
+          "width": 500,
+          "height": 375,
+          "thumbnail": {
+            "path": "/photos/amap-b0iag57gdp.webp",
+            "width": 500,
+            "height": 375
+          },
+          "alt": "湘田田·湖南土菜(固戍华丰店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0IAG57GDP",
+          "imageUrl": "https://store.is.autonavi.com/showpic/b6ea092fa8008e3fce189dfc5f328e66",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -6749,7 +7557,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ha5hmgxc.webp",
+          "width": 375,
+          "height": 500,
+          "thumbnail": {
+            "path": "/photos/amap-b0ha5hmgxc-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "洪大厨鸡煲(南山旗舰店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0HA5HMGXC",
+          "imageUrl": "https://store.is.autonavi.com/showpic/8f7935d52c889b3037786dbe0973d816",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -6893,7 +7723,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0k67n9fvt.webp",
+          "width": 1200,
+          "height": 988,
+          "thumbnail": {
+            "path": "/photos/amap-b0k67n9fvt-640.webp",
+            "width": 583,
+            "height": 480
+          },
+          "alt": "鸡叔·清远脆皮鸡火锅(黄贝岭店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0K67N9FVT",
+          "imageUrl": "https://store.is.autonavi.com/showpic/eaf1250ba252f49e0000002916128034?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -7016,7 +7868,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ikun0psj.webp",
+          "width": 1200,
+          "height": 989,
+          "thumbnail": {
+            "path": "/photos/amap-b0ikun0psj-640.webp",
+            "width": 583,
+            "height": 480
+          },
+          "alt": "寿司郎(海雅缤纷城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0IKUN0PSJ",
+          "imageUrl": "https://aos-comment.amap.com/B0IKUN0PSJ/comment/content_media_external_file_172_1761723684729_15871133.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -7160,7 +8034,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ja45x2hl.webp",
+          "width": 500,
+          "height": 375,
+          "thumbnail": {
+            "path": "/photos/amap-b0ja45x2hl.webp",
+            "width": 500,
+            "height": 375
+          },
+          "alt": "好光明.海鲜.粤菜.宴席(汽车城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0JA45X2HL",
+          "imageUrl": "https://store.is.autonavi.com/showpic/6e44080c231bdfc5571dc640d74a57ee",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -7299,7 +8195,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0i2n7l7kq.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0i2n7l7kq-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "胖明粉馆的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0I2N7L7KQ",
+          "imageUrl": "https://aos-comment.amap.com/B0I2N7L7KQ/comment/FDEE80FB_99E5_4968_BBE4_5E5DD454B199_L0_001_1500_200_1759913192882_92538694.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -7422,7 +8340,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0jd0mlxsr.webp",
+          "width": 500,
+          "height": 305,
+          "thumbnail": {
+            "path": "/photos/amap-b0jd0mlxsr.webp",
+            "width": 500,
+            "height": 305
+          },
+          "alt": "庆春朴门(万象天地店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0JD0MLXSR",
+          "imageUrl": "https://store.is.autonavi.com/showpic/b87f8efe55fcb7f5d8b3dc42f52ab76b",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -7545,7 +8485,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0k1h5tess.webp",
+          "width": 1080,
+          "height": 774,
+          "thumbnail": {
+            "path": "/photos/amap-b0k1h5tess-640.webp",
+            "width": 640,
+            "height": 459
+          },
+          "alt": "阅悦·私房菜(南山店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0K1H5TESS",
+          "imageUrl": "https://store.is.autonavi.com/showpic/0be5fd63611f0c530000000673064417?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -7681,7 +8643,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffhj1cjh.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffhj1cjh-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "胡桃里音乐酒馆(领展中心城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFHJ1CJH",
+          "imageUrl": "https://aos-comment.amap.com/B0FFHJ1CJH/comment/content_media_external_images_media_150361_ss__1756757478665_36710877.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -7827,7 +8811,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0kayslf2g.webp",
+          "width": 1179,
+          "height": 844,
+          "thumbnail": {
+            "path": "/photos/amap-b0kayslf2g-640.webp",
+            "width": 640,
+            "height": 458
+          },
+          "alt": "大二街·广西小吃市集(清湖店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0KAYSLF2G",
+          "imageUrl": "https://aos-comment.amap.com/B0KAYSLF2G/comment/20260324-6ce4a7433fcc4793bca796ae-5PVrGaMUryd6JNktD6nx45.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -8012,7 +9018,29 @@
         ],
         "definition": "高德原文“近180天4.9万回头客”，是近似人数，不是回头率。"
       },
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffk22w52.webp",
+          "width": 665,
+          "height": 586,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffk22w52-640.webp",
+            "width": 545,
+            "height": 480
+          },
+          "alt": "牛巷番薯粥的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFK22W52",
+          "imageUrl": "https://aos-comment.amap.com/B0FFK22W52/comment/content_media_external_file_100001174_1765107744487_09384416.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -8141,7 +9169,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0j03aruhv.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0j03aruhv-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "牛佬弟牛肉粿条汤(京基御景时代大厦北区店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0J03ARUHV",
+          "imageUrl": "https://aos-comment.amap.com/B0J03ARUHV/comment/32C3CD57_973D_4F85_9CD6_3C5408B93F8C_L0_001_1280_170_1750152206044_64157764.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -8264,7 +9314,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0kgx1t26u.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0kgx1t26u-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "村西头猪脚饭店的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0KGX1T26U",
+          "imageUrl": "https://store.is.autonavi.com/showpic/b77d9822aeeb748d0000001931990310?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -8429,7 +9501,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38jdxh.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38jdxh-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "嘉华小吃(蛇口市场店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38JDXH",
+          "imageUrl": "https://aos-comment.amap.com/B02F38JDXH/comment/F8B9B3D2_E938_4997_90F7_1B7C43DF387C_L0_001_2000_150_1764819789774_08864924.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -8573,7 +9667,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f30ac46.webp",
+          "width": 1200,
+          "height": 675,
+          "thumbnail": {
+            "path": "/photos/amap-b02f30ac46-640.webp",
+            "width": 640,
+            "height": 360
+          },
+          "alt": "向阳社农家炖菜馆(梅华路店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F30AC46",
+          "imageUrl": "https://aos-comment.amap.com/B02F30AC46/comment/content_media_external_file_1000105568_ss__1769706811270_44864604.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -8724,7 +9840,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffj056ov.webp",
+          "width": 1200,
+          "height": 809,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffj056ov-640.webp",
+            "width": 640,
+            "height": 432
+          },
+          "alt": "冰村大叔(梅林居店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFJ056OV",
+          "imageUrl": "https://aos-comment.amap.com/comment/content_service_2b58fd2c9e02e978fb0bf34830d4c9be_1767920267636_24546736.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -8859,7 +9997,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0g10ybscl.webp",
+          "width": 1080,
+          "height": 861,
+          "thumbnail": {
+            "path": "/photos/amap-b0g10ybscl-640.webp",
+            "width": 602,
+            "height": 480
+          },
+          "alt": "王记砂锅麻辣烫的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0G10YBSCL",
+          "imageUrl": "https://aos-comment.amap.com/B0G10YBSCL/comment/content_media_external_file_100001185_1763186936182_62086985.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -8984,7 +10144,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0hdv7xive.webp",
+          "width": 924,
+          "height": 924,
+          "thumbnail": {
+            "path": "/photos/amap-b0hdv7xive-640.webp",
+            "width": 480,
+            "height": 480
+          },
+          "alt": "巴二代·安逸小川馆(梅林店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0HDV7XIVE",
+          "imageUrl": "https://store.is.autonavi.com/showpic/e450463220c158940000003055986043?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -9119,7 +10301,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffl8gry4.webp",
+          "width": 835,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffl8gry4-640.webp",
+            "width": 401,
+            "height": 480
+          },
+          "alt": "板凳地摊烤肉的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFL8GRY4",
+          "imageUrl": "https://store.is.autonavi.com/showpic/b061128534d0f1200000003227616548?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -9263,7 +10467,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38tel5.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38tel5-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "永记首家刺瓜肠粉(田面村总店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38TEL5",
+          "imageUrl": "https://store.is.autonavi.com/showpic/33dfadcb741d25ef0000003120324975?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -9407,7 +10633,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffi0xhqn.webp",
+          "width": 1179,
+          "height": 579,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffi0xhqn-640.webp",
+            "width": 640,
+            "height": 314
+          },
+          "alt": "佳俊八宝牛杂(南水步行街店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFI0XHQN",
+          "imageUrl": "https://store.is.autonavi.com/showpic/cf486269fdaa41060000003227600927?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -9530,7 +10778,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0la25ivsd.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0la25ivsd-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "萍姨抻面馆·沈阳小炒的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0LA25IVSD",
+          "imageUrl": "https://aos-comment.amap.com/B0LA25IVSD/comment/A6109803_E771_4456_8E5D_36C4488AB67E_L0_001_2016_151_1750244444848_24570336.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -9646,7 +10916,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0jazzv4k7.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0jazzv4k7-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "城南香饭店的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0JAZZV4K7",
+          "imageUrl": "https://store.is.autonavi.com/showpic/a416cf6a979a53850000004717658484?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -9790,7 +11082,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0fffq16qy.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0fffq16qy-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "故乡小厨的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFFQ16QY",
+          "imageUrl": "https://store.is.autonavi.com/showpic/c4f93a1f9188ea040000005823754824?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -9934,7 +11248,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffi8apym.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffi8apym-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "南街清补凉(黄贝岭店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFI8APYM",
+          "imageUrl": "https://aos-comment.amap.com/comment/content_service_7edb8f20b494729791702e1762a0dff5_1767423982044_92133682.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -10057,7 +11393,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0jdy5okws.webp",
+          "width": 905,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0jdy5okws-640.webp",
+            "width": 434,
+            "height": 480
+          },
+          "alt": "谢侯嫂·柳州红糖冰沙豆腐花的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0JDY5OKWS",
+          "imageUrl": "https://store.is.autonavi.com/showpic/7aeb17f566fe325d0000002898622948?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -10208,7 +11566,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffkhjsu3.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffkhjsu3-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "高三姐豆花川菜店的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFKHJSU3",
+          "imageUrl": "https://aos-comment.amap.com/B0FFKHJSU3/comment/content_media_external_file_1000033914_ss__1760330914489_21463673.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -10344,7 +11724,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffjmrl2g.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffjmrl2g-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "余记的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFJMRL2G",
+          "imageUrl": "https://store.is.autonavi.com/showpic/9bbbc92bf72cf5cf0000003749660885?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -10480,7 +11882,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38oe2k.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38oe2k-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "菜忠潮州牛肉店(岗厦牌坊街店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38OE2K",
+          "imageUrl": "https://store.is.autonavi.com/showpic/f358c6a24085cb4e0000003402310994?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -10616,7 +12040,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0g0v1ogjg.webp",
+          "width": 1179,
+          "height": 534,
+          "thumbnail": {
+            "path": "/photos/amap-b0g0v1ogjg-640.webp",
+            "width": 640,
+            "height": 290
+          },
+          "alt": "蕉记煲仔饭的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0G0V1OGJG",
+          "imageUrl": "https://store.is.autonavi.com/showpic/7accc5853da680970000003227660492?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -10750,7 +12196,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffhu02fx.webp",
+          "width": 500,
+          "height": 375,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffhu02fx.webp",
+            "width": 500,
+            "height": 375
+          },
+          "alt": "嘉苑饭店的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFHU02FX",
+          "imageUrl": "https://store.is.autonavi.com/showpic/70fd30a867ffff8713a5ec284a78fd34",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -10884,7 +12352,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0jrumuzj1.webp",
+          "width": 375,
+          "height": 500,
+          "thumbnail": {
+            "path": "/photos/amap-b0jrumuzj1-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "嘉悦里THE GAR的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0JRUMUZJ1",
+          "imageUrl": "https://store.is.autonavi.com/showpic/f5bdcac7428d4af2923ab4206f1e73de",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工复核可见招牌或入口标识，但缺少完整外立面或可核地址，需商家确认具体分店。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -11027,7 +12517,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0h1z77ouc.webp",
+          "width": 375,
+          "height": 500,
+          "thumbnail": {
+            "path": "/photos/amap-b0h1z77ouc-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "鳥金·炭火焼鳥(福田恒邦店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0H1Z77OUC",
+          "imageUrl": "https://store.is.autonavi.com/showpic/8e36aba9da48dc6175de470a60da8e8a",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -11153,7 +12665,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0grpolxga.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0grpolxga-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "鳥金·炭火焼鳥(南山喜之郎店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0GRPOLXGA",
+          "imageUrl": "https://store.is.autonavi.com/showpic/3857b2a26ad735ab0000003181240481?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -11287,7 +12821,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0hr4sz76z.webp",
+          "width": 500,
+          "height": 375,
+          "thumbnail": {
+            "path": "/photos/amap-b0hr4sz76z.webp",
+            "width": 500,
+            "height": 375
+          },
+          "alt": "齐武·日本料理(鹏润达商业广场店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0HR4SZ76Z",
+          "imageUrl": "https://store.is.autonavi.com/showpic/e4145a8c2922a6cfc86f0cf4349f4e0b",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -11413,7 +12969,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffk9dzvi.webp",
+          "width": 375,
+          "height": 500,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffk9dzvi-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "晴空·日本料理(深圳湾万象城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFK9DZVI",
+          "imageUrl": "https://store.is.autonavi.com/showpic/08d5aecc0ac259d15b05e4347965d019",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -11541,7 +13119,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0h0bu0c0q.webp",
+          "width": 375,
+          "height": 500,
+          "thumbnail": {
+            "path": "/photos/amap-b0h0bu0c0q-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "协成海鲜火锅(航天店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0H0BU0C0Q",
+          "imageUrl": "https://store.is.autonavi.com/showpic/3749c45c298a876ccf8bbd71c8c69275",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -11675,7 +13275,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffjk2npe.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffjk2npe-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "新荣记(平安金融中心店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFJK2NPE",
+          "imageUrl": "https://store.is.autonavi.com/showpic/506ac95d83b1755e0000002364642127?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德相册将该图标为“堂食大厅”；人工复核可见新荣记名称与室内入口，归为入口标识候选，但画面不能单独证明平安金融中心分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -11801,7 +13423,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffhhtrlh.webp",
+          "width": 770,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffhhtrlh-640.webp",
+            "width": 369,
+            "height": 480
+          },
+          "alt": "鮨一日本料理(大中华店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFHHTRLH",
+          "imageUrl": "https://aos-comment.amap.com/B0FFHHTRLH/comment/content_media_external_file_100001678_1767898340554_80131774.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -11927,7 +13571,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ja15pdav.webp",
+          "width": 180,
+          "height": 180,
+          "thumbnail": {
+            "path": "/photos/amap-b0ja15pdav.webp",
+            "width": 180,
+            "height": 180
+          },
+          "alt": "粤海荟(深圳湾睿印RAIL IN店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0JA15PDAV",
+          "imageUrl": "https://store.is.autonavi.com/showpic/dcf86df3e9dd3f980000000709700253?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -12061,7 +13727,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0g1340c4z.webp",
+          "width": 1200,
+          "height": 765,
+          "thumbnail": {
+            "path": "/photos/amap-b0g1340c4z-640.webp",
+            "width": 640,
+            "height": 408
+          },
+          "alt": "至正潮菜(华侨城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0G1340C4Z",
+          "imageUrl": "https://aos-comment.amap.com/B0G1340C4Z/comment/content_media_external_file_100006660_1769619813292_53024337.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -12187,7 +13875,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0g2lzl1si.webp",
+          "width": 281,
+          "height": 500,
+          "thumbnail": {
+            "path": "/photos/amap-b0g2lzl1si-640.webp",
+            "width": 270,
+            "height": 480
+          },
+          "alt": "AVANT(创意园深南电路大厦店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0G2LZL1SI",
+          "imageUrl": "https://store.is.autonavi.com/showpic/29e7c6ea02ef58537982840596c8a621",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -12313,7 +14023,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ig6ch6a6.webp",
+          "width": 1000,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0ig6ch6a6-640.webp",
+            "width": 480,
+            "height": 480
+          },
+          "alt": "BON YAKI·烧鸟酒肴by WINE LAB的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0IG6CH6A6",
+          "imageUrl": "https://store.is.autonavi.com/showpic/b3ce9e9b5f5ca37a0000003109030206?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -12456,7 +14188,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffl7cw5f.webp",
+          "width": 818,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffl7cw5f-640.webp",
+            "width": 393,
+            "height": 480
+          },
+          "alt": "Ensue(深圳福田香格里拉大酒店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFL7CW5F",
+          "imageUrl": "https://aos-comment.amap.com/B0FFL7CW5F/comment/20260205-9ec85cfcf10f54a988b97f22-w2AmZW6C9s83eStpb5rcm.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -12597,7 +14351,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0jgvrapvm.webp",
+          "width": 817,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0jgvrapvm-640.webp",
+            "width": 392,
+            "height": 480
+          },
+          "alt": "La Tablee·融合料理(创意园深南电路大厦店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0JGVRAPVM",
+          "imageUrl": "https://aos-comment.amap.com/B0JGVRAPVM/comment/20260205-9ec85cfcf10f54a988b97f22-1N3TzEN4wz5AmbSSWQCeLo.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -12720,7 +14496,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffj986qk.webp",
+          "width": 500,
+          "height": 373,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffj986qk.webp",
+            "width": 500,
+            "height": 373
+          },
+          "alt": "79号渔船海鲜饭店(西丽店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFJ986QK",
+          "imageUrl": "https://store.is.autonavi.com/showpic/62d1229551aee34760e8c98b1a8fffff",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -12843,7 +14641,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffk8s84p.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffk8s84p-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "山禾田·日料小屋(罗湖店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFK8S84P",
+          "imageUrl": "https://store.is.autonavi.com/showpic/93c001fbe34a83b00000002882552742?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -12978,7 +14798,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38j6vm.webp",
+          "width": 896,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38j6vm-640.webp",
+            "width": 430,
+            "height": 480
+          },
+          "alt": "丹桂轩(华侨城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38J6VM",
+          "imageUrl": "https://aos-comment.amap.com/B02F38J6VM/comment/e4cfde466b69d1647f73193ecec74835_2048_2048_80.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -13101,7 +14943,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38jg15.webp",
+          "width": 563,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38jg15-640.webp",
+            "width": 270,
+            "height": 480
+          },
+          "alt": "西北领头羊·清真餐厅·团建聚会的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38JG15",
+          "imageUrl": "https://store.is.autonavi.com/showpic/d8d9ec7e16fdbe1b0000003114110274?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -13224,7 +15088,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffli64lh.webp",
+          "width": 813,
+          "height": 643,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffli64lh-640.webp",
+            "width": 607,
+            "height": 480
+          },
+          "alt": "潮汕大目牛肉火锅(莲塘店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFLI64LH",
+          "imageUrl": "https://aos-comment.amap.com/B0FFLI64LH/comment/content_media_external_file_100008494_1766378131724_31006586.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -13347,7 +15233,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0g3uszk5s.webp",
+          "width": 500,
+          "height": 409,
+          "thumbnail": {
+            "path": "/photos/amap-b0g3uszk5s.webp",
+            "width": 500,
+            "height": 409
+          },
+          "alt": "点都德(前海HOP店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0G3USZK5S",
+          "imageUrl": "https://store.is.autonavi.com/showpic/aea532fd2a495b5af7217f6248078aea",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -13470,7 +15378,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0j3vrwkew.webp",
+          "width": 1031,
+          "height": 817,
+          "thumbnail": {
+            "path": "/photos/amap-b0j3vrwkew-640.webp",
+            "width": 606,
+            "height": 480
+          },
+          "alt": "光明乳鸽·凤凰酒楼(光明总店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0J3VRWKEW",
+          "imageUrl": "https://store.is.autonavi.com/showpic/bf2ee02c1caade220000002269264058?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -13593,7 +15523,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38smcl.webp",
+          "width": 858,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38smcl-640.webp",
+            "width": 412,
+            "height": 480
+          },
+          "alt": "牛王庙(龙华花园店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38SMCL",
+          "imageUrl": "https://aos-comment.amap.com/B02F38SMCL/comment/BA910D58_B6AD_4DF2_90C4_BD1F6E29C702_L0_001_1320_153_1769237286785_75063407.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -13716,7 +15668,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0gkvr5h4l.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0gkvr5h4l-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "小火璽的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0GKVR5H4L",
+          "imageUrl": "https://aos-comment.amap.com/B0GKVR5H4L/comment/content_media_external_images_media_100000726_1744258383777_12540766.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工复核可见小火璽入口通道及指向标识；仍缺完整外立面或可核地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -13839,7 +15813,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffhelrnl.webp",
+          "width": 1200,
+          "height": 899,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffhelrnl-640.webp",
+            "width": 640,
+            "height": 479
+          },
+          "alt": "鑫缘阁东北菜(沙井店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFHELRNL",
+          "imageUrl": "https://store.is.autonavi.com/showpic/af122b5c9846ab44be3eba1ed1c14cce?operate=original",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -13955,7 +15951,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38mzsv.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38mzsv-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "紫荆园·潮宴(怡景店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38MZSV",
+          "imageUrl": "https://store.is.autonavi.com/showpic/c1947719833f46880000002599646836?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -14078,7 +16096,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0hgnrn2ku.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0hgnrn2ku-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "GEBAKE(坪山书城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0HGNRN2KU",
+          "imageUrl": "https://aos-comment.amap.com/B0HGNRN2KU/comment/content_media_external_file_1000007096_ss__1752666956214_23769214.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -14201,7 +16241,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0k2nb256g.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0k2nb256g-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "NEED创意韩国料理(深圳万象城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0K2NB256G",
+          "imageUrl": "https://aos-comment.amap.com/cf5e7319574b99d0b3930629/comment/content_service__1773802867176_14494133_1773802981741_29448294.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -14324,7 +16386,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0fff9zdra.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0fff9zdra-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "昌记隆江猪脚饭的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFF9ZDRA",
+          "imageUrl": "https://aos-comment.amap.com/B0FFF9ZDRA/comment/ad660048762999b09a6381a3d8fe22f4_2048_2048_80.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -14447,7 +16531,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffhbz21q.webp",
+          "width": 652,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffhbz21q-640.webp",
+            "width": 313,
+            "height": 480
+          },
+          "alt": "古早味味觉记忆坊的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFHBZ21Q",
+          "imageUrl": "https://store.is.autonavi.com/showpic/c093a716293797ef0000002368980119?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -14572,7 +16678,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38itvx.webp",
+          "width": 500,
+          "height": 336,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38itvx.webp",
+            "width": 500,
+            "height": 336
+          },
+          "alt": "山里人家·湖南土菜·团建小聚(国际会展店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38ITVX",
+          "imageUrl": "https://store.is.autonavi.com/showpic/9e916489f863705eb4125712a4d2eaac",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -14695,7 +16823,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f391n6l.webp",
+          "width": 793,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b02f391n6l-640.webp",
+            "width": 381,
+            "height": 480
+          },
+          "alt": "唐宫·粤菜海鲜(彩德店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F391N6L",
+          "imageUrl": "https://store.is.autonavi.com/showpic/50c0868ffe8027fb0000001736614715?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -14811,7 +16961,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0jrlc9vko.webp",
+          "width": 500,
+          "height": 375,
+          "thumbnail": {
+            "path": "/photos/amap-b0jrlc9vko.webp",
+            "width": 500,
+            "height": 375
+          },
+          "alt": "永鹏海景餐厅的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0JRLC9VKO",
+          "imageUrl": "https://store.is.autonavi.com/showpic/56cdc91a0a6f341c95b90e21ecb9b2e8",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -14934,7 +17106,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f391nxp.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b02f391nxp-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "丹东特色烤肉店(学府路一部店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F391NXP",
+          "imageUrl": "https://aos-comment.amap.com/B02F391NXP/comment/content_media_external_file_100005102_1769574172104_04062255.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -15057,7 +17251,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffi679dx.webp",
+          "width": 881,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffi679dx-640.webp",
+            "width": 423,
+            "height": 480
+          },
+          "alt": "点品集(辛养店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFI679DX",
+          "imageUrl": "https://aos-comment.amap.com/B0FFI679DX/comment/content_media_external_file_100006439_1769105466245_58719967.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -15182,7 +17398,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f37usfb.webp",
+          "width": 375,
+          "height": 500,
+          "thumbnail": {
+            "path": "/photos/amap-b02f37usfb-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "凤凰楼.粤宴点心(华强北店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F37USFB",
+          "imageUrl": "https://store.is.autonavi.com/showpic/d9787423264e8e635196cacb86de5c0b",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -15305,7 +17543,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0fffyo5nm.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0fffyo5nm-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "鹏城饭馆的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFFYO5NM",
+          "imageUrl": "https://aos-comment.amap.com/B0FFFYO5NM/comment/f35513c2c2bc5eed8e516fba6fc04002_2048_2048_80.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "高德相册将该拼图标为“堂食大厅”；人工复核可见鹏城饭馆招牌、入口与内场，名称一致，但画面不能单独证明东城巷21号。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -15428,7 +17688,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38thvm.webp",
+          "width": 500,
+          "height": 333,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38thvm.webp",
+            "width": 500,
+            "height": 333
+          },
+          "alt": "维园港式茶餐厅(坪山江岭店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38THVM",
+          "imageUrl": "https://store.is.autonavi.com/showpic/056f1f865c0ecfcb0e3e6424850161ec",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -15551,7 +17833,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f30214a.webp",
+          "width": 1080,
+          "height": 607,
+          "thumbnail": {
+            "path": "/photos/amap-b02f30214a-640.webp",
+            "width": 640,
+            "height": 360
+          },
+          "alt": "潮泰牛肉火锅(车公庙店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F30214A",
+          "imageUrl": "https://store.is.autonavi.com/showpic/88aa2864a7d23a250000002436578764?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -15692,7 +17996,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0g0gyhxrw.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0g0gyhxrw-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "铭门盛宴·艺术海鲜姿造(南山店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0G0GYHXRW",
+          "imageUrl": "https://aos-comment.amap.com/B0G0GYHXRW/comment/6C68D0C3_E8F7_4A5B_9AF3_D4F99F5E469A_L0_001_1500_2000_1742728738032_03701472.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -15815,7 +18141,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffmfypy8.webp",
+          "width": 924,
+          "height": 924,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffmfypy8-640.webp",
+            "width": 480,
+            "height": 480
+          },
+          "alt": "山禾田·日料小屋(南山桃苑公寓店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFMFYPY8",
+          "imageUrl": "https://store.is.autonavi.com/showpic/53425ccde8d3d9740000002420832793?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -15938,7 +18286,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ha645gyo.webp",
+          "width": 1200,
+          "height": 675,
+          "thumbnail": {
+            "path": "/photos/amap-b0ha645gyo-640.webp",
+            "width": 640,
+            "height": 360
+          },
+          "alt": "湘里帮厨(宝龙总店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0HA645GYO",
+          "imageUrl": "https://aos-comment.amap.com/B0HA645GYO/comment/content_media_external_images_media_7623_1728880466110_36186316.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -16061,7 +18431,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38olkp.webp",
+          "width": 1200,
+          "height": 885,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38olkp-640.webp",
+            "width": 640,
+            "height": 472
+          },
+          "alt": "豫东全羊汤馆的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38OLKP",
+          "imageUrl": "https://aos-comment.amap.com/B02F38OLKP/comment/content_media_external_file_100002600_1759224161558_97516717.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -16177,7 +18569,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0j23hb68s.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0j23hb68s-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "云端小院.湘菜.烧鸡.烧烤的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0J23HB68S",
+          "imageUrl": "https://aos-comment.amap.com/B0J23HB68S/comment/2feedback_sendimag_1729517558476_20527635.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -16300,7 +18714,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffj5e51k.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffj5e51k-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "冬阴功泰国菜(南山店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFJ5E51K",
+          "imageUrl": "https://store.is.autonavi.com/showpic/cf32c20decfc92b90000003032726131?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -16423,7 +18859,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0j3acr2i5.webp",
+          "width": 758,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0j3acr2i5-640.webp",
+            "width": 364,
+            "height": 480
+          },
+          "alt": "锦堂食府·私房菜·商务宴请(坪山店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0J3ACR2I5",
+          "imageUrl": "https://aos-comment.amap.com/B0J3ACR2I5/comment/content_media_external_images_media_100007671_1735569212985_96486958.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -16548,7 +19006,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f37vzyf.webp",
+          "width": 1079,
+          "height": 748,
+          "thumbnail": {
+            "path": "/photos/amap-b02f37vzyf-640.webp",
+            "width": 640,
+            "height": 444
+          },
+          "alt": "天天渔港.粤式海鲜酒楼(华强北店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F37VZYF",
+          "imageUrl": "https://store.is.autonavi.com/showpic/1701aa366fe05f310000001643650203?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -16671,7 +19151,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffliztwm.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffliztwm-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "悦满楼·西关名点·湛江名菜(航空综合大厦店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFLIZTWM",
+          "imageUrl": "https://aos-comment.amap.com/B0FFLIZTWM/comment/content_media_external_file_1000108006_ss__1769220732368_96881229.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -16796,7 +19298,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffjh8td2.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffjh8td2-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "蔡澜粤式点心(深圳海岸城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFJH8TD2",
+          "imageUrl": "https://aos-comment.amap.com/B0FFJH8TD2/comment/fe9f2d5d576cdc4137bf46c3c95e0174_2048_2048_80.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -16919,7 +19443,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0j3pzpnft.webp",
+          "width": 968,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0j3pzpnft-640.webp",
+            "width": 464,
+            "height": 480
+          },
+          "alt": "储香楼·粤点茶楼的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0J3PZPNFT",
+          "imageUrl": "https://store.is.autonavi.com/showpic/59d6df77313351ed0000002369030373?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -17037,7 +19583,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffgb2g38.webp",
+          "width": 375,
+          "height": 500,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffgb2g38-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "海爷海鲜酒楼·粤菜(福永店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFGB2G38",
+          "imageUrl": "https://store.is.autonavi.com/showpic/612d1e9db554c90697d53fa7ce020fc0",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工复核可见海爷酒楼入口接待区与完整名称招牌，清晰度优于原楼体远景；仍缺完整外立面或可核地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -17160,7 +19728,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffjcn992.webp",
+          "width": 1125,
+          "height": 843,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffjcn992-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "京炙坊(华侨城店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFJCN992",
+          "imageUrl": "https://aos-comment.amap.com/B0FFJCN992/comment/%5B2026-01-23-17-52-54%5DCDD3105F-C8B2-4EA3-BEA2-044A668A076_1769158386351_34261816.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -17283,7 +19873,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffljbz7b.webp",
+          "width": 500,
+          "height": 375,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffljbz7b.webp",
+            "width": 500,
+            "height": 375
+          },
+          "alt": "老四川大排档(布李路店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFLJBZ7B",
+          "imageUrl": "https://store.is.autonavi.com/showpic/cfb375f259aa39da5de45cb2e09c86d1",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "候选为远景、楼体招牌或低清画面，无法仅凭照片确认具体分店，需替换或补充地址线索。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -17408,7 +20020,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b02f38j657.webp",
+          "width": 898,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b02f38j657-640.webp",
+            "width": 431,
+            "height": 480
+          },
+          "alt": "香稻园· 潮汕菜·海鲜·砂锅粥 (龙华店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B02F38J657",
+          "imageUrl": "https://store.is.autonavi.com/showpic/062ffe325aab50850000001643606661?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -17524,7 +20158,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0g0o5w5my.webp",
+          "width": 623,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0g0o5w5my-640.webp",
+            "width": 299,
+            "height": 480
+          },
+          "alt": "云廷荟·私房菜(油松科技大厦店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0G0O5W5MY",
+          "imageUrl": "https://store.is.autonavi.com/showpic/286a06ee190c45940000004354764013?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工复核可见云廷荟名称招牌与门店入口同框；图片来自对应高德POI相册，但画面不能单独证明油松科技大厦具体门牌。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -17647,7 +20303,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0ffkvanct.webp",
+          "width": 462,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0ffkvanct-640.webp",
+            "width": 222,
+            "height": 480
+          },
+          "alt": "鲍师傅糕点(龙华壹方天地店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFKVANCT",
+          "imageUrl": "https://aos-comment.amap.com/B0FFKVANCT/comment/%5B2026-01-28-00-09-00%5DE9287ED8-0C01-40C8-944F-52E7A5EEDA1_1769530141784_24978273.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -17770,7 +20448,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0fff5w3t1.webp",
+          "width": 1200,
+          "height": 900,
+          "thumbnail": {
+            "path": "/photos/amap-b0fff5w3t1-640.webp",
+            "width": 640,
+            "height": 480
+          },
+          "alt": "大埔铭记牛肉店(总店)的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0FFF5W3T1",
+          "imageUrl": "https://aos-comment.amap.com/B0FFF5W3T1/comment/content_media_external_file_4173_1771686191948_99215991.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -17894,7 +20594,29 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/amap-b0k2ycm5ct.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/amap-b0k2ycm5ct-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "南门涮肉（深圳首店）的实景门头与招牌",
+          "sourceLabel": "高德门店相册",
+          "sourceUrl": "https://www.amap.com/place/B0K2YCM5CT",
+          "imageUrl": "https://store.is.autonavi.com/showpic/855996999dc72e840000002630528969?type=pic",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "人工缩略图复核可见门店入口或外立面，招牌与门店名称或品牌一致；图片来自对应高德POI相册，但画面通常不能单独证明分店地址。"
+        }
+      ],
       "checkedAt": "2026-10-02"
     },
     {
@@ -18021,8 +20743,704 @@
         "value": null
       },
       "repeatVisits": null,
-      "photos": [],
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/wenheji-nanshan.webp",
+          "width": 240,
+          "height": 180,
+          "thumbnail": {
+            "path": "/photos/wenheji-nanshan.webp",
+            "width": 240,
+            "height": 180
+          },
+          "alt": "汶和记粥底火锅（南山总店）的实景门头与招牌",
+          "sourceLabel": "大众点评公开图片索引",
+          "sourceUrl": "https://www.dianping.com/shop/k6XuySLF1JAbENK0/photos/tag-%E7%8E%AF%E5%A2%83-%E9%97%A8%E9%9D%A2",
+          "imageUrl": "https://qcloud.dpfile.com/pc/_pIPscgDIW9JEo49MxA5B2zfwmlkyo1zylBxatLW-fjMzobgt4KobVBbD3pn8Hqxl0cm-Lf9tDMlLZpO7rb3bg.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "公开图片索引中的真实门头可见“汶和记粥底火锅·南山一店”招牌，分店标识比“南山二店”候选更符合目录中的南山总店；原图仅240×180，作为低清门头证据展示，不放大或补写细节。来源页桌面访问可能触发平台验证。"
+        }
+      ],
       "checkedAt": "2026-10-02"
+    },
+    {
+      "id": "jinyedapaidang-futian",
+      "slug": "jinyedapaidang-futian",
+      "name": "今夜大排档（福田店）",
+      "aliases": [],
+      "district": "福田",
+      "street": "",
+      "address": {
+        "text": "深圳市福田区金田路2030号卓悦INTOWN购物中心东区L1层L1-C（南1门附近）",
+        "sourceIds": [
+          "poi-web-jinyedapaidang-futian-2026-10-03"
+        ]
+      },
+      "category": "大排档",
+      "cuisine": "大排档",
+      "summary": {
+        "text": "卓悦INTOWN东区的大排档门店，已有高德2026状元榜·必吃美食及回头客大排档榜记录。",
+        "sourceIds": [
+          "app-2026-must-eat-9-2026-10-03",
+          "poi-app-jinyedapaidang-futian-2026-10-03",
+          "app-repeat-ranking-jinyedapaidang-futian-2026-10-03"
+        ]
+      },
+      "dishes": [
+        {
+          "text": "酱爆百合鹅肠",
+          "sourceIds": [
+            "poi-app-jinyedapaidang-futian-2026-10-03"
+          ]
+        },
+        {
+          "text": "炭烧大响螺",
+          "sourceIds": [
+            "poi-app-jinyedapaidang-futian-2026-10-03"
+          ]
+        },
+        {
+          "text": "金不换爆炒角螺",
+          "sourceIds": [
+            "poi-app-jinyedapaidang-futian-2026-10-03"
+          ]
+        }
+      ],
+      "reasons": [
+        {
+          "text": "高德2026状元榜·必吃美食页面显示全年热度值96.8，可作为发现这家店的榜单线索。",
+          "sourceIds": [
+            "app-2026-must-eat-9-2026-10-03"
+          ]
+        },
+        {
+          "text": "高德门店详情显示回头客大排档榜第2名；榜单范围和统计窗口未披露，只作额外参考。",
+          "sourceIds": [
+            "app-repeat-ranking-jinyedapaidang-futian-2026-10-03"
+          ]
+        }
+      ],
+      "cautions": [
+        {
+          "text": "2026状元榜页面为“附近”筛选，页面第9项不代表深圳全市第9；全年热度值也不等于用户评分。",
+          "sourceIds": [
+            "app-2026-must-eat-9-2026-10-03"
+          ]
+        },
+        {
+          "text": "营业时段、评分、评价数和榜单名次均为2026-10-03高德App页面记录；平台信息可能变化，到店前请再次确认。",
+          "sourceIds": [
+            "poi-app-jinyedapaidang-futian-2026-10-03",
+            "app-repeat-ranking-jinyedapaidang-futian-2026-10-03"
+          ]
+        },
+        {
+          "text": "营业时间、评分及评价数为高德公开网页采集快照，可能与App显示口径不同；到店前请再次确认。",
+          "sourceIds": [
+            "poi-web-jinyedapaidang-futian-2026-10-03"
+          ]
+        },
+        {
+          "text": "同日App显示120评价，公开网页显示13评价，评价数口径不同，本站不选择较大值或将两者相加。",
+          "sourceIds": [
+            "poi-web-jinyedapaidang-futian-2026-10-03",
+            "poi-app-jinyedapaidang-futian-2026-10-03"
+          ]
+        }
+      ],
+      "scenes": [],
+      "history": null,
+      "operating": {
+        "status": "reported-open",
+        "asOf": "2026-10-03",
+        "sourceIds": [
+          "poi-web-jinyedapaidang-futian-2026-10-03"
+        ],
+        "note": "高德公开网页列出具体门店营业时段。页面采集时显示“营业中”。同日App显示120评价、公开网页显示13评价，两个口径分别留档，不合并成一个确定评价数。本站显示采集记录，不能替代实时营业确认。"
+      },
+      "price": {
+        "cny": 237,
+        "asOf": "2026-10-03",
+        "sourceIds": [
+          "poi-web-jinyedapaidang-futian-2026-10-03"
+        ]
+      },
+      "hours": {
+        "text": "11:30-14:00、17:30-02:00",
+        "sourceIds": [
+          "poi-web-jinyedapaidang-futian-2026-10-03"
+        ]
+      },
+      "coordinates": null,
+      "ratings": [
+        {
+          "platform": "高德地图",
+          "value": 4.8,
+          "max": null,
+          "count": 120,
+          "asOf": "2026-10-03",
+          "sourceIds": [
+            "poi-app-jinyedapaidang-futian-2026-10-03"
+          ]
+        },
+        {
+          "platform": "高德地图",
+          "value": 4.8,
+          "max": null,
+          "count": 13,
+          "asOf": "2026-10-03",
+          "sourceIds": [
+            "poi-web-jinyedapaidang-futian-2026-10-03"
+          ]
+        }
+      ],
+      "rankings": [
+        {
+          "name": "高德扫街榜 · 2026状元榜·必吃美食",
+          "edition": "2026",
+          "rank": 9,
+          "scope": "深圳市 · App「附近」筛选 · 必吃美食（范围及半径未公布；页面顺序，不代表全市总排名）",
+          "asOf": "2026-10-03",
+          "sourceIds": [
+            "app-2026-must-eat-9-2026-10-03"
+          ],
+          "annualHeat": {
+            "value": 96.8,
+            "year": 2026,
+            "label": "全年热度值",
+            "rawDisplay": "96.8"
+          }
+        },
+        {
+          "name": "高德扫街榜 · 回头客大排档榜",
+          "edition": "页面未披露明确年度届次",
+          "rank": 2,
+          "scope": "高德App具体门店详情页（榜单范围及统计窗口未披露）",
+          "asOf": "2026-10-03",
+          "sourceIds": [
+            "app-repeat-ranking-jinyedapaidang-futian-2026-10-03"
+          ]
+        }
+      ],
+      "metrics": {
+        "repeat": null,
+        "stability": null,
+        "value": null
+      },
+      "repeatVisits": null,
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/jinyedapaidang-futian.webp",
+          "width": 758,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/jinyedapaidang-futian-640.webp",
+            "width": 364,
+            "height": 480
+          },
+          "alt": "今夜大排档（福田店）的实景门头与招牌",
+          "sourceLabel": "高德地图公开门店详情页相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0J2Z6ZS1V",
+          "imageUrl": "https://aos-comment.amap.com/B0J2Z6ZS1V/comment/c0f2eba3b695a302f448d94412e09424_2048_2048_80.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "照片来自高德地图 POI B0J2Z6ZS1V（今夜大排档〔福田店〕）公开相册；详情页地址为卓悦 INTOWN 东区 L1-C。画面为夜间营业中的临街门店实景，完整显示“今夜大排档 / GIMMIE DUABAIDANG”发光招牌、入口与室外座位。作者、拍摄日期及转载许可状态未公开。"
+        }
+      ],
+      "checkedAt": "2026-10-03"
+    },
+    {
+      "id": "dagefan-futian-cocopark",
+      "slug": "dagefan-futian-cocopark",
+      "name": "大鸽饭（福田COCO Park店）",
+      "aliases": [],
+      "district": "福田",
+      "street": "",
+      "address": {
+        "text": "深圳市福田区福华三路268号福田星河COCOPark商场三楼L3-021号商铺",
+        "sourceIds": [
+          "poi-web-dagefan-futian-cocopark-2026-10-03"
+        ]
+      },
+      "category": "粤菜",
+      "cuisine": "粤菜",
+      "summary": {
+        "text": "福田星河COCO Park内的粤菜门店，已有高德2026状元榜·必吃美食记录。",
+        "sourceIds": [
+          "app-2026-must-eat-10",
+          "poi-dagefan-futian-cocopark-2026-10-03",
+          "rating-app-dagefan-futian-cocopark-2026-10-02"
+        ]
+      },
+      "dishes": [
+        {
+          "text": "红烧乳鸽",
+          "sourceIds": [
+            "rating-app-dagefan-futian-cocopark-2026-10-02"
+          ]
+        },
+        {
+          "text": "黑松露鸽饭",
+          "sourceIds": [
+            "rating-app-dagefan-futian-cocopark-2026-10-02"
+          ]
+        }
+      ],
+      "reasons": [
+        {
+          "text": "高德2026状元榜·必吃美食页面显示全年热度值96.8，可作为发现这家店的榜单线索。",
+          "sourceIds": [
+            "app-2026-must-eat-10"
+          ]
+        },
+        {
+          "text": "高德榜单页面显示原始评分4.8，并以“现炸乳鸽爆汁”“黑松露鸽饭香”作为点菜线索；本站未亲测。",
+          "sourceIds": [
+            "rating-app-dagefan-futian-cocopark-2026-10-02"
+          ]
+        }
+      ],
+      "cautions": [
+        {
+          "text": "榜单页面为“附近”筛选，页面第10项不代表深圳全市第10；全年热度值不等于用户评分。",
+          "sourceIds": [
+            "app-2026-must-eat-10"
+          ]
+        },
+        {
+          "text": "营业时间、评分及评价数为高德公开网页采集快照，可能与App显示口径不同；到店前请再次确认。",
+          "sourceIds": [
+            "poi-web-dagefan-futian-cocopark-2026-10-03"
+          ]
+        }
+      ],
+      "scenes": [
+        "亲子聚餐"
+      ],
+      "history": null,
+      "operating": {
+        "status": "reported-open",
+        "asOf": "2026-10-03",
+        "sourceIds": [
+          "poi-web-dagefan-futian-cocopark-2026-10-03"
+        ],
+        "note": "高德公开网页列出具体门店营业时段。页面采集时显示“营业中”。本站显示采集记录，不能替代实时营业确认。"
+      },
+      "price": {
+        "cny": 113,
+        "asOf": "2026-10-03",
+        "sourceIds": [
+          "poi-web-dagefan-futian-cocopark-2026-10-03"
+        ]
+      },
+      "hours": {
+        "text": "11:00-21:30",
+        "sourceIds": [
+          "poi-web-dagefan-futian-cocopark-2026-10-03"
+        ]
+      },
+      "coordinates": null,
+      "ratings": [
+        {
+          "platform": "高德地图",
+          "value": 4.8,
+          "max": null,
+          "count": null,
+          "asOf": "2026-10-02",
+          "sourceIds": [
+            "rating-app-dagefan-futian-cocopark-2026-10-02"
+          ]
+        },
+        {
+          "platform": "高德地图",
+          "value": 4.8,
+          "max": null,
+          "count": 56,
+          "asOf": "2026-10-03",
+          "sourceIds": [
+            "poi-web-dagefan-futian-cocopark-2026-10-03"
+          ]
+        }
+      ],
+      "rankings": [
+        {
+          "name": "高德扫街榜 · 2026状元榜·必吃美食",
+          "edition": "2026",
+          "rank": 10,
+          "scope": "深圳市 · App「附近」筛选 · 必吃美食（范围及半径未公布；页面顺序，不代表全市总排名）",
+          "asOf": "2026-10-02",
+          "sourceIds": [
+            "app-2026-must-eat-10"
+          ],
+          "annualHeat": {
+            "value": 96.8,
+            "year": 2026,
+            "label": "全年热度值",
+            "rawDisplay": "96.8"
+          }
+        }
+      ],
+      "metrics": {
+        "repeat": null,
+        "stability": null,
+        "value": null
+      },
+      "repeatVisits": null,
+      "photos": [
+        {
+          "kind": "storefront",
+          "view": "sign-detail",
+          "path": "/photos/dagefan-futian-cocopark.webp",
+          "width": 1000,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/dagefan-futian-cocopark-640.webp",
+            "width": 480,
+            "height": 480
+          },
+          "alt": "大鸽饭（福田COCO Park店）的实景招牌局部",
+          "sourceLabel": "高德地图公开门店详情页相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0JK4APCY3",
+          "imageUrl": "https://store.is.autonavi.com/showpic/eba34ba2ec2bcf700000000730702766?operate=merge&w=1600&h=1600&position=5",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "照片来自高德地图 POI B0JK4APCY3（大鸽饭〔福田 COCO Park 店〕）公开相册；详情页地址为福田星河 COCO Park 三楼 L3-021。画面为门店内部真实拍摄，清晰显示“大鸽饭”立体牌匾、岭南风格门廊与彩绘门；拍摄位置属于店内装饰门廊，按实景招牌局部展示，不宣称为商场外立面门头。作者、拍摄日期及转载许可状态未公开。"
+        }
+      ],
+      "checkedAt": "2026-10-03"
+    },
+    {
+      "id": "xinglongyin-futian",
+      "slug": "xinglongyin-futian",
+      "name": "星龙吟日料放题（深圳福田店）",
+      "aliases": [],
+      "district": "福田",
+      "street": "",
+      "address": {
+        "text": "深圳市福田区福田街道岗厦社区福华三路88号财富大厦4层4A",
+        "sourceIds": [
+          "poi-web-xinglongyin-futian-2026-10-03"
+        ]
+      },
+      "category": "自助餐",
+      "cuisine": "日式自助",
+      "summary": {
+        "text": "财富大厦内的日式自助门店，已有高德2026状元榜·必吃美食记录。",
+        "sourceIds": [
+          "app-2026-must-eat-12",
+          "poi-xinglongyin-futian-2026-10-03",
+          "rating-app-xinglongyin-futian-2026-10-02"
+        ]
+      },
+      "dishes": [
+        {
+          "text": "鳌虾",
+          "sourceIds": [
+            "rating-app-xinglongyin-futian-2026-10-02"
+          ]
+        },
+        {
+          "text": "海胆",
+          "sourceIds": [
+            "rating-app-xinglongyin-futian-2026-10-02"
+          ]
+        }
+      ],
+      "reasons": [
+        {
+          "text": "高德2026状元榜·必吃美食页面显示全年热度值96.8，可作为发现这家店的榜单线索。",
+          "sourceIds": [
+            "app-2026-must-eat-12"
+          ]
+        },
+        {
+          "text": "高德榜单页面显示原始评分4.8，并以“鳌虾鲜甜弹牙”“海胆如奶油”作为点菜线索；本站未亲测。",
+          "sourceIds": [
+            "rating-app-xinglongyin-futian-2026-10-02"
+          ]
+        }
+      ],
+      "cautions": [
+        {
+          "text": "榜单页面为“附近”筛选，页面第12项不代表深圳全市第12；全年热度值不等于用户评分。",
+          "sourceIds": [
+            "app-2026-must-eat-12"
+          ]
+        },
+        {
+          "text": "营业时间、评分及评价数为高德公开网页采集快照，可能与App显示口径不同；到店前请再次确认。",
+          "sourceIds": [
+            "poi-web-xinglongyin-futian-2026-10-03"
+          ]
+        }
+      ],
+      "scenes": [],
+      "history": null,
+      "operating": {
+        "status": "reported-open",
+        "asOf": "2026-10-03",
+        "sourceIds": [
+          "poi-web-xinglongyin-futian-2026-10-03"
+        ],
+        "note": "高德公开网页列出具体门店营业时段。页面采集时显示“营业中”。本站显示采集记录，不能替代实时营业确认。"
+      },
+      "price": {
+        "cny": 282,
+        "asOf": "2026-10-03",
+        "sourceIds": [
+          "poi-web-xinglongyin-futian-2026-10-03"
+        ]
+      },
+      "hours": {
+        "text": "11:30-14:30、17:30-22:00",
+        "sourceIds": [
+          "poi-web-xinglongyin-futian-2026-10-03"
+        ]
+      },
+      "coordinates": null,
+      "ratings": [
+        {
+          "platform": "高德地图",
+          "value": 4.8,
+          "max": null,
+          "count": null,
+          "asOf": "2026-10-02",
+          "sourceIds": [
+            "rating-app-xinglongyin-futian-2026-10-02"
+          ]
+        },
+        {
+          "platform": "高德地图",
+          "value": 4.8,
+          "max": null,
+          "count": 87,
+          "asOf": "2026-10-03",
+          "sourceIds": [
+            "poi-web-xinglongyin-futian-2026-10-03"
+          ]
+        }
+      ],
+      "rankings": [
+        {
+          "name": "高德扫街榜 · 2026状元榜·必吃美食",
+          "edition": "2026",
+          "rank": 12,
+          "scope": "深圳市 · App「附近」筛选 · 必吃美食（范围及半径未公布；页面顺序，不代表全市总排名）",
+          "asOf": "2026-10-02",
+          "sourceIds": [
+            "app-2026-must-eat-12"
+          ],
+          "annualHeat": {
+            "value": 96.8,
+            "year": 2026,
+            "label": "全年热度值",
+            "rawDisplay": "96.8"
+          }
+        }
+      ],
+      "metrics": {
+        "repeat": null,
+        "stability": null,
+        "value": null
+      },
+      "repeatVisits": null,
+      "photos": [
+        {
+          "kind": "storefront",
+          "view": "sign-detail",
+          "path": "/photos/xinglongyin-futian.webp",
+          "width": 750,
+          "height": 1000,
+          "thumbnail": {
+            "path": "/photos/xinglongyin-futian-640.webp",
+            "width": 360,
+            "height": 480
+          },
+          "alt": "星龙吟日料放题（深圳福田店）的实景招牌局部",
+          "sourceLabel": "高德地图公开门店详情页相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0JRGH1BZE",
+          "imageUrl": "https://aos-comment.amap.com/B0JRGH1BZE/comment/e39e3dd85dec421dfebb3257fa8d4205_2048_2048_80.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "照片来自高德地图 POI B0JRGH1BZE（星龙吟日料放题〔深圳福田店〕）公开相册；详情页地址为福华三路 88 号财富大厦 4 层 4A。画面为店内等位区或接待区域的真实拍摄，清晰显示“星龙吟 / SING RYU GIN”发光品牌墙；按实景招牌局部展示，不宣称为大厦外立面门头。作者、拍摄日期及转载许可状态未公开。"
+        }
+      ],
+      "checkedAt": "2026-10-03"
+    },
+    {
+      "id": "chaoyue-xili",
+      "slug": "chaoyue-xili",
+      "name": "潮悦牛肉火锅城（西丽店）",
+      "aliases": [],
+      "district": "南山",
+      "street": "",
+      "address": {
+        "text": "深圳市南山区西丽龙井综合楼17-18",
+        "sourceIds": [
+          "poi-web-chaoyue-xili-2026-10-03"
+        ]
+      },
+      "category": "牛肉火锅",
+      "cuisine": "牛肉火锅",
+      "summary": {
+        "text": "西丽龙井综合楼的牛肉火锅门店，已有高德2026状元榜·必吃美食记录。",
+        "sourceIds": [
+          "app-2026-must-eat-13",
+          "poi-chaoyue-xili-2026-10-03",
+          "rating-app-chaoyue-xili-2026-10-02"
+        ]
+      },
+      "dishes": [
+        {
+          "text": "现切牛肉",
+          "sourceIds": [
+            "rating-app-chaoyue-xili-2026-10-02"
+          ]
+        },
+        {
+          "text": "牛河",
+          "sourceIds": [
+            "rating-app-chaoyue-xili-2026-10-02"
+          ]
+        }
+      ],
+      "reasons": [
+        {
+          "text": "高德2026状元榜·必吃美食页面显示全年热度值96.8，可作为发现这家店的榜单线索。",
+          "sourceIds": [
+            "app-2026-must-eat-13"
+          ]
+        },
+        {
+          "text": "高德榜单页面显示原始评分4.8，并以“现切牛肉”“镬气牛河”作为点菜线索；本站未亲测。",
+          "sourceIds": [
+            "rating-app-chaoyue-xili-2026-10-02"
+          ]
+        }
+      ],
+      "cautions": [
+        {
+          "text": "榜单页面为“附近”筛选，页面第13项不代表深圳全市第13；全年热度值不等于用户评分。",
+          "sourceIds": [
+            "app-2026-must-eat-13"
+          ]
+        },
+        {
+          "text": "营业时间、评分及评价数为高德公开网页采集快照，可能与App显示口径不同；到店前请再次确认。",
+          "sourceIds": [
+            "poi-web-chaoyue-xili-2026-10-03"
+          ]
+        }
+      ],
+      "scenes": [],
+      "history": null,
+      "operating": {
+        "status": "reported-open",
+        "asOf": "2026-10-03",
+        "sourceIds": [
+          "poi-web-chaoyue-xili-2026-10-03"
+        ],
+        "note": "高德公开网页列出具体门店营业时段。页面列出常规营业时间；另列2026-02-15至2026-02-23全天关闭的历史春节例外，不能据此判定当前停业。本站显示采集记录，不能替代实时营业确认。"
+      },
+      "price": {
+        "cny": 106,
+        "asOf": "2026-10-03",
+        "sourceIds": [
+          "poi-web-chaoyue-xili-2026-10-03"
+        ]
+      },
+      "hours": {
+        "text": "周一至周日 11:00-02:00",
+        "sourceIds": [
+          "poi-web-chaoyue-xili-2026-10-03"
+        ]
+      },
+      "coordinates": null,
+      "ratings": [
+        {
+          "platform": "高德地图",
+          "value": 4.8,
+          "max": null,
+          "count": null,
+          "asOf": "2026-10-02",
+          "sourceIds": [
+            "rating-app-chaoyue-xili-2026-10-02"
+          ]
+        },
+        {
+          "platform": "高德地图",
+          "value": 4.8,
+          "max": null,
+          "count": 50,
+          "asOf": "2026-10-03",
+          "sourceIds": [
+            "poi-web-chaoyue-xili-2026-10-03"
+          ]
+        }
+      ],
+      "rankings": [
+        {
+          "name": "高德扫街榜 · 2026状元榜·必吃美食",
+          "edition": "2026",
+          "rank": 13,
+          "scope": "深圳市 · App「附近」筛选 · 必吃美食（范围及半径未公布；页面顺序，不代表全市总排名）",
+          "asOf": "2026-10-02",
+          "sourceIds": [
+            "app-2026-must-eat-13"
+          ],
+          "annualHeat": {
+            "value": 96.8,
+            "year": 2026,
+            "label": "全年热度值",
+            "rawDisplay": "96.8"
+          }
+        }
+      ],
+      "metrics": {
+        "repeat": null,
+        "stability": null,
+        "value": null
+      },
+      "repeatVisits": null,
+      "photos": [
+        {
+          "kind": "storefront",
+          "path": "/photos/chaoyue-xili.webp",
+          "width": 1080,
+          "height": 720,
+          "thumbnail": {
+            "path": "/photos/chaoyue-xili-640.webp",
+            "width": 640,
+            "height": 427
+          },
+          "alt": "潮悦牛肉火锅城（西丽店）的实景门头与招牌",
+          "sourceLabel": "高德地图公开门店详情页相册",
+          "sourceUrl": "https://www.amap.com/ssr/search/poi_detail?id=B0G3Z9SV04",
+          "imageUrl": "https://aos-comment.amap.com/B0G3Z9SV04/comment/aa6b9de0f84aecde6cb01a5381836f0a_2048_2048_80.jpg",
+          "author": null,
+          "permission": null,
+          "permissionVerified": false,
+          "collectedAt": "2026-10-03",
+          "photographedAt": null,
+          "reviewNote": "照片来自高德地图 POI B0G3Z9SV04（潮悦牛肉火锅城〔西丽店〕）公开相册；详情页地址为西丽龙井综合楼 17-18。画面完整显示临街店面、入口及“潮悦牛肉火锅店”金色门头，右侧还能辨认西丽龙井店字样与电话。作者、拍摄日期及转载许可状态未公开。"
+        }
+      ],
+      "checkedAt": "2026-10-03"
     }
   ],
   "pending": [
@@ -18119,12 +21537,7 @@
       "missing": [
         "具体分店地址与所属行政区",
         "近期营业状态与营业时间",
-        "门店详情页依据",
-        "高德页面未取整的回头客精确人数",
-        "可靠坐标",
-        "照片使用权",
-        "评分满分量表",
-        "可计算综合分的完整指标"
+        "门店详情页依据"
       ],
       "sourceIds": [
         "app-linji-shaguozhou"
@@ -18158,118 +21571,6 @@
           "text": "页面标签包括“虾蟹粥一绝”“外焦里嫩烤羊排”“酸菜肥肠煲”，仅作点菜线索，本站未亲测。",
           "sourceIds": [
             "app-linji-shaguozhou"
-          ]
-        }
-      ],
-      "observedAt": "2026-10-02"
-    },
-    {
-      "id": "jinyedapaidang-futian",
-      "name": "今夜大排档（福田店）",
-      "district": "福田",
-      "missing": [
-        "近期营业依据",
-        "可直接打开具体分店的高德POI链接"
-      ],
-      "sourceIds": [
-        "app-2026-must-eat-9",
-        "poi-search-jinyedapaidang-futian-2026-10-02"
-      ],
-      "facts": [
-        {
-          "text": "高德App明确2026状元榜·必吃美食；当前页面第9项，全年热度值96.8，参考人均237元。范围为App「附近」筛选，不代表全市总排名。",
-          "sourceIds": [
-            "app-2026-must-eat-9"
-          ]
-        },
-        {
-          "text": "高德网页搜索对应地址：金田路2030号卓悦INTOWN购物中心东区L1层L1-C(南1门附近)。",
-          "sourceIds": [
-            "poi-search-jinyedapaidang-futian-2026-10-02"
-          ]
-        }
-      ],
-      "observedAt": "2026-10-02"
-    },
-    {
-      "id": "dagefan-futian-cocopark",
-      "name": "大鸽饭（福田COCO Park店）",
-      "district": "福田",
-      "missing": [
-        "近期营业依据",
-        "可直接打开具体分店的高德POI链接"
-      ],
-      "sourceIds": [
-        "app-2026-must-eat-10",
-        "poi-search-dagefan-futian-cocopark-2026-10-02"
-      ],
-      "facts": [
-        {
-          "text": "高德App明确2026状元榜·必吃美食；当前页面第10项，全年热度值96.8，参考人均113元。范围为App「附近」筛选，不代表全市总排名。",
-          "sourceIds": [
-            "app-2026-must-eat-10"
-          ]
-        },
-        {
-          "text": "高德网页搜索对应地址：福华三路268号福田星河COCO Park商场三楼L3-021号商铺。",
-          "sourceIds": [
-            "poi-search-dagefan-futian-cocopark-2026-10-02"
-          ]
-        }
-      ],
-      "observedAt": "2026-10-02"
-    },
-    {
-      "id": "xinglongyin-futian",
-      "name": "星龙吟日料放题（深圳福田店）",
-      "district": "福田",
-      "missing": [
-        "近期营业依据",
-        "可直接打开具体分店的高德POI链接"
-      ],
-      "sourceIds": [
-        "app-2026-must-eat-12",
-        "poi-search-xinglongyin-futian-2026-10-02"
-      ],
-      "facts": [
-        {
-          "text": "高德App明确2026状元榜·必吃美食；当前页面第12项，全年热度值96.8，参考人均282元。范围为App「附近」筛选，不代表全市总排名。",
-          "sourceIds": [
-            "app-2026-must-eat-12"
-          ]
-        },
-        {
-          "text": "高德网页搜索对应地址：福田街道岗社区福华三路88号财富大厦4层4A。",
-          "sourceIds": [
-            "poi-search-xinglongyin-futian-2026-10-02"
-          ]
-        }
-      ],
-      "observedAt": "2026-10-02"
-    },
-    {
-      "id": "chaoyue-xili",
-      "name": "潮悦牛肉火锅城（西丽店）",
-      "district": "南山",
-      "missing": [
-        "近期营业依据",
-        "可直接打开具体分店的高德POI链接"
-      ],
-      "sourceIds": [
-        "app-2026-must-eat-13",
-        "poi-search-chaoyue-xili-2026-10-02"
-      ],
-      "facts": [
-        {
-          "text": "高德App明确2026状元榜·必吃美食；当前页面第13项，全年热度值96.8，参考人均106元。范围为App「附近」筛选，不代表全市总排名。",
-          "sourceIds": [
-            "app-2026-must-eat-13"
-          ]
-        },
-        {
-          "text": "高德网页搜索对应地址：西丽龙井综合楼17-18。",
-          "sourceIds": [
-            "poi-search-chaoyue-xili-2026-10-02"
           ]
         }
       ],

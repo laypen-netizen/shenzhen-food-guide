@@ -7,9 +7,41 @@ const ratedCount=shops.filter(shop=>ratingById.get(shop.id)!==null).length;
 const coveredDistricts=new Set(shops.map(shop=>shop.district)).size;
 ---
 <Layout>
-  <section class="hero guide-hero shell">
-    <div class="hero-copy"><div class="eyebrow"><span class="tiny-dot"></span> 高德数据 · 本站综合整理</div><h1>深圳这一餐，<br /><span>按你的需要找。</span></h1><p>汇集高德榜单里的具体分店，按地区、预算和菜品选一餐。</p><a class="text-action" href="#find" data-focus-search>直接找店 ↓</a><a class="hero-secondary" href={pathFor('methodology/#selection')}>与高德榜单有什么不同 ↗</a></div>
-    <aside class="guide-overview" aria-label="资料概况"><p><strong>{shops.length}</strong> 家已收录 <span>覆盖 {coveredDistricts} 个地区</span></p><p>{ratedCount} 家有可核验高德评分；评分按原值展示。<a href={pathFor('methodology/#score')}>评分怎样读 ↗</a></p><small>资料整理于 {catalogue.updatedAt} · <a href={pathFor('status/')}>资料状态与纠错</a></small></aside>
+  <section class="food-hero shell">
+    <div class="food-hero-copy">
+      <div class="eyebrow"><span class="tiny-dot"></span> 高德榜单具体分店 · 来源可查</div>
+      <h1>跟着招牌，<br /><span>吃遍深圳。</span></h1>
+      <p>整理 {shops.length} 家高德榜单里的深圳具体分店，按区域、预算和菜品找店；评分保留高德原值与采集日期。</p>
+      <div class="food-hero-actions">
+        <a class="button button-primary" href="#find" data-focus-search>直接找店 ↓</a>
+        <a class="text-action" href={pathFor('methodology/#selection')}>查看整理说明 ↗</a>
+      </div>
+      <div class="food-hero-stats" aria-label="资料概况">
+        <div><strong>{shops.length}</strong><span>家具体分店</span></div>
+        <div><strong>{coveredDistricts}</strong><span>个地区</span></div>
+        <div><strong>{ratedCount}</strong><span>家有高德评分</span></div>
+        <small>资料整理于 {catalogue.updatedAt} · <a href={pathFor('status/')}>状态与纠错</a></small>
+      </div>
+    </div>
+    <figure class="food-hero-visual">
+      <picture>
+        <source
+          srcset={`${pathFor('images/shenzhen-food-banner-640.webp')} 640w, ${pathFor('images/shenzhen-food-banner.webp')} 1200w`}
+          sizes="(max-width: 700px) calc(100vw - 32px), 46vw"
+          type="image/webp"
+        />
+        <img
+          src={pathFor('images/shenzhen-food-banner.webp')}
+          alt="深圳街巷与餐饮招牌主题插画"
+          width="1200"
+          height="800"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
+      <figcaption>深圳街巷主题插画 · 非真实门店照片</figcaption>
+    </figure>
   </section>
   <Catalog />
   <section class="principles shell"><div class="principles-intro"><div class="eyebrow">HOW TO READ THE GUIDE</div><h2>高德给出原始资料，<br />本站统一整理。</h2><a href={pathFor('methodology/')}>读完整资料说明 ↗</a></div><div class="principle-items"><div><span>01</span><h3>直接看高德评分</h3><p>直接展示高德餐厅评分，保留原始数值、评价条数和采集日期，方便查看来源。</p></div><div><span>02</span><h3>评价数不参与排序</h3><p>默认按高德评分从高到低；同分按地区和店名排列。评价条数和采集日期同时展示，方便核查资料。</p></div><div><span>03</span><h3>原始来源可回查</h3><p>评分、评价数和回访人数来自高德页面；回访人数是平台展示值，不是真实客流或回头率。</p></div></div></section>

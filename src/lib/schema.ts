@@ -36,6 +36,22 @@ const annualCompositeScore = z.object({
   label: z.literal('全年综合分'),
   rawDisplay: z.string().trim().min(1).optional(),
 }).strict();
+const photoPath = z.string().regex(/^\/photos\/[a-zA-Z0-9._/-]+\.(webp|png|jpe?g)$/).refine(p => !p.includes('..'));
+const photoCaptureRef = z.string().regex(/^research\/evidence\/[a-zA-Z0-9._/-]+\.(png|jpe?g)$/).refine(p => !p.includes('..'));
+export const storefrontPhotoSchema = z.object({
+  kind: z.literal('storefront'), path: photoPath,
+  view: z.enum(['storefront','sign-detail']).optional(),
+  width: z.number().int().positive(), height: z.number().int().positive(),
+  thumbnail: z.object({path:photoPath,width:z.number().int().positive(),height:z.number().int().positive()}).strict(),
+  alt: z.string().min(1), sourceLabel: z.string().min(1), sourceUrl: httpsUrl,
+  imageUrl: httpsUrl.nullable(), captureRef: photoCaptureRef.optional(),
+  author: z.string().min(1).nullable(), permission: z.string().min(1).nullable(), permissionVerified: z.boolean(),
+  collectedAt: date, photographedAt: date.nullable(), reviewNote: z.string().min(1),
+}).strict().superRefine((photo,ctx)=>{
+  if(photo.permissionVerified && !photo.permission) ctx.addIssue({code:'custom',path:['permission'],message:'已核验使用许可必须有具体依据'});
+  if(!photo.imageUrl && !photo.captureRef) ctx.addIssue({code:'custom',path:['captureRef'],message:'没有原图地址时必须保留本地截图证据'});
+  if(!photo.imageUrl && !isAmapUrl(photo.sourceUrl)) ctx.addIssue({code:'custom',path:['sourceUrl'],message:'截图裁图必须链接到高德官方来源'});
+});
 export const shopSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/), slug: z.string().regex(/^[a-z0-9-]+$/),
   name: z.string().min(1), aliases: z.array(z.string()), district: z.enum(districts),
@@ -77,11 +93,7 @@ export const shopSchema = z.object({
   }).strict().superRefine((value,ctx) => {
     if (value.approximate && !value.rawDisplay) ctx.addIssue({code:'custom',path:['rawDisplay'],message:'近似回头客人数必须保留页面显示原文'});
   }).nullable().default(null),
-  photos: z.array(z.object({
-    path: z.string().regex(/^\/photos\/[a-zA-Z0-9._/-]+\.(webp|png|jpe?g)$/).refine(p => !p.includes('..')),
-    alt: z.string().min(1), author: z.string().min(1), sourceUrl: httpsUrl.refine(isAmapUrl),
-    permission: z.string().min(1), permissionVerified: z.literal(true),
-  }).strict()),
+  photos: z.array(storefrontPhotoSchema),
   checkedAt: date, testOnly: z.boolean().optional(),
 }).strict();
 export const catalogueSchema = z.object({
@@ -145,7 +157,7 @@ export function validateCatalogue(input: unknown, options: { asOf?: string; allo
     if (!value || typeof value !== 'object') return;
     if ('sourceIds' in value) for (const id of (value as {sourceIds:string[]}).sourceIds) if (!sourceMap.has(id)) errors.push(`${prefix} 引用了不存在的来源 ${id}`);
     for (const [key,item] of Object.entries(value)) {
-      if (['asOf','checkedAt','accessedAt','publishedAt'].includes(key) && typeof item === 'string' && item > asOf) errors.push(`${prefix}.${key} 不能在未来`);
+      if (['asOf','checkedAt','accessedAt','publishedAt','collectedAt','photographedAt'].includes(key) && typeof item === 'string' && item > asOf) errors.push(`${prefix}.${key} 不能在未来`);
       checkRefs(item, `${prefix}.${key}`);
     }
   }

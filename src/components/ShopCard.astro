@@ -4,7 +4,9 @@ import { repeatVisitsDisplay } from '../lib/schema';
 import { navigationUrl } from '../lib/geo';
 import { pathFor } from '../lib/urls';
 import { catalogue,ratingById } from '../lib/catalogue';
-import { getRankingYears } from '../lib/amap-rating';
+import { getRankingYears,amapRatingCountLabel } from '../lib/amap-rating';
+import StorefrontPhoto from './StorefrontPhoto.astro';
+import {shopPhotoLabel} from '../lib/photos';
 interface Props { shop:Shop; }
 const {shop} = Astro.props;
 const rating = ratingById.get(shop.id)??null;
@@ -22,7 +24,7 @@ const amapShopPageIsDirect = amapShopPage ? (()=>{const url=new URL(amapShopPage
 const amapPhotoLabel = amapShopPageIsDirect ? '在高德查看实拍':'去高德找店和照片';
 ---
 <article class="shop-card" data-shop-card data-shop-id={shop.id}>
-  {shop.photos[0]&&<a class="card-image" href={pathFor(`shops/${shop.slug}/`)} tabindex="-1" aria-hidden="true"><img src={pathFor(shop.photos[0].path)} alt="" width="640" height="420" loading="lazy" /></a>}
+  {shop.photos[0]&&<a class="card-image storefront-link" href={pathFor(`shops/${shop.slug}/#photos`)} aria-label={`查看${shop.name}的${shopPhotoLabel(shop.photos[0])}与来源`}><StorefrontPhoto photo={shop.photos[0]} /><span class="storefront-label">{shopPhotoLabel(shop.photos[0])}</span></a>}
   <div class="card-body">
     <div class="eyebrow">{shop.district} · {shop.category}</div>
     <h3><a href={pathFor(`shops/${shop.slug}/`)}>{shop.name}</a></h3>
@@ -32,11 +34,11 @@ const amapPhotoLabel = amapShopPageIsDirect ? '在高德查看实拍':'去高德
       <span>{shop.address.text}</span>
     </div>
     {knownDishes&&<p class="card-dishes"><strong>可以留意</strong>{knownDishes}</p>}
-    <div class:list={['amap-rating-card',{missing:!rating}]}>{rating ? <><div><span>高德评分</span><strong>{rating.value}</strong></div><p>{rating.count !== null ? `${rating.count.toLocaleString('zh-CN')} 条评价`:'评价数未公布'}<span>采集于 {rating.asOf}</span></p></>:<><span>高德评分</span><strong>暂无评分</strong></>}</div>
+    <div class:list={['amap-rating-card',{missing:!rating}]}>{rating ? <><div><span>高德评分</span><strong>{rating.value}</strong></div><p>{amapRatingCountLabel(shop,rating)}<span>采集于 {rating.asOf}</span></p></>:<><span>高德评分</span><strong>暂无评分</strong></>}</div>
     <details class="card-evidence">
       <summary>查看原始数据与依据</summary>
       <div class="card-facts"><span>{shop.price ? `参考人均 ¥${shop.price.cny} · ${shop.price.asOf}`:'人均待核验'}</span><span>{shop.repeatVisits ? `近${shop.repeatVisits.windowDays}天 ${repeatVisitsDisplay(shop.repeatVisits)} 回头客 · 高德页面`:'未取得高德回头客人数'}</span><span>{rating ? `高德 ${rating.value}${rating.max ? `/${rating.max}`:'（量表待核验）'}${rating.count !== null ? ` · ${rating.count.toLocaleString('zh-CN')} 条评价`:''} · ${rating.asOf}`:'暂无可核验评分'}</span></div>
-      <p class="source-line">营业线索截至 {shop.operating.asOf} · <a href={pathFor(`shops/${shop.slug}/#sources`)}>查看依据</a></p>
+      <p class="source-line">{shop.operating.status==='unknown' ? `营业状态待核验 · 门店资料核对至 ${shop.operating.asOf}`:`营业线索截至 ${shop.operating.asOf}`} · <a href={pathFor(`shops/${shop.slug}/#sources`)}>查看依据</a></p>
     </details>
     {!shop.photos.length&&amapShopPage&&<a class="amap-photo-link" href={amapShopPage.url} target="_blank" rel="noopener noreferrer" aria-label={`${amapPhotoLabel}：${shop.name}`}>{amapPhotoLabel} <span aria-hidden="true">↗</span></a>}
     <div class="card-actions"><button type="button" class="favorite-button" data-favorite={shop.id} aria-pressed="false" disabled aria-label={`收藏${shop.name}`}><span aria-hidden="true">♡</span> 收藏</button><a class="text-action" href={navigationUrl(shop)} target="_blank" rel="noopener noreferrer">{shop.coordinates ? '高德导航':'高德查地址'} <span aria-hidden="true">↗</span></a></div>

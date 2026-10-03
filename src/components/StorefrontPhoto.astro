@@ -1,0 +1,12 @@
+---
+import type { Shop } from '../lib/schema';
+import { pathFor } from '../lib/urls';
+interface Props { photo:Shop['photos'][number]; variant?:'card'|'detail'; }
+const {photo,variant='card'}=Astro.props;
+const sizes=variant==='card' ? '(max-width: 700px) calc(100vw - 32px), (max-width: 1000px) 45vw, 360px':'(max-width: 700px) calc(100vw - 32px), 760px';
+const srcset=photo.thumbnail.width===photo.width ? undefined:`${pathFor(photo.thumbnail.path)} ${photo.thumbnail.width}w, ${pathFor(photo.path)} ${photo.width}w`;
+---
+<span class:list={['storefront-frame',`storefront-${variant}`]} data-storefront>
+  <img src={pathFor(photo.thumbnail.path)} srcset={srcset} sizes={srcset ? sizes:undefined} width={photo.width} height={photo.height} style={variant==='detail' ? `max-width:min(100%, ${photo.width}px);margin-inline:auto`:undefined} alt={photo.alt} loading="lazy" decoding="async" />
+  <span class="storefront-unavailable" hidden>图片暂时无法加载，请查看图片来源</span>
+</span>

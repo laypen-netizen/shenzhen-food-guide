@@ -48,6 +48,7 @@ test('搜索将空格分隔的关键词按 AND 匹配',()=>{
     'amap-b0h0bu0c0q',
   ];
   const nanshanHotpot=[
+    'chaoyue-xili',
     'amap-b0k2ycm5ct',
     'wenheji-nanshan',
     'amap-b0gkvr5h4l',

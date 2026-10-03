@@ -78,3 +78,20 @@ upload?.addEventListener('change',async()=>{
 document.querySelectorAll<HTMLButtonElement|HTMLInputElement>('[data-export-favorites],[data-import-favorites]').forEach(el=>{el.disabled=false;});
 refresh();
 if(!storageAvailable) notify('浏览器存储不可用，收藏无法持久保存；你仍可浏览和导航。');
+
+// Preserve a useful link and readable fallback if a local photo cannot load.
+for(const frame of document.querySelectorAll<HTMLElement>('[data-storefront]')) {
+  const img=frame.querySelector<HTMLImageElement>('img');
+  const fallback=frame.querySelector<HTMLElement>('.storefront-unavailable');
+  if(!img || !fallback) continue;
+  const failed=()=>{
+    img.hidden=true;fallback.hidden=false;frame.classList.add('is-unavailable');
+    const sourceLink=frame.closest<HTMLAnchorElement>('a[data-photo-source]');
+    if(sourceLink?.dataset.photoSource) {
+      sourceLink.href=sourceLink.dataset.photoSource;
+      sourceLink.setAttribute('aria-label','查看图片原始来源');
+    }
+  };
+  img.addEventListener('error',failed,{once:true});
+  if(img.complete && img.naturalWidth===0) failed();
+}

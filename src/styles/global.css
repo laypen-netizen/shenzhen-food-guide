@@ -341,3 +341,75 @@
   .storage-warning{align-items:flex-start;flex-direction:column}
   .detail-section,.visit-panel{scroll-margin-top:125px}
 }
+
+/* Homepage introduction: atmosphere from the illustration, facts from the copy. */
+.food-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);align-items:center;gap:clamp(34px,5vw,68px);padding-block:36px 32px}
+.food-hero-copy{min-width:0}
+.food-hero-copy .eyebrow{margin-bottom:12px}
+.food-hero-copy h1{margin-bottom:15px;font-size:clamp(44px,4.5vw,54px);line-height:1.23}
+.food-hero-copy h1 span{color:var(--red)}
+.food-hero-copy>p{max-width:610px;margin-bottom:19px;color:var(--muted);font-size:16px;line-height:1.75}
+.food-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px 21px;margin-bottom:22px}
+.food-hero-actions .text-action{min-height:44px;font-size:13px}
+.food-hero-stats{display:grid;grid-template-columns:repeat(3,max-content);align-items:end;gap:9px 22px;padding-top:16px;border-top:1px solid var(--line)}
+.food-hero-stats>div{display:flex;align-items:baseline;gap:5px;white-space:nowrap}
+.food-hero-stats strong{font:26px/1 Georgia,serif;color:var(--olive)}
+.food-hero-stats span,.food-hero-stats small{color:var(--muted);font-size:11px}
+.food-hero-stats small{grid-column:1/-1;line-height:1.6}
+.food-hero-stats a{color:var(--red)}
+.food-hero-visual{min-width:0;margin:0}
+.food-hero-visual picture{display:block;overflow:hidden;border:1px solid var(--line);border-radius:5px;background:var(--sand)}
+.food-hero-visual img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.food-hero-visual figcaption{padding-top:6px;text-align:right;color:var(--muted);font-size:10px;line-height:1.5}
+
+@media(max-width:900px){
+  .food-hero{grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:28px}
+  .food-hero-copy h1{font-size:40px}
+  .food-hero-stats{grid-template-columns:repeat(2,max-content);gap:8px 18px}
+}
+
+@media(max-width:700px){
+  .food-hero{display:grid;grid-template-columns:minmax(0,1fr);gap:15px;padding-block:20px 18px}
+  .food-hero-copy .eyebrow{margin-bottom:8px;font-size:10px;letter-spacing:1px}
+  .food-hero-copy h1{margin-bottom:10px;font-size:clamp(30px,9.4vw,34px);line-height:1.24;letter-spacing:-.5px}
+  .food-hero-copy>p{margin-bottom:14px;font-size:14px;line-height:1.65}
+  .food-hero-actions{gap:7px 17px;margin-bottom:15px}
+  .food-hero-actions .button{min-height:46px;padding-inline:19px;font-size:14px}
+  .food-hero-actions .text-action{font-size:12px}
+  .food-hero-visual{display:block;order:2;width:100%}
+  .food-hero-visual img{width:100%;height:auto;max-height:220px;aspect-ratio:3/2;object-fit:cover}
+  .food-hero-visual figcaption{font-size:11px}
+  .food-hero-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px 9px;padding-top:13px}
+  .food-hero-stats>div{display:block;white-space:normal}
+  .food-hero-stats strong,.food-hero-stats span{display:block}
+  .food-hero-stats strong{font-size:23px}
+  .food-hero-stats span{font-size:10px;line-height:1.4}
+  .food-hero-stats small{font-size:10px}
+}
+
+@media(max-width:360px){
+  .food-hero-actions{align-items:flex-start;flex-direction:column;gap:2px}
+  .food-hero-actions .button{width:100%}
+  .food-hero-stats{gap-inline:6px}
+  .food-hero-stats strong{font-size:21px}
+  .food-hero-stats span{font-size:9px}
+}
+
+/* Keep the entire storefront sign visible, including very wide shopfronts. */
+.storefront-frame{display:block;position:relative;overflow:hidden;background:#eae6dc}
+.storefront-frame img{display:block;width:100%;height:auto;object-fit:contain}
+.card-image .storefront-frame{aspect-ratio:16/10}
+.card-image .storefront-frame img{height:100%;aspect-ratio:auto;object-fit:contain}
+.storefront-label{position:absolute;left:12px;bottom:10px;padding:3px 8px;border-radius:3px;background:#fffdf5eb;color:var(--ink);font-size:11px;box-shadow:0 1px 4px #0001}
+.storefront-detail img{max-height:560px;object-fit:contain}
+.storefront-frame.is-unavailable{min-height:180px;display:grid;place-items:center;padding:20px}
+.storefront-unavailable{font-size:13px;line-height:1.6;text-align:center;color:var(--muted)}
+.detail-photo figcaption{font-size:12px;line-height:1.7}
+.detail-photo figcaption span{display:block}
+.detail-photo figcaption a{display:inline-flex;align-items:center;min-height:36px;color:var(--red)}
+@media(max-width:700px){
+  .storefront-detail img{max-height:380px}
+  .detail-photo{margin-bottom:18px}
+  .storefront-label{left:10px;bottom:9px}
+  .ranking-year-tags a,.detail-photo figcaption a{min-height:44px}
+}

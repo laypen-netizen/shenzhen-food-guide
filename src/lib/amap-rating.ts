@@ -34,3 +34,9 @@ export function getRankingYears(shop:Shop):Array<'2025'|'2026'> {
   const years=shop.rankings.map(ranking=>ranking.edition).filter((year):year is '2025'|'2026'=>year==='2025'||year==='2026');
   return [...new Set(years)].sort();
 }
+
+export function amapRatingCountLabel(shop:Shop,rating:AmapRating):string {
+  if(rating.count!==null)return `${rating.count.toLocaleString('zh-CN')} 条评价`;
+  const counts=new Set(shop.ratings.filter(r=>r.asOf===rating.asOf).map(r=>r.count));
+  return counts.size>1 ? '评价数口径不一致':'评价数未公布';
+}

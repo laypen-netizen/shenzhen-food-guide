@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {buildAmapRatings,compareAmapRatings,getAmapRating,getRankingYears} from '../src/lib/amap-rating.ts';
+import {buildAmapRatings,compareAmapRatings,getAmapRating,getRankingYears,amapRatingCountLabel} from '../src/lib/amap-rating.ts';
 import {catalogue,ratingById} from '../src/lib/catalogue.ts';
 import type {Shop} from '../src/lib/schema.ts';
 import {fixtureShop} from './fixtures.ts';
@@ -14,14 +14,23 @@ const shop=(id:string,name=id,district:Shop['district']='福田')=>{
   return item;
 };
 
-test('正式117家逐店使用资料日期前的高德原始餐厅分数',()=>{
-  assert.equal(catalogue.shops.length,117);
-  assert.equal(ratingById.size,117);
+test('正式目录逐店使用资料日期前最新的高德原始餐厅分数，保留历史记录',()=>{
+  assert.ok(catalogue.shops.length>=117);
+  assert.equal(ratingById.size,catalogue.shops.length);
   const rebuilt=buildAmapRatings(catalogue.shops,catalogue.updatedAt);
   for(const item of catalogue.shops){
-    assert.equal(item.ratings.length,1,`${item.id} 当前应只有一条原始评分记录`);
-    assert.deepEqual(ratingById.get(item.id),item.ratings[0],item.id);
-    assert.deepEqual(rebuilt.get(item.id),item.ratings[0],item.id);
+    const newest=[...item.ratings].filter(r=>r.asOf<=catalogue.updatedAt).sort((a,b)=>b.asOf.localeCompare(a.asOf))[0]??null;
+    const selected=ratingById.get(item.id);
+    assert.deepEqual(rebuilt.get(item.id),selected,item.id);
+    if(!newest){assert.equal(selected,null,item.id);continue;}
+    assert.ok(selected,item.id);
+    assert.equal(selected.value,newest.value,item.id);
+    assert.equal(selected.max,newest.max,item.id);
+    assert.equal(selected.asOf,newest.asOf,item.id);
+    const latest=item.ratings.filter(r=>r.asOf===newest.asOf);
+    const counts=new Set(latest.map(r=>r.count));
+    assert.equal(selected.count,counts.size===1 ? newest.count:null,item.id);
+    assert.deepEqual(new Set(selected.sourceIds),new Set(latest.flatMap(r=>r.sourceIds)),item.id);
   }
 });
 
@@ -49,10 +58,12 @@ test('同日同value/max合并来源；count冲突置null，未知max及零评�
     rating(4.1,5,100,'2026-09-01',['old']),
   ];
   const conflicted=getAmapRating(item)!;
+  assert.equal(amapRatingCountLabel(item,conflicted),'评价数口径不一致');
   assert.deepEqual({...conflicted,sourceIds:[]},rating(4.8,null,null,'2026-10-02',[]));
   assert.deepEqual(new Set(conflicted.sourceIds),new Set(['a','shared','b']));
   item.ratings[1].count=0;
   const merged=getAmapRating(item)!;
+  assert.equal(amapRatingCountLabel(item,merged),'0 条评价');
   assert.deepEqual({...merged,sourceIds:[]},rating(4.8,null,0,'2026-10-02',[]));
   assert.deepEqual(new Set(merged.sourceIds),new Set(['a','shared','b']));
 });
